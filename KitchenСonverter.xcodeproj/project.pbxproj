@@ -11,6 +11,7 @@
 		DDABAEE829E52D54007E9A7D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE729E52D54007E9A7D /* MainView.swift */; };
 		DDABAEEA29E52D56007E9A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEE929E52D56007E9A7D /* Assets.xcassets */; };
 		DDABAEED29E52D56007E9A7D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEEC29E52D56007E9A7D /* Preview Assets.xcassets */; };
+		DDCC3F5029E56FD100DDDCD1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F4F29E56FD100DDDCD1 /* Product.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		DDABAEE929E52D56007E9A7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDABAEEC29E52D56007E9A7D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DDABAEF329E5375A007E9A7D /* Kitchen-onverter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Kitchen-onverter-Info.plist"; path = "KitchenСonverter/Supporting files/Kitchen-onverter-Info.plist"; sourceTree = SOURCE_ROOT; };
+		DDCC3F4F29E56FD100DDDCD1 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +55,8 @@
 			isa = PBXGroup;
 			children = (
 				DDABAEF429E5380D007E9A7D /* Application */,
-				DDABAEE729E52D54007E9A7D /* MainView.swift */,
+				DDCC3F4E29E56FB800DDDCD1 /* View */,
+				DDCC3F5129E56FDA00DDDCD1 /* Model */,
 				DDABAEF529E5382F007E9A7D /* Supporting files */,
 				DDABAEEB29E52D56007E9A7D /* Preview Content */,
 			);
@@ -83,6 +86,22 @@
 				DDABAEE929E52D56007E9A7D /* Assets.xcassets */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		DDCC3F4E29E56FB800DDDCD1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DDABAEE729E52D54007E9A7D /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DDCC3F5129E56FDA00DDDCD1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DDCC3F4F29E56FD100DDDCD1 /* Product.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +176,7 @@
 			files = (
 				DDABAEE829E52D54007E9A7D /* MainView.swift in Sources */,
 				DDABAEE629E52D54007E9A7D /* Kitchen_onverterApp.swift in Sources */,
+				DDCC3F5029E56FD100DDDCD1 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
