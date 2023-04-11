@@ -8,30 +8,17 @@
 import SwiftUI
 
 struct MainView: View {
+
+    var converterViewModel: ConverterViewModel = ConverterViewModel()
     @State var productQuantity: String = ""
+    @State var itog: String = "0,000000"
     @State var productPicker: String = ""
     @State var measuringSystemPickerFirst: String = ""
     @State var measuringSystemPickerSecond: String = ""
-    var products: [Product] = [
-        Product(title: "Вода", measuringSystem: MeasuringSystem(title: "Л")),
-        Product(title: "Гречка", measuringSystem: MeasuringSystem(title: "Г")),
-        Product(title: "Рис", measuringSystem: MeasuringSystem(title: "Г")),
-        Product(title: "Соль", measuringSystem: MeasuringSystem(title: "Г")),
-        Product(title: "Сахар", measuringSystem: MeasuringSystem(title: "Г")),
-        Product(title: "Мука", measuringSystem: MeasuringSystem(title: "Г"))
-    ]
-    var measuringSystems: [MeasuringSystem] = [
-        MeasuringSystem(title: "Г"),
-        MeasuringSystem(title: "Кг"),
-        MeasuringSystem(title: "Л"),
-        MeasuringSystem(title: "Мл"),
-        MeasuringSystem(title: "У"),
-        MeasuringSystem(title: "П")
-    ]
 
     var body: some View {
         VStack(alignment: .center,
-               spacing: 16) {
+               spacing: 12) {
             HStack(alignment: .center,
                    spacing: 6) {
                 VStack(alignment: .center,
@@ -41,18 +28,18 @@ struct MainView: View {
                         .background(.white)
                         .cornerRadius(18)
                         .keyboardType(.numberPad)
-                    Text("0,00000000")
+                    Text(itog)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
                         .foregroundColor(.white)
                         .background(.black.opacity(0.5))
                         .cornerRadius(18)
                 }
-                       .padding(6)
+                       .padding(.horizontal, 6)
                 VStack(alignment: .center,
                        spacing: 12) {
                         Picker("Единици измерения", selection: $measuringSystemPickerFirst) {
-                            ForEach(measuringSystems) { measuringSystem in
+                            ForEach(converterViewModel.measuringSystems) { measuringSystem in
                                 Text(measuringSystem.title)
                                     .foregroundColor(.white)
                             }
@@ -64,7 +51,7 @@ struct MainView: View {
                     .background(.white)
                     .cornerRadius(18)
                     Picker("Единици измерения", selection: $measuringSystemPickerSecond) {
-                        ForEach(measuringSystems) { measuringSystem in
+                        ForEach(converterViewModel.measuringSystems) { measuringSystem in
                             Text(measuringSystem.title)
                                 .foregroundColor(.white)
                         }
@@ -78,20 +65,54 @@ struct MainView: View {
                        .padding(.horizontal, 6)
                        .foregroundColor(.blue)
             }
-            VStack {
+            VStack (alignment: .center,
+                    spacing: 8) {
                 Picker("Продукты", selection: $productPicker) {
-                    ForEach(products) { product in
-                        Text(product.title)
+                    ForEach(converterViewModel.products, id: \.description) { product in
+                        Text(product)
                             .foregroundColor(.white)
                     }
                 }
+                .frame(height: CGFloat(220))
                 .pickerStyle(.inline)
                 .background(.black.opacity(0.5))
                 .cornerRadius(32)
+                Button("Посчитать") {
+                    guard let productQuantity = Int(productQuantity) else {
+                        return
+                    }
+                    itog = "\(productQuantity * 2)"
+                }
+                .padding(.vertical, 16)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .background(.green)
+                .cornerRadius(18)
+                Button("Запомнить") {
+                    guard let _ = Int(productQuantity) else {
+                        return
+                    }
+                    converterViewModel.addConverter(productName: productPicker, itog: itog)
+                }
+                .padding(.vertical, 16)
+                .foregroundColor(.black)
+                .frame(maxWidth: .infinity)
+                .background(.yellow)
+                .cornerRadius(18)
             }
-            .padding()
-            
-
+            .padding(.horizontal, 16)
+            List {
+                ForEach(0 ..< converterViewModel.recordedConverters.count, id: \.description) { item in
+                    ConverterCell(converter: converterViewModel.recordedConverters[item])
+                        .background(.green.opacity(0.8))
+                        .listRowInsets(EdgeInsets())
+                }.listRowBackground(Color.clear)
+                Text("")
+                    .listRowBackground(Color.clear)
+            }.listStyle(.plain)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .cornerRadius(18)
+                .ignoresSafeArea()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
