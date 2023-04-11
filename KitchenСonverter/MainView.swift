@@ -12,7 +12,13 @@ struct MainView: View {
         VStack {
 
         }
-        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(
+            Image("MainBackgraund")
+                .resizable()
+                .ignoresSafeArea()
+                .scaledToFill()
+        )
     }
 }
 
