@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DDABAEE629E52D54007E9A7D /* Kitchen_onverterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE529E52D54007E9A7D /* Kitchen_onverterApp.swift */; };
-		DDABAEE829E52D54007E9A7D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE729E52D54007E9A7D /* ContentView.swift */; };
+		DDABAEE829E52D54007E9A7D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE729E52D54007E9A7D /* MainView.swift */; };
 		DDABAEEA29E52D56007E9A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEE929E52D56007E9A7D /* Assets.xcassets */; };
 		DDABAEED29E52D56007E9A7D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEEC29E52D56007E9A7D /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,9 +16,10 @@
 /* Begin PBXFileReference section */
 		DDABAEE229E52D54007E9A7D /* KitchenСonverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KitchenСonverter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDABAEE529E52D54007E9A7D /* Kitchen_onverterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kitchen_onverterApp.swift; sourceTree = "<group>"; };
-		DDABAEE729E52D54007E9A7D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DDABAEE729E52D54007E9A7D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DDABAEE929E52D56007E9A7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDABAEEC29E52D56007E9A7D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DDABAEF329E5375A007E9A7D /* Kitchen-onverter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Kitchen-onverter-Info.plist"; path = "KitchenСonverter/New Group/Kitchen-onverter-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +52,9 @@
 		DDABAEE429E52D54007E9A7D /* KitchenСonverter */ = {
 			isa = PBXGroup;
 			children = (
-				DDABAEE529E52D54007E9A7D /* Kitchen_onverterApp.swift */,
-				DDABAEE729E52D54007E9A7D /* ContentView.swift */,
-				DDABAEE929E52D56007E9A7D /* Assets.xcassets */,
+				DDABAEF429E5380D007E9A7D /* Application */,
+				DDABAEE729E52D54007E9A7D /* MainView.swift */,
+				DDABAEF529E5382F007E9A7D /* Supporting files */,
 				DDABAEEB29E52D56007E9A7D /* Preview Content */,
 			);
 			path = "KitchenСonverter";
@@ -65,6 +66,23 @@
 				DDABAEEC29E52D56007E9A7D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DDABAEF429E5380D007E9A7D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				DDABAEE529E52D54007E9A7D /* Kitchen_onverterApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		DDABAEF529E5382F007E9A7D /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				DDABAEF329E5375A007E9A7D /* Kitchen-onverter-Info.plist */,
+				DDABAEE929E52D56007E9A7D /* Assets.xcassets */,
+			);
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDABAEE829E52D54007E9A7D /* ContentView.swift in Sources */,
+				DDABAEE829E52D54007E9A7D /* MainView.swift in Sources */,
 				DDABAEE629E52D54007E9A7D /* Kitchen_onverterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,7 +288,7 @@
 				DEVELOPMENT_TEAM = 62VLSN5H88;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = "KitchenСonverter/Supporting files/Kitchen-onverter-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -280,7 +298,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.deshab.Kitchen-onverter";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.deshab.kitchen-converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -299,7 +317,7 @@
 				DEVELOPMENT_TEAM = 62VLSN5H88;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = "KitchenСonverter/Supporting files/Kitchen-onverter-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -309,7 +327,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.deshab.Kitchen-onverter";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.deshab.kitchen-converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

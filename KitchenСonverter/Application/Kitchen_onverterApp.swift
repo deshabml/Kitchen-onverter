@@ -11,7 +11,7 @@ import SwiftUI
 struct Kitchen_onverterApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
