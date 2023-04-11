@@ -10,27 +10,38 @@ import SwiftUI
 struct MainView: View {
     @State var productQuantity: String = ""
     @State var productPicker: String = ""
-    @State var products: [Product] = [
-        Product(title: "Вода", measuringSystem: .gram),
-        Product(title: "Гречка", measuringSystem: .gram),
-        Product(title: "Рис", measuringSystem: .gram),
-        Product(title: "Соль", measuringSystem: .gram),
-        Product(title: "Сахар", measuringSystem: .gram),
-        Product(title: "Мука", measuringSystem: .gram)
+    @State var measuringSystemPickerFirst: String = ""
+    @State var measuringSystemPickerSecond: String = ""
+    var products: [Product] = [
+        Product(title: "Вода", measuringSystem: MeasuringSystem(title: "Л")),
+        Product(title: "Гречка", measuringSystem: MeasuringSystem(title: "Г")),
+        Product(title: "Рис", measuringSystem: MeasuringSystem(title: "Г")),
+        Product(title: "Соль", measuringSystem: MeasuringSystem(title: "Г")),
+        Product(title: "Сахар", measuringSystem: MeasuringSystem(title: "Г")),
+        Product(title: "Мука", measuringSystem: MeasuringSystem(title: "Г"))
+    ]
+    var measuringSystems: [MeasuringSystem] = [
+        MeasuringSystem(title: "Г"),
+        MeasuringSystem(title: "Кг"),
+        MeasuringSystem(title: "Л"),
+        MeasuringSystem(title: "Мл"),
+        MeasuringSystem(title: "У"),
+        MeasuringSystem(title: "П")
     ]
 
-
     var body: some View {
-        VStack {
-            HStack {
+        VStack(alignment: .center,
+               spacing: 16) {
+            HStack(alignment: .center,
+                   spacing: 6) {
                 VStack(alignment: .center,
-                       spacing: 16) {
+                       spacing: 12) {
                     TextField("Количество", text: $productQuantity)
                         .padding()
                         .background(.white)
                         .cornerRadius(18)
                         .keyboardType(.numberPad)
-                    Text("0,000000")
+                    Text("0,00000000")
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
                         .foregroundColor(.white)
@@ -39,35 +50,47 @@ struct MainView: View {
                 }
                        .padding(6)
                 VStack(alignment: .center,
-                       spacing: 16) {
-                    HStack {
-                        Text("Г")
-                        Image(systemName: "chevron.up.chevron.down")
+                       spacing: 12) {
+                        Picker("Единици измерения", selection: $measuringSystemPickerFirst) {
+                            ForEach(measuringSystems) { measuringSystem in
+                                Text(measuringSystem.title)
+                                    .foregroundColor(.white)
+                            }
+                            .pickerStyle(.menu)
+                            .buttonStyle(.borderless)
                     }
-                    .padding(.vertical, 16)
-                    .padding(.horizontal, 20)
+                    .frame(width: CGFloat(66))
+                    .padding(.vertical, 10)
                     .background(.white)
                     .cornerRadius(18)
-                    HStack {
-                        Text("Г")
-                        Image(systemName: "chevron.up.chevron.down")
+                    Picker("Единици измерения", selection: $measuringSystemPickerSecond) {
+                        ForEach(measuringSystems) { measuringSystem in
+                            Text(measuringSystem.title)
+                                .foregroundColor(.white)
+                        }
+                        .pickerStyle(.wheel)
                     }
-                    .padding(.vertical, 16)
-                    .padding(.horizontal, 20)
+                    .frame(width: CGFloat(66))
+                    .padding(.vertical, 10)
                     .background(.white)
                     .cornerRadius(18)
                 }
-                       .padding(6)
+                       .padding(.horizontal, 6)
                        .foregroundColor(.blue)
             }
-            Picker("Pararam", selection: $productPicker) {
-                ForEach(products) { product in
-                    Text(product.title)
-                        .foregroundColor(.white)
+            VStack {
+                Picker("Продукты", selection: $productPicker) {
+                    ForEach(products) { product in
+                        Text(product.title)
+                            .foregroundColor(.white)
+                    }
                 }
+                .pickerStyle(.inline)
+                .background(.black.opacity(0.5))
+                .cornerRadius(32)
             }
-            .pickerStyle(.inline)
-            .background(.black.opacity(0.5))
+            .padding()
+            
 
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -78,6 +101,7 @@ struct MainView: View {
                 .scaledToFill()
         )
     }
+
 }
 
 struct ContentView_Previews: PreviewProvider {

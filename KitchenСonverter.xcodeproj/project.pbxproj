@@ -12,6 +12,7 @@
 		DDABAEEA29E52D56007E9A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEE929E52D56007E9A7D /* Assets.xcassets */; };
 		DDABAEED29E52D56007E9A7D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEEC29E52D56007E9A7D /* Preview Assets.xcassets */; };
 		DDCC3F5029E56FD100DDDCD1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F4F29E56FD100DDDCD1 /* Product.swift */; };
+		DDCC3F5329E5CB7E00DDDCD1 /* MeasuringSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		DDABAEEC29E52D56007E9A7D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DDABAEF329E5375A007E9A7D /* Kitchen-onverter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Kitchen-onverter-Info.plist"; path = "KitchenСonverter/Supporting files/Kitchen-onverter-Info.plist"; sourceTree = SOURCE_ROOT; };
 		DDCC3F4F29E56FD100DDDCD1 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasuringSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				DDCC3F4F29E56FD100DDDCD1 /* Product.swift */,
+				DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDCC3F5329E5CB7E00DDDCD1 /* MeasuringSystem.swift in Sources */,
 				DDABAEE829E52D54007E9A7D /* MainView.swift in Sources */,
 				DDABAEE629E52D54007E9A7D /* Kitchen_onverterApp.swift in Sources */,
 				DDCC3F5029E56FD100DDDCD1 /* Product.swift in Sources */,
