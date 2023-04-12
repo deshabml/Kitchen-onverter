@@ -11,9 +11,8 @@
 		DDABAEE829E52D54007E9A7D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE729E52D54007E9A7D /* MainView.swift */; };
 		DDABAEEA29E52D56007E9A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEE929E52D56007E9A7D /* Assets.xcassets */; };
 		DDABAEED29E52D56007E9A7D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEEC29E52D56007E9A7D /* Preview Assets.xcassets */; };
-		DDCC3F5029E56FD100DDDCD1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F4F29E56FD100DDDCD1 /* Product.swift */; };
+		DDCC3F5029E56FD100DDDCD1 /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F4F29E56FD100DDDCD1 /* Products.swift */; };
 		DDCC3F5329E5CB7E00DDDCD1 /* MeasuringSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */; };
-		DDCC3F5629E5F61200DDDCD1 /* ConverterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5529E5F61200DDDCD1 /* ConverterViewModel.swift */; };
 		DDCC3F5829E5F74800DDDCD1 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5729E5F74800DDDCD1 /* Converter.swift */; };
 		DDCC3F5A29E5F8B400DDDCD1 /* ConverterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5929E5F8B400DDDCD1 /* ConverterCell.swift */; };
 /* End PBXBuildFile section */
@@ -25,9 +24,8 @@
 		DDABAEE929E52D56007E9A7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDABAEEC29E52D56007E9A7D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DDABAEF329E5375A007E9A7D /* Kitchen-onverter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Kitchen-onverter-Info.plist"; path = "KitchenСonverter/Supporting files/Kitchen-onverter-Info.plist"; sourceTree = SOURCE_ROOT; };
-		DDCC3F4F29E56FD100DDDCD1 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		DDCC3F4F29E56FD100DDDCD1 /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasuringSystem.swift; sourceTree = "<group>"; };
-		DDCC3F5529E5F61200DDDCD1 /* ConverterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewModel.swift; sourceTree = "<group>"; };
 		DDCC3F5729E5F74800DDDCD1 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		DDCC3F5929E5F8B400DDDCD1 /* ConverterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,7 +63,6 @@
 				DDABAEF429E5380D007E9A7D /* Application */,
 				DDCC3F4E29E56FB800DDDCD1 /* View */,
 				DDCC3F5129E56FDA00DDDCD1 /* Model */,
-				DDCC3F5429E5F5C000DDDCD1 /* ViewModel */,
 				DDABAEF529E5382F007E9A7D /* Supporting files */,
 				DDABAEEB29E52D56007E9A7D /* Preview Content */,
 			);
@@ -108,20 +105,12 @@
 		DDCC3F5129E56FDA00DDDCD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DDCC3F4F29E56FD100DDDCD1 /* Product.swift */,
+				DDCC3F4F29E56FD100DDDCD1 /* Products.swift */,
 				DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */,
 				DDCC3F5729E5F74800DDDCD1 /* Converter.swift */,
 				DDCC3F5B29E5F8C300DDDCD1 /* Components */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		DDCC3F5429E5F5C000DDDCD1 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				DDCC3F5529E5F61200DDDCD1 /* ConverterViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		DDCC3F5B29E5F8C300DDDCD1 /* Components */ = {
@@ -203,11 +192,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDCC3F5329E5CB7E00DDDCD1 /* MeasuringSystem.swift in Sources */,
-				DDCC3F5629E5F61200DDDCD1 /* ConverterViewModel.swift in Sources */,
 				DDABAEE829E52D54007E9A7D /* MainView.swift in Sources */,
 				DDABAEE629E52D54007E9A7D /* Kitchen_onverterApp.swift in Sources */,
 				DDCC3F5829E5F74800DDDCD1 /* Converter.swift in Sources */,
-				DDCC3F5029E56FD100DDDCD1 /* Product.swift in Sources */,
+				DDCC3F5029E56FD100DDDCD1 /* Products.swift in Sources */,
 				DDCC3F5A29E5F8B400DDDCD1 /* ConverterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

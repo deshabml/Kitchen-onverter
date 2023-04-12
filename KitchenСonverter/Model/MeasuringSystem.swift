@@ -7,13 +7,15 @@
 
 import Foundation
 
-class MeasuringSystem: Identifiable {
-    let id: String
-    var title: String
+enum MeasuringSystem: String, CaseIterable, Identifiable {
 
+    case gram = "Г"
+    case kilogram = "Кг"
+    case liter = "Л"
+    case milliliter = "Мл"
+    case ounce = "У"
+    case food = "Ф"
 
-    init(title: String) {
-        self.id = UUID().uuidString
-        self.title = title
-    }
+    var id: String { rawValue }
+
 }

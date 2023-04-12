@@ -17,20 +17,24 @@ struct ConverterCell: View {
                 .padding()
                 .font(.custom("AvenirNext",
                               size: 20))
-                .foregroundColor(.white)
+                .foregroundColor(.black)
             Spacer()
             Text(converter.itog)
-                .padding()
                 .font(.custom("AvenirNext",
                               size: 20))
-                .foregroundColor(.white)
-
+                .foregroundColor(.black)
+            Text(converter.measuringSystem.rawValue)
+                .padding(.trailing, 16)
+                .font(.custom("AvenirNext",
+                              size: 20))
+                .foregroundColor(.black)
         }
     }
+
 }
 
 struct ConverterCell_Previews: PreviewProvider {
     static var previews: some View {
-        ConverterCell(converter: Converter(productName: "Молоко", itog: "3,000000"))
+        ConverterCell(converter: Converter(productName: "Молоко", itog: "10,000000", measuringSystem: .gram))
     }
 }
