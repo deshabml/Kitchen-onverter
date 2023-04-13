@@ -98,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				DDABAEE729E52D54007E9A7D /* MainView.swift */,
+				DDCC3F5B29E5F8C300DDDCD1 /* Components */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -108,7 +109,6 @@
 				DDCC3F4F29E56FD100DDDCD1 /* Products.swift */,
 				DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */,
 				DDCC3F5729E5F74800DDDCD1 /* Converter.swift */,
-				DDCC3F5B29E5F8C300DDDCD1 /* Components */,
 			);
 			path = Model;
 			sourceTree = "<group>";
