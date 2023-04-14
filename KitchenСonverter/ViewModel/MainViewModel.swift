@@ -13,18 +13,18 @@ class MainViewModel: ObservableObject {
     @Published var productQuantity: String = ""
     @Published var itog: String = "0,000000"
     @Published var productPicker: Product = Product(name: "Вода", density: 1)
-    @Published var measuringSystemPickerFirst: MeasuringSystem = MeasuringSystem(name: "Грамм", fullName: "грамм", isWeight: true)
-    @Published var measuringSystemPickerSecond: MeasuringSystem = MeasuringSystem(name: "Грамм", fullName: "грамм", isWeight: true)
+    @Published var measuringSystemPickerFirst: MeasuringSystem = MeasuringSystem(name: "Грамм", fullName: "грамм", isWeight: true, ratio: 1)
+    @Published var measuringSystemPickerSecond: MeasuringSystem = MeasuringSystem(name: "Грамм", fullName: "грамм", isWeight: true, ratio: 1)
 
     
 
-    @Published var measuringSystems: [MeasuringSystem] = [MeasuringSystem(name: "Г", fullName: "грамм", isWeight: true),
-                                                          MeasuringSystem(name: "Кг", fullName: "килограмм", isWeight: true),
-                                                          MeasuringSystem(name: "Л", fullName: "литр", isWeight: false),
-                                                          MeasuringSystem(name: "Мл", fullName: "милилитр", isWeight: false),
-                                                          MeasuringSystem(name: "Унция", fullName: "унция", isWeight: true),
-                                                          MeasuringSystem(name: "Фут", fullName: "фут", isWeight: true),
-                                                          MeasuringSystem(name: "Стакан", fullName: "стакан", isWeight: false)]
+    @Published var measuringSystems: [MeasuringSystem] = [MeasuringSystem(name: "Г", fullName: "грамм", isWeight: true, ratio: 1),
+                                                          MeasuringSystem(name: "Кг", fullName: "килограмм", isWeight: true, ratio: 1000),
+                                                          MeasuringSystem(name: "Л", fullName: "литр", isWeight: false, ratio: 1000),
+                                                          MeasuringSystem(name: "Мл", fullName: "милилитр", isWeight: false, ratio: 1),
+                                                          MeasuringSystem(name: "Унция", fullName: "унция", isWeight: true, ratio: 31.1034768),
+                                                          MeasuringSystem(name: "Фут", fullName: "фут", isWeight: true, ratio: 453.59237),
+                                                          MeasuringSystem(name: "Стакан", fullName: "стакан", isWeight: false, ratio: 200)]
     @Published var products: [Product] = [Product(name: "Вода", density: 1),
                                           Product(name: "Гречка", density: 0.85),
                                           Product(name: "Рис", density: 0.9),
@@ -38,8 +38,21 @@ class MainViewModel: ObservableObject {
 
     func recalculation() {
         guard let productQuantity = Double(productQuantity) else { return }
-        let calculation = productQuantity * 1000
-        itog = "\(calculation)"
+        let firstPicker = measuringSystemPickerFirst
+        let secondPicker = measuringSystemPickerSecond
+        var calculation: Double = 0
+        if firstPicker.isWeight && secondPicker.isWeight {
+            calculation = productQuantity * firstPicker.ratio / secondPicker.ratio
+            print(secondPicker.ratio / firstPicker.ratio)
+            print(calculation)
+        } else if !firstPicker.isWeight && !secondPicker.isWeight {
+            calculation = productQuantity * firstPicker.ratio / secondPicker.ratio
+        } else if firstPicker.isWeight {
+            calculation = productQuantity * firstPicker.ratio / secondPicker.ratio / productPicker.density
+        } else {
+            calculation = productQuantity * firstPicker.ratio / secondPicker.ratio * productPicker.density
+        }
+        itog = String(format: "%.6f", calculation)
     }
 
 }

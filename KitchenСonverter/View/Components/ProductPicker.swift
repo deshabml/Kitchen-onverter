@@ -26,9 +26,3 @@ struct ProductPicker: View {
         .cornerRadius(32)
     }
 }
-
-//struct ProductPicker_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProductPicker()
-//    }
-//}

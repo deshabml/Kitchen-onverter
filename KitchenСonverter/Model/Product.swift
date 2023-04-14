@@ -7,19 +7,6 @@
 //
 import Foundation
 
-//enum Products: String, CaseIterable, Identifiable {
-//
-//    case water = "Вода"
-//    case buckwheat = "Гречка"
-//    case rice = "Рис"
-//    case salt = "Соль"
-//    case sugar = "Сахар"
-//    case flour = "Мука"
-//
-//    var id: String { rawValue }
-//
-//}
-
 struct Product: Identifiable, Hashable {
 
     let id = UUID().uuidString
