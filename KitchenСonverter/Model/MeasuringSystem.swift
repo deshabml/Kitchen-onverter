@@ -7,15 +7,24 @@
 
 import Foundation
 
-enum MeasuringSystem: String, CaseIterable, Identifiable {
+//enum MeasuringSystem: String, CaseIterable, Identifiable {
+//
+//    case gram = "Г"
+//    case kilogram = "Кг"
+//    case liter = "Л"
+//    case milliliter = "Мл"
+//    case ounce = "У"
+//    case food = "Ф"
+//
+//    var id: String { rawValue }
+//
+//}
 
-    case gram = "Г"
-    case kilogram = "Кг"
-    case liter = "Л"
-    case milliliter = "Мл"
-    case ounce = "У"
-    case food = "Ф"
+struct MeasuringSystem: Identifiable, Hashable {
 
-    var id: String { rawValue }
+    let id = UUID().uuidString
+    let name: String
+    let fullName: String
+    let isWeight: Bool
 
 }
