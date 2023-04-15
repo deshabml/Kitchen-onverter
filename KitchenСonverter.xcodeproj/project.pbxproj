@@ -19,6 +19,7 @@
 		DDBB91E729EAC8D70081445E /* AddViewText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91E629EAC8D70081445E /* AddViewText.swift */; };
 		DDBB91E929EACAC90081445E /* AddMeasuringSystemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91E829EACAC90081445E /* AddMeasuringSystemPicker.swift */; };
 		DDBB91EB29EB3EB30081445E /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91EA29EB3EB20081445E /* AddProductView.swift */; };
+		DDBB91ED29EB43990081445E /* AddProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91EC29EB43990081445E /* AddProductViewModel.swift */; };
 		DDCC3F5029E56FD100DDDCD1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F4F29E56FD100DDDCD1 /* Product.swift */; };
 		DDCC3F5329E5CB7E00DDDCD1 /* MeasuringSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */; };
 		DDCC3F5829E5F74800DDDCD1 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5729E5F74800DDDCD1 /* Converter.swift */; };
@@ -47,6 +48,7 @@
 		DDBB91E629EAC8D70081445E /* AddViewText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewText.swift; sourceTree = "<group>"; };
 		DDBB91E829EACAC90081445E /* AddMeasuringSystemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasuringSystemPicker.swift; sourceTree = "<group>"; };
 		DDBB91EA29EB3EB20081445E /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
+		DDBB91EC29EB43990081445E /* AddProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewModel.swift; sourceTree = "<group>"; };
 		DDCC3F4F29E56FD100DDDCD1 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasuringSystem.swift; sourceTree = "<group>"; };
 		DDCC3F5729E5F74800DDDCD1 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				DDCC3F5E29E8928200DDDCD1 /* MainViewModel.swift */,
 				DDBB91E029EA10310081445E /* AddMeasuringSystemViewModel.swift */,
+				DDBB91EC29EB43990081445E /* AddProductViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDBB91ED29EB43990081445E /* AddProductViewModel.swift in Sources */,
 				DDCC3F5F29E8928200DDDCD1 /* MainViewModel.swift in Sources */,
 				DDBB91E329EAB39E0081445E /* TypeMeasuringSystem.swift in Sources */,
 				DDCC3F6A29E9288F00DDDCD1 /* ProductPicker.swift in Sources */,

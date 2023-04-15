@@ -11,6 +11,8 @@ struct MainView: View {
 
     @StateObject var viewModel = MainViewModel()
     @State var showAddMeasuringSystemScreen = false
+    @State var showAddProductScreen = false
+
 
     var body: some View {
         VStack(alignment: .center,
@@ -38,14 +40,14 @@ struct MainView: View {
                     VStack {
                         HStack {
                             MainAddButton(symbols: "scalemass.fill", color: .green) {
-                                self.showAddMeasuringSystemScreen.toggle()
+                                showAddMeasuringSystemScreen.toggle()
                             }
                             Spacer()
                         }
                         Spacer()
                         HStack {
                             MainAddButton(symbols: "takeoutbag.and.cup.and.straw.fill", color: .yellow) {
-                                print("ap")
+                                showAddProductScreen.toggle()
                             }
                             Spacer()
                         }
@@ -70,6 +72,9 @@ struct MainView: View {
                )
                .fullScreenCover(isPresented: $showAddMeasuringSystemScreen) {
                    NavigationView { AddMeasuringSystemView(superViewModel: viewModel) }
+               }
+               .fullScreenCover(isPresented: $showAddProductScreen) {
+                   NavigationView { AddProductView(superViewModel: viewModel) }
                }
     }
 
