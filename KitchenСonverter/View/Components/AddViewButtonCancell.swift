@@ -24,4 +24,5 @@ struct AddViewButtonCancell: View {
         }
         .padding(.horizontal, 16)
     }
+    
 }

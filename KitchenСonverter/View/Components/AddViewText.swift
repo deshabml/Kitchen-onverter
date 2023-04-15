@@ -18,6 +18,7 @@ struct AddViewText: View {
             .font(.custom("AvenirNext-Bold",
                           size: CGFloat(size)))
     }
+    
 }
 
 struct AddViewText_Previews: PreviewProvider {

@@ -53,6 +53,7 @@ struct AddProductView: View {
             Button("ОК") { }
         }
     }
+    
 }
 
 struct AddProductView_Previews: PreviewProvider {

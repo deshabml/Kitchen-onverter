@@ -32,4 +32,5 @@ struct ConverterList: View {
         .cornerRadius(18)
         .ignoresSafeArea()
     }
+    
 }

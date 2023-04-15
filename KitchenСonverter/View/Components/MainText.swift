@@ -19,6 +19,7 @@ struct MainText: View {
             .background(.black.opacity(0.5))
             .cornerRadius(18)
     }
+    
 }
 
 struct MainText_Previews: PreviewProvider {
