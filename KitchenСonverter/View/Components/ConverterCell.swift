@@ -35,6 +35,6 @@ struct ConverterCell: View {
 
 struct ConverterCell_Previews: PreviewProvider {
     static var previews: some View {
-        ConverterCell(converter: Converter(productName: "Молоко", itog: "10,000000", measuringSystem: MeasuringSystem(name: "Г", fullName: "грамм", isWeight: true, ratio: 1)))
+        ConverterCell(converter: Converter(productName: "Молоко", itog: "10,000000", measuringSystem: MeasuringSystem(name: "Г", isWeight: true, ratio: 1)))
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
 
     @StateObject var viewModel = MainViewModel()
+    @State var showAddMeasuringSystemScreen = false
 
     var body: some View {
         VStack(alignment: .center,
@@ -30,9 +31,26 @@ struct MainView: View {
                        .padding(.horizontal, 6)
                        .foregroundColor(.blue)
             }
-            VStack (alignment: .center,
+            VStack(alignment: .center,
                     spacing: 8) {
-                ProductPicker(products: viewModel.products, productPicker: $viewModel.productPicker)
+                ZStack {
+                    ProductPicker(products: viewModel.products, productPicker: $viewModel.productPicker)
+                    VStack {
+                        HStack {
+                            MainAddButton(symbols: "scalemass.fill", color: .green) {
+                                self.showAddMeasuringSystemScreen.toggle()
+                            }
+                            Spacer()
+                        }
+                        Spacer()
+                        HStack {
+                            MainAddButton(symbols: "takeoutbag.and.cup.and.straw.fill", color: .yellow) {
+                                print("ap")
+                            }
+                            Spacer()
+                        }
+                    }
+                }
                 MainButton(text: "Посчитать", colors: (.white, .green)) {
                     viewModel.recalculation()
                 }
@@ -50,6 +68,9 @@ struct MainView: View {
                     .ignoresSafeArea()
                     .scaledToFill()
                )
+               .fullScreenCover(isPresented: $showAddMeasuringSystemScreen) {
+                   NavigationView { AddMeasuringSystemView(superViewModel: viewModel) }
+               }
     }
 
 }

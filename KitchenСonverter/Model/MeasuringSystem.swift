@@ -11,8 +11,8 @@ struct MeasuringSystem: Identifiable, Hashable {
 
     var id = UUID().uuidString
     let name: String
-    let fullName: String
     let isWeight: Bool
     let ratio: Double
 
 }
+

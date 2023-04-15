@@ -23,7 +23,7 @@ struct MeasuringPicker: View {
             }
         }
         .pickerStyle(.menu)
-        .frame(width: CGFloat(100))
+        .frame(width: CGFloat(110))
         .padding(.vertical, 10)
         .background(.white)
         .cornerRadius(18)

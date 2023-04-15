@@ -13,18 +13,18 @@ class MainViewModel: ObservableObject {
     @Published var productQuantity: String = ""
     @Published var itog: String = "0,000000"
     @Published var productPicker: Product = Product(name: "Вода", density: 1)
-    @Published var measuringSystemPickerFirst: MeasuringSystem = MeasuringSystem(name: "Грамм", fullName: "грамм", isWeight: true, ratio: 1)
-    @Published var measuringSystemPickerSecond: MeasuringSystem = MeasuringSystem(name: "Грамм", fullName: "грамм", isWeight: true, ratio: 1)
+    @Published var measuringSystemPickerFirst: MeasuringSystem = MeasuringSystem(name: "Грамм", isWeight: true, ratio: 1)
+    @Published var measuringSystemPickerSecond: MeasuringSystem = MeasuringSystem(name: "Грамм", isWeight: true, ratio: 1)
 
     
 
-    @Published var measuringSystems: [MeasuringSystem] = [MeasuringSystem(name: "Г", fullName: "грамм", isWeight: true, ratio: 1),
-                                                          MeasuringSystem(name: "Кг", fullName: "килограмм", isWeight: true, ratio: 1000),
-                                                          MeasuringSystem(name: "Л", fullName: "литр", isWeight: false, ratio: 1000),
-                                                          MeasuringSystem(name: "Мл", fullName: "милилитр", isWeight: false, ratio: 1),
-                                                          MeasuringSystem(name: "Унция", fullName: "унция", isWeight: true, ratio: 31.1034768),
-                                                          MeasuringSystem(name: "Фут", fullName: "фут", isWeight: true, ratio: 453.59237),
-                                                          MeasuringSystem(name: "Стакан", fullName: "стакан", isWeight: false, ratio: 200)]
+    @Published var measuringSystems: [MeasuringSystem] = [MeasuringSystem(name: "Г", isWeight: true, ratio: 1),
+                                                          MeasuringSystem(name: "Кг", isWeight: true, ratio: 1000),
+                                                          MeasuringSystem(name: "Л", isWeight: false, ratio: 1000),
+                                                          MeasuringSystem(name: "Мл", isWeight: false, ratio: 1),
+                                                          MeasuringSystem(name: "Унция", isWeight: true, ratio: 31.1034768),
+                                                          MeasuringSystem(name: "Фут", isWeight: true, ratio: 453.59237),
+                                                          MeasuringSystem(name: "Стакан", isWeight: false, ratio: 200)]
     @Published var products: [Product] = [Product(name: "Вода", density: 1),
                                           Product(name: "Гречка", density: 0.85),
                                           Product(name: "Рис", density: 0.9),
