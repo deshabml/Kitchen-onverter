@@ -33,7 +33,7 @@ class MainViewModel: ObservableObject {
                                           Product(name: "Мука", density: 0.68)]
 
     func savingConverter() {
-        recordedConverters.append(Converter(productName: productPicker.name, itog: itog, measuringSystem: measuringSystemPickerSecond))
+        recordedConverters.append(Converter(product: productPicker, itog: itog, measuringSystem: measuringSystemPickerSecond))
     }
 
     func recalculation() {

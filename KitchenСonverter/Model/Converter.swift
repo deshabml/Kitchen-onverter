@@ -10,13 +10,13 @@ import Foundation
 class Converter: Identifiable {
 
     let id: String
-    let productName: String
+    let product: Product
     let itog: String
     let measuringSystem: MeasuringSystem
 
-    init(productName: String, itog: String, measuringSystem: MeasuringSystem) {
+    init(product: Product, itog: String, measuringSystem: MeasuringSystem) {
         self.id = UUID().uuidString
-        self.productName = productName
+        self.product = product
         self.itog = itog
         self.measuringSystem = measuringSystem
     }

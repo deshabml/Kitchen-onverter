@@ -13,7 +13,7 @@ struct ConverterCell: View {
 
     var body: some View {
         HStack {
-            Text(converter.productName)
+            Text(converter.product.name)
                 .padding()
                 .font(.custom("AvenirNext",
                               size: 20))
@@ -35,6 +35,6 @@ struct ConverterCell: View {
 
 struct ConverterCell_Previews: PreviewProvider {
     static var previews: some View {
-        ConverterCell(converter: Converter(productName: "Молоко", itog: "10,000000", measuringSystem: MeasuringSystem(name: "Г", isWeight: true, ratio: 1)))
+        ConverterCell(converter: Converter(product: Product(name: "Молоко", density: 1.027), itog: "10,000000", measuringSystem: MeasuringSystem(name: "Г", isWeight: true, ratio: 1)))
     }
 }
