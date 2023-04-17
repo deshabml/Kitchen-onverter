@@ -16,8 +16,6 @@ class MainViewModel: ObservableObject {
     @Published var measuringSystemPickerFirst: MeasuringSystem = MeasuringSystem(name: "Грамм", isWeight: true, ratio: 1)
     @Published var measuringSystemPickerSecond: MeasuringSystem = MeasuringSystem(name: "Грамм", isWeight: true, ratio: 1)
 
-    
-
     @Published var measuringSystems: [MeasuringSystem] = [MeasuringSystem(name: "Г", isWeight: true, ratio: 1),
                                                           MeasuringSystem(name: "Кг", isWeight: true, ratio: 1000),
                                                           MeasuringSystem(name: "Л", isWeight: false, ratio: 1000),
