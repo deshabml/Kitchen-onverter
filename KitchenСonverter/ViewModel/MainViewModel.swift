@@ -31,7 +31,17 @@ class MainViewModel: ObservableObject {
                                           Product(name: "Мука", density: 0.68)]
 
     func savingConverter() {
-        recordedConverters.append(Converter(product: productPicker, itog: itog, measuringSystem: measuringSystemPickerSecond))
+        RealmService.shared.createConverter(converter: Converter(product: productPicker, itog: itog, measuringSystem: measuringSystemPickerSecond))
+        getAllConverters()
+    }
+
+    func getAllConverters() {
+        recordedConverters = RealmService.shared.getConverter()
+    }
+
+    func deleteConverters(converter: Converter) {
+        RealmService.shared.deleteConverter(converter: converter)
+        getAllConverters()
     }
 
     func recalculation() {

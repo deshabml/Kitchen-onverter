@@ -12,14 +12,13 @@ struct AddProductView: View {
     var superViewModel: MainViewModel
     @StateObject var viewModel = AddProductViewModel()
     @State var showAlert = false
-
-    @Environment(\.presentationMode) var presentation
+    @Environment (\.dismiss) var dismiss
 
     var body: some View {
         VStack {
             HStack {
                 AddViewButtonCancell(completion: {
-                    presentation.wrappedValue.dismiss()
+                    dismiss()
                 })
                 Spacer()
             }
@@ -33,7 +32,7 @@ struct AddProductView: View {
             MainButton(text: "Добавить", colors: (.white, .yellow)) {
                 if viewModel.errorMasege.isEmpty {
                     viewModel.addProduct(viewModel: superViewModel)
-                    presentation.wrappedValue.dismiss()
+                    dismiss()
                 } else {
                     showAlert.toggle()
                 }

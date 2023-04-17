@@ -33,6 +33,7 @@
 		DDCC3F6C29E9356D00DDDCD1 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F6B29E9356D00DDDCD1 /* MainButton.swift */; };
 		DDFD772829EDD882008F0C8A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = DDFD772729EDD882008F0C8A /* Realm */; };
 		DDFD772A29EDD882008F0C8A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DDFD772929EDD882008F0C8A /* RealmSwift */; };
+		DDFD772C29EDDBCC008F0C8A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD772B29EDDBCC008F0C8A /* RealmService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		DDCC3F6729E8A7E100DDDCD1 /* MeasuringPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasuringPicker.swift; sourceTree = "<group>"; };
 		DDCC3F6929E9288F00DDDCD1 /* ProductPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPicker.swift; sourceTree = "<group>"; };
 		DDCC3F6B29E9356D00DDDCD1 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
+		DDFD772B29EDDBCC008F0C8A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				DDCC3F5129E56FDA00DDDCD1 /* Model */,
 				DDCC3F4E29E56FB800DDDCD1 /* View */,
 				DDCC3F6029E8928600DDDCD1 /* ViewModel */,
+				DDFD772D29EDDBDF008F0C8A /* Services */,
 				DDABAEF529E5382F007E9A7D /* Supporting files */,
 				DDABAEEB29E52D56007E9A7D /* Preview Content */,
 			);
@@ -179,6 +182,14 @@
 				DDBB91EC29EB43990081445E /* AddProductViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DDFD772D29EDDBDF008F0C8A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DDFD772B29EDDBCC008F0C8A /* RealmService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +274,7 @@
 				DDBB91E329EAB39E0081445E /* TypeMeasuringSystem.swift in Sources */,
 				DDCC3F6A29E9288F00DDDCD1 /* ProductPicker.swift in Sources */,
 				DDCC3F6629E89D3800DDDCD1 /* MainText.swift in Sources */,
+				DDFD772C29EDDBCC008F0C8A /* RealmService.swift in Sources */,
 				DDBB91E129EA10310081445E /* AddMeasuringSystemViewModel.swift in Sources */,
 				DDCC3F5329E5CB7E00DDDCD1 /* MeasuringSystem.swift in Sources */,
 				DDCC3F6229E8975000DDDCD1 /* ConverterList.swift in Sources */,

@@ -61,7 +61,9 @@ struct MainView: View {
                 }
             }
                     .padding(.horizontal, 16)
-            ConverterList(recordedConverters: $viewModel.recordedConverters)
+            ConverterList(recordedConverters: $viewModel.recordedConverters) { converter in
+                viewModel.deleteConverters(converter: converter)
+            }
         }
                .frame(maxWidth: .infinity, maxHeight: .infinity)
                .background(
@@ -70,6 +72,9 @@ struct MainView: View {
                     .ignoresSafeArea()
                     .scaledToFill()
                )
+               .onAppear {
+                   viewModel.getAllConverters()
+               }
                .fullScreenCover(isPresented: $showAddMeasuringSystemScreen) {
                    NavigationView { AddMeasuringSystemView(superViewModel: viewModel) }
                }

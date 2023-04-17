@@ -13,7 +13,7 @@ struct ConverterCell: View {
 
     var body: some View {
         HStack {
-            Text(converter.product.name)
+            Text(converter.product?.name ?? "")
                 .padding()
                 .font(.custom("AvenirNext",
                               size: 20))
@@ -23,7 +23,7 @@ struct ConverterCell: View {
                 .font(.custom("AvenirNext",
                               size: 20))
                 .foregroundColor(.black)
-            Text(converter.measuringSystem.name)
+            Text(converter.measuringSystem?.name ?? "")
                 .padding(.trailing, 16)
                 .font(.custom("AvenirNext",
                               size: 20))

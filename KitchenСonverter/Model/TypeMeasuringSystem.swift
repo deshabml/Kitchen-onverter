@@ -12,5 +12,5 @@ struct TypeMeasuringSystem: Identifiable, Hashable {
     var id = UUID().uuidString
     let name: String
     let isWeight: Bool
-    
+
 }

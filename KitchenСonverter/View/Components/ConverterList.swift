@@ -10,6 +10,7 @@ import SwiftUI
 struct ConverterList: View {
 
     @Binding var recordedConverters: [Converter]
+    var completion: (Converter)->()
 
     var body: some View {
         List {
@@ -20,7 +21,7 @@ struct ConverterList: View {
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Удалить") {
                             print("Удалить")
-                            self.recordedConverters.remove(at: item)
+                            completion(recordedConverters[item])
                         }
                         .tint(.red)
                     }

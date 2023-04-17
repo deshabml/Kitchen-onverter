@@ -6,16 +6,17 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Converter: Identifiable {
+class Converter: Object, Identifiable {
 
-    let id: String
-    let product: Product
-    let itog: String
-    let measuringSystem: MeasuringSystem
+    @Persisted(primaryKey: true) var id = UUID().uuidString
+    @Persisted var product: Product?
+    @Persisted var itog: String
+    @Persisted var measuringSystem: MeasuringSystem?
 
-    init(product: Product, itog: String, measuringSystem: MeasuringSystem) {
-        self.id = UUID().uuidString
+    convenience init(product: Product, itog: String, measuringSystem: MeasuringSystem) {
+        self.init()
         self.product = product
         self.itog = itog
         self.measuringSystem = measuringSystem

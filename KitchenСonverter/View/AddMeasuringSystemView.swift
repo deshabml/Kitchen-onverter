@@ -12,14 +12,13 @@ struct AddMeasuringSystemView: View {
     var superViewModel: MainViewModel
     @StateObject var viewModel = AddMeasuringSystemViewModel()
     @State var showAlert = false
-
-    @Environment(\.presentationMode) var presentation
+    @Environment (\.dismiss) var dismiss
 
     var body: some View {
         VStack {
             HStack {
                 AddViewButtonCancell(completion: {
-                    presentation.wrappedValue.dismiss()
+                    dismiss()
                 })
                 Spacer()
             }
@@ -40,7 +39,7 @@ struct AddMeasuringSystemView: View {
                 MainButton(text: "Добавить", colors: (.green, .white)) {
                     if viewModel.errorMasege.isEmpty {
                         viewModel.addMeasuringSystem(viewModel: superViewModel)
-                        presentation.wrappedValue.dismiss()
+                        dismiss()
                     } else {
                         showAlert.toggle()
                     }
