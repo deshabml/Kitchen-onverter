@@ -45,7 +45,7 @@ class AddMeasuringSystemViewModel: ObservableObject  {
 
     func addMeasuringSystem(viewModel: MainViewModel) {
         guard let measuringSystemsRatio = Double(measuringSystemsRatio) else { return }
-        viewModel.measuringSystems.append(MeasuringSystem(name: measuringSystemsName, isWeight: typeMeasuringSystemPicker.isWeight, ratio: measuringSystemsRatio))
+        viewModel.savingMeasuringSystem(measuringSystem: MeasuringSystem(name: measuringSystemsName, isWeight: typeMeasuringSystemPicker.isWeight, ratio: measuringSystemsRatio))
     }
 
     func checkMeasuringSystem() throws {

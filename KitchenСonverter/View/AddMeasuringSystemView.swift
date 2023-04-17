@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AddMeasuringSystemView: View {
 
-    var superViewModel: MainViewModel
+//    var superViewModel: MainViewModel
+    @EnvironmentObject var mainViewModel: MainViewModel
     @StateObject var viewModel = AddMeasuringSystemViewModel()
     @State var showAlert = false
     @Environment (\.dismiss) var dismiss
@@ -38,7 +39,7 @@ struct AddMeasuringSystemView: View {
                 .padding(.horizontal, 16)
                 MainButton(text: "Добавить", colors: (.green, .white)) {
                     if viewModel.errorMasege.isEmpty {
-                        viewModel.addMeasuringSystem(viewModel: superViewModel)
+                        viewModel.addMeasuringSystem(viewModel: mainViewModel)
                         dismiss()
                     } else {
                         showAlert.toggle()
@@ -63,6 +64,6 @@ struct AddMeasuringSystemView: View {
 
 struct AddMeasuringSystemView_Previews: PreviewProvider {
     static var previews: some View {
-        AddMeasuringSystemView(superViewModel: MainViewModel())
+        AddMeasuringSystemView()
     }
 }

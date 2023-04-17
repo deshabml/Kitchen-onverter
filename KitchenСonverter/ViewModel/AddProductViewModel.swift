@@ -36,7 +36,7 @@ class AddProductViewModel: ObservableObject  {
 
     func addProduct(viewModel: MainViewModel) {
         guard let density = Double(density) else { return }
-        viewModel.products.append(Product(name: productName, density: density))
+        viewModel.savingProduct(product: Product(name: productName, density: density))
     }
 
     func checkProduct() throws {

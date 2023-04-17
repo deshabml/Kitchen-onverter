@@ -27,33 +27,3 @@ class Product: Object, Identifiable {
     }
 
 }
-
-//struct Product: Identifiable, Hashable {
-//
-//    var id = UUID().uuidString
-//    let name: String
-//    let density: Double
-//
-//}
-//
-//final class ProductObject: Object {
-//    dynamic var id = UUID().uuidString
-//    dynamic var name = ""
-//    dynamic var density: Double = 0
-//}
-//
-//extension Product: Persistable {
-//
-//    public init(managedObject: ProductObject) {
-//        id = managedObject.id
-//        name = managedObject.name
-//        density = managedObject.density
-//    }
-//    public func managedObject() -> ProductObject {
-//        let Product = ProductObject()
-//        Product.id = id
-//        Product.name = name
-//        Product.density = density
-//        return Product
-//    }
-//}

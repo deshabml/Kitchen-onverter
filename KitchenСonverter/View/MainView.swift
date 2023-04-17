@@ -73,13 +73,18 @@ struct MainView: View {
                     .scaledToFill()
                )
                .onAppear {
-                   viewModel.getAllConverters()
+                   viewModel.initialFillingDataBase()
+                   viewModel.getAllData()
                }
                .fullScreenCover(isPresented: $showAddMeasuringSystemScreen) {
-                   NavigationView { AddMeasuringSystemView(superViewModel: viewModel) }
+                   NavigationView { AddMeasuringSystemView()
+                           .environmentObject(viewModel)
+                   }
                }
                .fullScreenCover(isPresented: $showAddProductScreen) {
-                   NavigationView { AddProductView(superViewModel: viewModel) }
+                   NavigationView { AddProductView()
+                           .environmentObject(viewModel)
+                   }
                }
     }
 

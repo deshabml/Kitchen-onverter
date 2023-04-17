@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AddProductView: View {
 
-    var superViewModel: MainViewModel
+//    var superViewModel: MainViewModel
+    @EnvironmentObject var mainViewModel: MainViewModel
     @StateObject var viewModel = AddProductViewModel()
     @State var showAlert = false
     @Environment (\.dismiss) var dismiss
@@ -31,7 +32,7 @@ struct AddProductView: View {
                 .padding(.horizontal, 16)
             MainButton(text: "Добавить", colors: (.white, .yellow)) {
                 if viewModel.errorMasege.isEmpty {
-                    viewModel.addProduct(viewModel: superViewModel)
+                    viewModel.addProduct(viewModel: mainViewModel)
                     dismiss()
                 } else {
                     showAlert.toggle()
@@ -57,6 +58,6 @@ struct AddProductView: View {
 
 struct AddProductView_Previews: PreviewProvider {
     static var previews: some View {
-        AddProductView(superViewModel: MainViewModel())
+        AddProductView()
     }
 }

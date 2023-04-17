@@ -34,6 +34,7 @@
 		DDFD772829EDD882008F0C8A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = DDFD772729EDD882008F0C8A /* Realm */; };
 		DDFD772A29EDD882008F0C8A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DDFD772929EDD882008F0C8A /* RealmSwift */; };
 		DDFD772C29EDDBCC008F0C8A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD772B29EDDBCC008F0C8A /* RealmService.swift */; };
+		DDFD772F29EDFA3B008F0C8A /* FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD772E29EDFA3B008F0C8A /* FirstLaunch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		DDCC3F6929E9288F00DDDCD1 /* ProductPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPicker.swift; sourceTree = "<group>"; };
 		DDCC3F6B29E9356D00DDDCD1 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		DDFD772B29EDDBCC008F0C8A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		DDFD772E29EDFA3B008F0C8A /* FirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */,
 				DDBB91E229EAB39E0081445E /* TypeMeasuringSystem.swift */,
 				DDCC3F5729E5F74800DDDCD1 /* Converter.swift */,
+				DDFD772E29EDFA3B008F0C8A /* FirstLaunch.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				DDCC3F5829E5F74800DDDCD1 /* Converter.swift in Sources */,
 				DDBB91DD29EA06600081445E /* MainAddButton.swift in Sources */,
 				DDBB91E529EAC7560081445E /* AddViewButtonCancell.swift in Sources */,
+				DDFD772F29EDFA3B008F0C8A /* FirstLaunch.swift in Sources */,
 				DDCC3F5029E56FD100DDDCD1 /* Product.swift in Sources */,
 				DDBB91DF29EA079B0081445E /* AddMeasuringSystemView.swift in Sources */,
 				DDBB91E729EAC8D70081445E /* AddViewText.swift in Sources */,

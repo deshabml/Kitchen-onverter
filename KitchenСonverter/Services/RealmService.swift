@@ -15,6 +15,25 @@ class RealmService {
 
     private init() { }
 
+    func createFirstLaunch(firstLaunch: FirstLaunch) {
+        do {
+            try dataBase.write {
+                dataBase.add(firstLaunch)
+            }
+        } catch {
+            print("Неисправность базы данных")
+        }
+    }
+
+    func getFirstLaunch() -> [FirstLaunch] {
+        let firstLaunchList = dataBase.objects(FirstLaunch.self)
+        var firstLaunchs = [FirstLaunch]()
+        for firstLaunch in firstLaunchList {
+            firstLaunchs.append(firstLaunch)
+        }
+        return firstLaunchs
+    }
+
     func createConverter(converter: Converter) {
         do {
             try dataBase.write {
@@ -43,4 +62,43 @@ class RealmService {
             print("Неисправность базы данных")
         }
     }
+
+    func createProduct(product: Product) {
+        do {
+            try dataBase.write {
+                dataBase.add(product)
+            }
+        } catch {
+            print("Неисправность базы данных")
+        }
+    }
+
+    func getProduct() -> [Product] {
+        let productList = dataBase.objects(Product.self)
+        var products = [Product]()
+        for product in productList {
+            products.append(product)
+        }
+        return products
+    }
+
+    func createMeasuringSystem(measuringSystem: MeasuringSystem) {
+        do {
+            try dataBase.write {
+                dataBase.add(measuringSystem)
+            }
+        } catch {
+            print("Неисправность базы данных")
+        }
+    }
+
+    func getMeasuringSystem() -> [MeasuringSystem] {
+        let measuringSystemList = dataBase.objects(MeasuringSystem.self)
+        var measuringSystems = [MeasuringSystem]()
+        for measuringSystem in measuringSystemList {
+            measuringSystems.append(measuringSystem)
+        }
+        return measuringSystems
+    }
+    
 }

@@ -17,7 +17,6 @@ struct MainTextFild: View {
             .padding()
             .background(.white)
             .cornerRadius(18)
-            .keyboardType(.numberPad)
     }
     
 }
