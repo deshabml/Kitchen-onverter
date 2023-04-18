@@ -6,11 +6,19 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct TypeMeasuringSystem: Identifiable, Hashable {
+class TypeMeasuringSystem: Object, Identifiable {
 
-    var id = UUID().uuidString
-    let name: String
-    let isWeight: Bool
+    @Persisted(primaryKey: true) var id = UUID().uuidString
+    @Persisted var name: String
+    @Persisted var isWeight: Bool
+
+    convenience init(name: String, isWeight: Bool) {
+        self.init()
+        self.name = name
+        self.isWeight = isWeight
+    }
 
 }
+

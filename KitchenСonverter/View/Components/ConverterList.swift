@@ -20,7 +20,6 @@ struct ConverterList: View {
                     .listRowInsets(EdgeInsets())
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Удалить") {
-                            print("Удалить")
                             completion(recordedConverters[item])
                         }
                         .tint(.red)

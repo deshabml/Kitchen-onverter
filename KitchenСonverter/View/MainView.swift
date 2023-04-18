@@ -13,7 +13,6 @@ struct MainView: View {
     @State var showAddMeasuringSystemScreen = false
     @State var showAddProductScreen = false
 
-
     var body: some View {
         VStack(alignment: .center,
                spacing: 12) {
@@ -39,17 +38,27 @@ struct MainView: View {
                     ProductPicker(products: viewModel.products, productPicker: $viewModel.productPicker)
                     VStack {
                         HStack {
-                            MainAddButton(symbols: "scalemass.fill", color: .green) {
+                            MainAddButton(symbols: "scalemass.fill", color: .green, isEdit: false) {
+                                viewModel.isEditScreen = false
                                 showAddMeasuringSystemScreen.toggle()
                             }
                             Spacer()
+                            MainAddButton(symbols: "square.and.pencil", color: .green, isEdit: true) {
+                                viewModel.isEditScreen = true
+                                showAddMeasuringSystemScreen.toggle()
+                            }
                         }
                         Spacer()
                         HStack {
-                            MainAddButton(symbols: "takeoutbag.and.cup.and.straw.fill", color: .yellow) {
+                            MainAddButton(symbols: "takeoutbag.and.cup.and.straw.fill", color: .yellow, isEdit: false) {
+                                viewModel.isEditScreen = false
                                 showAddProductScreen.toggle()
                             }
                             Spacer()
+                            MainAddButton(symbols: "square.and.pencil", color: .yellow, isEdit: true) {
+                                viewModel.isEditScreen = true
+                                showAddProductScreen.toggle()
+                            }
                         }
                     }
                 }
@@ -62,7 +71,7 @@ struct MainView: View {
             }
                     .padding(.horizontal, 16)
             ConverterList(recordedConverters: $viewModel.recordedConverters) { converter in
-                viewModel.deleteConverters(converter: converter)
+                viewModel.deleteObject(object: converter)
             }
         }
                .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -77,12 +86,12 @@ struct MainView: View {
                    viewModel.getAllData()
                }
                .fullScreenCover(isPresented: $showAddMeasuringSystemScreen) {
-                   NavigationView { AddMeasuringSystemView()
+                   NavigationView { AddMeasuringSystemView(isEdit: viewModel.isEditScreen)
                            .environmentObject(viewModel)
                    }
                }
                .fullScreenCover(isPresented: $showAddProductScreen) {
-                   NavigationView { AddProductView()
+                   NavigationView { AddProductView(isEdit: viewModel.isEditScreen)
                            .environmentObject(viewModel)
                    }
                }

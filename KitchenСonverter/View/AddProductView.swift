@@ -9,10 +9,11 @@ import SwiftUI
 
 struct AddProductView: View {
 
-//    var superViewModel: MainViewModel
     @EnvironmentObject var mainViewModel: MainViewModel
     @StateObject var viewModel = AddProductViewModel()
     @State var showAlert = false
+    @State var showDeleteAlert = false
+    let isEdit: Bool
     @Environment (\.dismiss) var dismiss
 
     var body: some View {
@@ -23,22 +24,32 @@ struct AddProductView: View {
                 })
                 Spacer()
             }
-            AddViewText(text: "Добавление", size: 30)
+            AddViewText(text: isEdit ? "Изменение" : "Добавление", size: 30)
             AddViewText(text: "продукта:", size: 30)
             MainTextFild(placeHolder: "Введите наименование продукта", productQuantity: $viewModel.productName)
                 .padding(.horizontal, 16)
             AddViewText(text: "плотность:", size: 24)
             MainTextFild(placeHolder: "Введите плотность продукта", productQuantity: $viewModel.density)
                 .padding(.horizontal, 16)
-            MainButton(text: "Добавить", colors: (.white, .yellow)) {
+            MainButton(text: isEdit ? "Сохранить" : "Добавить", colors: (.white, .yellow)) {
                 if viewModel.errorMasege.isEmpty {
-                    viewModel.addProduct(viewModel: mainViewModel)
+                    if isEdit {
+                        viewModel.updateProduct(viewModel: mainViewModel)
+                    } else {
+                        viewModel.addProduct(viewModel: mainViewModel)
+                    }
                     dismiss()
                 } else {
                     showAlert.toggle()
                 }
             }
             .padding()
+            if isEdit {
+                MainButton(text: "Удалить", colors: (.white, .red)) {
+                    showDeleteAlert.toggle()
+                }
+                .padding()
+            }
             Spacer()
 
         }
@@ -49,8 +60,20 @@ struct AddProductView: View {
              .ignoresSafeArea()
              .scaledToFill()
         )
+        .onAppear {
+            if isEdit {
+                viewModel.getData(viewModel: mainViewModel)
+            }
+        }
         .alert(viewModel.errorMasege, isPresented: $showAlert) {
             Button("ОК") { }
+        }
+        .alert("Вы уверены, что хотите удалить единицу измерения?", isPresented: $showDeleteAlert) {
+            Button("ОТМЕНА", role: .cancel) { }
+            Button("УДАЛИТЬ", role: .destructive) {
+                viewModel.deleteProduct(viewModel: mainViewModel)
+                dismiss()
+            }
         }
     }
     
@@ -58,6 +81,6 @@ struct AddProductView: View {
 
 struct AddProductView_Previews: PreviewProvider {
     static var previews: some View {
-        AddProductView()
+        AddProductView(isEdit: false)
     }
 }

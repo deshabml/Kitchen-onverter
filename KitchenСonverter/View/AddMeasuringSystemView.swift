@@ -9,10 +9,11 @@ import SwiftUI
 
 struct AddMeasuringSystemView: View {
 
-//    var superViewModel: MainViewModel
     @EnvironmentObject var mainViewModel: MainViewModel
     @StateObject var viewModel = AddMeasuringSystemViewModel()
     @State var showAlert = false
+    @State var showDeleteAlert = false
+    let isEdit: Bool
     @Environment (\.dismiss) var dismiss
 
     var body: some View {
@@ -23,7 +24,7 @@ struct AddMeasuringSystemView: View {
                 })
                 Spacer()
             }
-            AddViewText(text: "Добавление", size: 30)
+            AddViewText(text: isEdit ? "Изменение" : "Добавление", size: 30)
             AddViewText(text: "единицы измерения:", size: 30)
             MainTextFild(placeHolder: "Введите наименование", productQuantity: $viewModel.measuringSystemsName)
                 .padding(.horizontal, 16)
@@ -37,15 +38,26 @@ struct AddMeasuringSystemView: View {
             AddViewText(text: "поместиться в 1?", size: 24)
             MainTextFild(placeHolder: "Введите соотношение", productQuantity: $viewModel.measuringSystemsRatio)
                 .padding(.horizontal, 16)
-                MainButton(text: "Добавить", colors: (.green, .white)) {
+            VStack(spacing: 16) {
+                MainButton(text: isEdit ? "Сохранить" : "Добавить", colors: (.green, .white)) {
                     if viewModel.errorMasege.isEmpty {
-                        viewModel.addMeasuringSystem(viewModel: mainViewModel)
+                        if isEdit {
+                            viewModel.updateMeasuringSystem(viewModel: mainViewModel)
+                        } else {
+                            viewModel.addMeasuringSystem(viewModel: mainViewModel)
+                        }
                         dismiss()
                     } else {
                         showAlert.toggle()
                     }
                 }
-                .padding()
+                if isEdit {
+                    MainButton(text: "Удалить", colors: (.white, .red)) {
+                        showDeleteAlert.toggle()
+                    }
+                }
+            }
+            .padding()
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -58,12 +70,24 @@ struct AddMeasuringSystemView: View {
         .alert(viewModel.errorMasege, isPresented: $showAlert) {
             Button("ОК") { }
         }
+        .alert("Вы уверены, что хотите удалить единицу измерения?", isPresented: $showDeleteAlert) {
+            Button("ОТМЕНА", role: .cancel) { }
+            Button("УДАЛИТЬ", role: .destructive) {
+                viewModel.deleteMeasuringSystem(viewModel: mainViewModel)
+                dismiss()
+            }
+        }
+        .onAppear {
+            if isEdit {
+                viewModel.getData(viewModel: mainViewModel)
+            }
+        }
     }
 
 }
 
 struct AddMeasuringSystemView_Previews: PreviewProvider {
     static var previews: some View {
-        AddMeasuringSystemView()
+        AddMeasuringSystemView(isEdit: false)
     }
 }

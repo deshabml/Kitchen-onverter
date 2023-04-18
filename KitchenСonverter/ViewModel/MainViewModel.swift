@@ -10,13 +10,14 @@ import Foundation
 class MainViewModel: ObservableObject {
 
     @Published var recordedConverters: [Converter] = []
-    @Published var productQuantity: String = ""
-    @Published var itog: String = "0,000000"
-    @Published var productPicker: Product = Product(name: "Вода", density: 1)
-    @Published var measuringSystemPickerFirst: MeasuringSystem = MeasuringSystem(name: "Г", isWeight: true, ratio: 1)
-    @Published var measuringSystemPickerSecond: MeasuringSystem = MeasuringSystem(name: "Г", isWeight: true, ratio: 1)
     @Published var measuringSystems: [MeasuringSystem] = []
     @Published var products: [Product] = []
+    @Published var productQuantity: String = ""
+    @Published var itog: String = "0,000000"
+    @Published var productPicker: Product = RealmService.shared.getFirstLaunch().isEmpty ? Product() : RealmService.shared.getProduct()[0]
+    @Published var measuringSystemPickerFirst: MeasuringSystem = RealmService.shared.getFirstLaunch().isEmpty ? MeasuringSystem() : RealmService.shared.getMeasuringSystem()[0]
+    @Published var measuringSystemPickerSecond: MeasuringSystem = RealmService.shared.getFirstLaunch().isEmpty ? MeasuringSystem() : RealmService.shared.getMeasuringSystem()[0]
+    var isEditScreen = false
 
     func recalculation() {
         guard let productQuantity = Double(productQuantity) else { return }
@@ -42,47 +43,35 @@ class MainViewModel: ObservableObject {
 extension MainViewModel {
 
     func getAllData() {
-        getAllProducts()
-        getAllMeasuringSystem()
-        getAllConverters()
-    }
-
-    func savingConverter() {
-        RealmService.shared.createConverter(converter: Converter(product: productPicker, itog: itog, measuringSystem: measuringSystemPickerSecond))
-        getAllConverters()
-    }
-
-    func getAllConverters() {
         recordedConverters = RealmService.shared.getConverter()
-    }
-
-    func deleteConverters(converter: Converter) {
-        RealmService.shared.deleteConverter(converter: converter)
-        getAllConverters()
-    }
-
-    func savingProduct(product: Product) {
-        RealmService.shared.createProduct(product: product)
-        getAllProducts()
-    }
-
-    func getAllProducts() {
+        measuringSystems = RealmService.shared.getMeasuringSystem()
         products = RealmService.shared.getProduct()
     }
 
-    func savingMeasuringSystem(measuringSystem: MeasuringSystem) {
-        RealmService.shared.createMeasuringSystem(measuringSystem: measuringSystem)
-        getAllMeasuringSystem()
+    func savingConverter() {
+        RealmService.shared.createObject(object: Converter(product: productPicker, itog: itog, measuringSystem: measuringSystemPickerSecond))
+        getAllData()
     }
 
-    func getAllMeasuringSystem() {
-        measuringSystems = RealmService.shared.getMeasuringSystem()
+    func savingObject<T>(object: T) {
+        RealmService.shared.createObject(object: object)
+        getAllData()
+    }
+
+    func updateObject<T>(oldObject: T, newObject: T) {
+        RealmService.shared.updateObject(oldObject: oldObject, newObject: newObject)
+        getAllData()
+    }
+
+    func deleteObject<T>(object: T) {
+        RealmService.shared.deleteObject(object: object)
+        getAllData()
     }
 
     func initialFillingDataBase() {
         let firstLaunch = RealmService.shared.getFirstLaunch()
         guard firstLaunch.isEmpty else { return }
-        RealmService.shared.createFirstLaunch(firstLaunch: FirstLaunch())
+        RealmService.shared.createObject(object: FirstLaunch())
         let startMeasuringSystems: [MeasuringSystem] = [MeasuringSystem(name: "Г", isWeight: true, ratio: 1),
                                                        MeasuringSystem(name: "Кг", isWeight: true, ratio: 1000),
                                                        MeasuringSystem(name: "Л", isWeight: false, ratio: 1000),
@@ -91,7 +80,7 @@ extension MainViewModel {
                                                        MeasuringSystem(name: "Фут", isWeight: true, ratio: 453.59237),
                                                        MeasuringSystem(name: "Стакан", isWeight: false, ratio: 200)]
         startMeasuringSystems.forEach { measuringSystems in
-            RealmService.shared.createMeasuringSystem(measuringSystem: measuringSystems)
+            RealmService.shared.createObject(object: measuringSystems)
         }
         let startProducts: [Product] = [Product(name: "Вода", density: 1),
                                               Product(name: "Гречка", density: 0.85),
@@ -100,8 +89,14 @@ extension MainViewModel {
                                               Product(name: "Сахар", density: 1.587),
                                               Product(name: "Мука", density: 0.68)]
         startProducts.forEach { product in
-            RealmService.shared.createProduct(product: product)
+            RealmService.shared.createObject(object: product)
         }
+        let startTypeMeasuringSystem: [TypeMeasuringSystem] = [TypeMeasuringSystem(name: "Вес", isWeight: true),
+                                                          TypeMeasuringSystem(name: "Объём", isWeight: false)]
+        startTypeMeasuringSystem.forEach { typeMeasuringSystem in
+            RealmService.shared.createObject(object: typeMeasuringSystem)
+        }
+
         print("ПЕРВЫЙ ЗАПУСК")
     }
 
