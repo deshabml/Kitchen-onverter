@@ -78,6 +78,7 @@ struct AddMeasuringSystemView: View {
             }
         }
         .onAppear {
+            viewModel.getTypeMeasuringSystem()
             if isEdit {
                 viewModel.getData(viewModel: mainViewModel)
             }

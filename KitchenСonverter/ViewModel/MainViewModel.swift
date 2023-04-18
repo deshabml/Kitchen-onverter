@@ -96,7 +96,6 @@ extension MainViewModel {
         startTypeMeasuringSystem.forEach { typeMeasuringSystem in
             RealmService.shared.createObject(object: typeMeasuringSystem)
         }
-
         print("ПЕРВЫЙ ЗАПУСК")
     }
 

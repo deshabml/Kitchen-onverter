@@ -21,8 +21,8 @@ class AddMeasuringSystemViewModel: ObservableObject  {
     @Published var measuringSystemsName: String = ""
     @Published var measuringSystemsRatio: String = ""
     @Published var measuringSystem: MeasuringSystem?
-    @Published var typeMeasuringSystemPicker: TypeMeasuringSystem = RealmService.shared.getTypeMeasuringSystem()[0]
-    @Published var typeMeasuringSystem: [TypeMeasuringSystem] = RealmService.shared.getTypeMeasuringSystem()
+    @Published var typeMeasuringSystemPicker: TypeMeasuringSystem = RealmService.shared.getTypeMeasuringSystem().isEmpty ? TypeMeasuringSystem() : RealmService.shared.getTypeMeasuringSystem()[0]
+    @Published var typeMeasuringSystem: [TypeMeasuringSystem] = []
     var textEnterЕheRatio: String {
         typeMeasuringSystemPicker.isWeight ? "Сколько грамм" : "Сколько миллилитров"
     }
@@ -58,6 +58,10 @@ class AddMeasuringSystemViewModel: ObservableObject  {
 }
 
 extension AddMeasuringSystemViewModel {
+
+    func getTypeMeasuringSystem() {
+        typeMeasuringSystem = RealmService.shared.getTypeMeasuringSystem()
+    }
 
     func getData(viewModel: MainViewModel) {
         measuringSystem = viewModel.measuringSystemPickerSecond
