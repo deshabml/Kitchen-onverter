@@ -14,9 +14,9 @@ class MainViewModel: ObservableObject {
     @Published var products: [Product] = []
     @Published var productQuantity: String = ""
     @Published var itog: String = "0,000000"
-    @Published var productPicker: Product = RealmService.shared.getFirstLaunch().isEmpty ? Product() : RealmService.shared.getProduct()[0]
-    @Published var measuringSystemPickerFirst: MeasuringSystem = RealmService.shared.getFirstLaunch().isEmpty ? MeasuringSystem() : RealmService.shared.getMeasuringSystem()[0]
-    @Published var measuringSystemPickerSecond: MeasuringSystem = RealmService.shared.getFirstLaunch().isEmpty ? MeasuringSystem() : RealmService.shared.getMeasuringSystem()[0]
+    @Published var productPicker: Product = Product()
+    @Published var measuringSystemPickerFirst: MeasuringSystem = MeasuringSystem()
+    @Published var measuringSystemPickerSecond: MeasuringSystem = MeasuringSystem()
     var isEditScreen = false
 
     func recalculation() {
@@ -46,6 +46,12 @@ extension MainViewModel {
         recordedConverters = RealmService.shared.getConverter()
         measuringSystems = RealmService.shared.getMeasuringSystem()
         products = RealmService.shared.getProduct()
+    }
+
+    func getStartPickerData() {
+        productPicker = RealmService.shared.getProduct()[0]
+        measuringSystemPickerFirst = RealmService.shared.getMeasuringSystem()[0]
+        measuringSystemPickerSecond = RealmService.shared.getMeasuringSystem()[0]
     }
 
     func savingConverter() {
@@ -98,6 +104,6 @@ extension MainViewModel {
         }
         print("ПЕРВЫЙ ЗАПУСК")
     }
-
+    
 }
 

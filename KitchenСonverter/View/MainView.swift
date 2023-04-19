@@ -83,6 +83,7 @@ struct MainView: View {
                )
                .onAppear {
                    viewModel.initialFillingDataBase()
+                   viewModel.getStartPickerData()
                    viewModel.getAllData()
                }
                .fullScreenCover(isPresented: $showAddMeasuringSystemScreen) {
