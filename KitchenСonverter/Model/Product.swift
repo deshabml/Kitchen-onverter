@@ -6,12 +6,18 @@
 //
 //
 import Foundation
+import RealmSwift
 
-struct Product: Identifiable, Hashable {
+class Product: Object, Identifiable {
 
-    let id = UUID().uuidString
-    let name: String
-    let density: Double
+    @Persisted(primaryKey: true) var id = UUID().uuidString
+    @Persisted var name: String
+    @Persisted var density: Double
+
+    convenience init(name: String, density: Double) {
+        self.init()
+        self.name = name
+        self.density = density
+    }
 
 }
-

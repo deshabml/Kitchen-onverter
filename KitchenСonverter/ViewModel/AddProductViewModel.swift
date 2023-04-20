@@ -19,6 +19,7 @@ class AddProductViewModel: ObservableObject  {
 
     @Published var productName: String = ""
     @Published var density: String = ""
+    @Published var product: Product?
     var errorMasege: String {
         do {
             try checkProduct()
@@ -36,7 +37,7 @@ class AddProductViewModel: ObservableObject  {
 
     func addProduct(viewModel: MainViewModel) {
         guard let density = Double(density) else { return }
-        viewModel.products.append(Product(name: productName, density: density))
+        viewModel.savingObject(object: Product(name: productName, density: density))
     }
 
     func checkProduct() throws {
@@ -45,4 +46,27 @@ class AddProductViewModel: ObservableObject  {
         guard let _ = Double(density) else { throw ProductError.densityNotDouble }
     }
     
+}
+
+extension AddProductViewModel {
+
+    func getData(viewModel: MainViewModel) {
+        product = viewModel.productPicker
+        guard let product = product else { return }
+        productName = product.name
+        density = "\(product.density)"
+    }
+
+    func updateProduct(viewModel: MainViewModel) {
+        guard let density = Double(density) else { return }
+        guard let product = product else { return }
+        viewModel.updateObject(oldObject: product, newObject: Product(name: productName, density: density))
+    }
+
+    func deleteProduct(viewModel: MainViewModel) {
+        guard let product = product else { return }
+        viewModel.deleteObject(object: product)
+        viewModel.productPicker = RealmService.shared.getProduct()[0]
+    }
+
 }

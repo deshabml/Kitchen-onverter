@@ -6,13 +6,20 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct MeasuringSystem: Identifiable, Hashable {
+class MeasuringSystem: Object, Identifiable {
 
-    var id = UUID().uuidString
-    let name: String
-    let isWeight: Bool
-    let ratio: Double
+    @Persisted(primaryKey: true) var id = UUID().uuidString
+    @Persisted var name: String
+    @Persisted var isWeight: Bool
+    @Persisted var ratio: Double
+
+    convenience init(name: String, isWeight: Bool, ratio: Double) {
+        self.init()
+        self.name = name
+        self.isWeight = isWeight
+        self.ratio = ratio
+    }
 
 }
-

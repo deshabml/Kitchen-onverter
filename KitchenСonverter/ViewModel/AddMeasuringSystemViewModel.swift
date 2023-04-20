@@ -20,6 +20,7 @@ class AddMeasuringSystemViewModel: ObservableObject  {
 
     @Published var measuringSystemsName: String = ""
     @Published var measuringSystemsRatio: String = ""
+    @Published var measuringSystem: MeasuringSystem?
     @Published var typeMeasuringSystemPicker: TypeMeasuringSystem = TypeMeasuringSystem(name: "Вес", isWeight: true)
     @Published var typeMeasuringSystem: [TypeMeasuringSystem] = [TypeMeasuringSystem(name: "Вес", isWeight: true),
                                                                  TypeMeasuringSystem(name: "Объём", isWeight: false)]
@@ -45,7 +46,7 @@ class AddMeasuringSystemViewModel: ObservableObject  {
 
     func addMeasuringSystem(viewModel: MainViewModel) {
         guard let measuringSystemsRatio = Double(measuringSystemsRatio) else { return }
-        viewModel.measuringSystems.append(MeasuringSystem(name: measuringSystemsName, isWeight: typeMeasuringSystemPicker.isWeight, ratio: measuringSystemsRatio))
+        viewModel.savingObject(object: MeasuringSystem(name: measuringSystemsName, isWeight: typeMeasuringSystemPicker.isWeight, ratio: measuringSystemsRatio))
     }
 
     func checkMeasuringSystem() throws {
@@ -56,3 +57,30 @@ class AddMeasuringSystemViewModel: ObservableObject  {
     }
 
 }
+
+extension AddMeasuringSystemViewModel {
+
+    func getData(viewModel: MainViewModel) {
+        measuringSystem = viewModel.measuringSystemPickerSecond
+        guard let measuringSystem = measuringSystem else { return }
+        measuringSystemsName = measuringSystem.name
+        measuringSystemsRatio = "\(measuringSystem.ratio)"
+        typeMeasuringSystemPicker = measuringSystem.isWeight ? typeMeasuringSystem[0] : typeMeasuringSystem[1]
+    }
+
+    func updateMeasuringSystem(viewModel: MainViewModel) {
+        guard let measuringSystemsRatio = Double(measuringSystemsRatio) else { return }
+        guard let measuringSystem = measuringSystem else { return }
+        viewModel.updateObject(oldObject: measuringSystem, newObject: MeasuringSystem(name: measuringSystemsName, isWeight: typeMeasuringSystemPicker.isWeight, ratio: measuringSystemsRatio))
+    }
+
+    func deleteMeasuringSystem(viewModel: MainViewModel) {
+        guard let measuringSystem = measuringSystem else { return }
+        viewModel.deleteObject(object: measuringSystem)
+        viewModel.measuringSystemPickerFirst = RealmService.shared.getMeasuringSystem()[0]
+        viewModel.measuringSystemPickerSecond = RealmService.shared.getMeasuringSystem()[0]
+    }
+
+}
+
+

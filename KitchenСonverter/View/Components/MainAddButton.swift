@@ -11,6 +11,7 @@ struct MainAddButton: View {
 
     var symbols: String
     var color: Color
+    var isEdit: Bool
     var completion: ()->()
 
     var body: some View {
@@ -19,7 +20,9 @@ struct MainAddButton: View {
         } label: {
             HStack(alignment: .center,
                     spacing: 0) {
-                Image(systemName: "plus")
+                if !isEdit {
+                    Image(systemName: "plus")
+                }
                 Image(systemName: symbols)
             }
                     .foregroundColor(color)
