@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddMeasuringSystemView: View {
 
-    @EnvironmentObject var mainViewModel: MainViewModel
+    @EnvironmentObject var mainViewModel: CalculatorViewModel
     @StateObject var viewModel = AddMeasuringSystemViewModel()
     @State var showAlert = false
     @State var showDeleteAlert = false

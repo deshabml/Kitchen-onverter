@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct CalculatorView: View {
 
-    @StateObject var viewModel = MainViewModel()
+    @StateObject var viewModel = CalculatorViewModel()
     @State var showAddMeasuringSystemScreen = false
     @State var showAddProductScreen = false
 
@@ -76,7 +76,7 @@ struct MainView: View {
         }
                .frame(maxWidth: .infinity, maxHeight: .infinity)
                .background(
-                Image("MainBackgraund")
+                Image("CalculatorBackgraund")
                     .resizable()
                     .ignoresSafeArea()
                     .scaledToFill()
@@ -102,6 +102,6 @@ struct MainView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        CalculatorView()
     }
 }

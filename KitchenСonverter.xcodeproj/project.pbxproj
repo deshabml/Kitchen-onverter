@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		DDABAEE629E52D54007E9A7D /* Kitchen_onverterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE529E52D54007E9A7D /* Kitchen_onverterApp.swift */; };
-		DDABAEE829E52D54007E9A7D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE729E52D54007E9A7D /* MainView.swift */; };
+		DDABAEE829E52D54007E9A7D /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE729E52D54007E9A7D /* CalculatorView.swift */; };
 		DDABAEEA29E52D56007E9A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEE929E52D56007E9A7D /* Assets.xcassets */; };
 		DDABAEED29E52D56007E9A7D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEEC29E52D56007E9A7D /* Preview Assets.xcassets */; };
+		DDB6E54429F28638005A4A72 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB6E54329F28638005A4A72 /* TabBarView.swift */; };
+		DDB6E54629F292AF005A4A72 /* TabBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB6E54529F292AE005A4A72 /* TabBarItems.swift */; };
+		DDB6E54829F2A19E005A4A72 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB6E54729F2A19E005A4A72 /* RecipesView.swift */; };
 		DDBB91DD29EA06600081445E /* MainAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91DC29EA06600081445E /* MainAddButton.swift */; };
 		DDBB91DF29EA079B0081445E /* AddMeasuringSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91DE29EA079B0081445E /* AddMeasuringSystemView.swift */; };
 		DDBB91E129EA10310081445E /* AddMeasuringSystemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91E029EA10310081445E /* AddMeasuringSystemViewModel.swift */; };
@@ -24,7 +27,7 @@
 		DDCC3F5329E5CB7E00DDDCD1 /* MeasuringSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */; };
 		DDCC3F5829E5F74800DDDCD1 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5729E5F74800DDDCD1 /* Converter.swift */; };
 		DDCC3F5A29E5F8B400DDDCD1 /* ConverterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5929E5F8B400DDDCD1 /* ConverterCell.swift */; };
-		DDCC3F5F29E8928200DDDCD1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5E29E8928200DDDCD1 /* MainViewModel.swift */; };
+		DDCC3F5F29E8928200DDDCD1 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5E29E8928200DDDCD1 /* CalculatorViewModel.swift */; };
 		DDCC3F6229E8975000DDDCD1 /* ConverterList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F6129E8975000DDDCD1 /* ConverterList.swift */; };
 		DDCC3F6429E89AA300DDDCD1 /* MainTextFild.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F6329E89AA300DDDCD1 /* MainTextFild.swift */; };
 		DDCC3F6629E89D3800DDDCD1 /* MainText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F6529E89D3800DDDCD1 /* MainText.swift */; };
@@ -40,10 +43,13 @@
 /* Begin PBXFileReference section */
 		DDABAEE229E52D54007E9A7D /* KitchenСonverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KitchenСonverter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDABAEE529E52D54007E9A7D /* Kitchen_onverterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kitchen_onverterApp.swift; sourceTree = "<group>"; };
-		DDABAEE729E52D54007E9A7D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		DDABAEE729E52D54007E9A7D /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		DDABAEE929E52D56007E9A7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDABAEEC29E52D56007E9A7D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DDABAEF329E5375A007E9A7D /* Kitchen-onverter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Kitchen-onverter-Info.plist"; path = "KitchenСonverter/Supporting files/Kitchen-onverter-Info.plist"; sourceTree = SOURCE_ROOT; };
+		DDB6E54329F28638005A4A72 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		DDB6E54529F292AE005A4A72 /* TabBarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItems.swift; sourceTree = "<group>"; };
+		DDB6E54729F2A19E005A4A72 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		DDBB91DC29EA06600081445E /* MainAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAddButton.swift; sourceTree = "<group>"; };
 		DDBB91DE29EA079B0081445E /* AddMeasuringSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasuringSystemView.swift; sourceTree = "<group>"; };
 		DDBB91E029EA10310081445E /* AddMeasuringSystemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasuringSystemViewModel.swift; sourceTree = "<group>"; };
@@ -57,7 +63,7 @@
 		DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasuringSystem.swift; sourceTree = "<group>"; };
 		DDCC3F5729E5F74800DDDCD1 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		DDCC3F5929E5F8B400DDDCD1 /* ConverterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterCell.swift; sourceTree = "<group>"; };
-		DDCC3F5E29E8928200DDDCD1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		DDCC3F5E29E8928200DDDCD1 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		DDCC3F6129E8975000DDDCD1 /* ConverterList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterList.swift; sourceTree = "<group>"; };
 		DDCC3F6329E89AA300DDDCD1 /* MainTextFild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextFild.swift; sourceTree = "<group>"; };
 		DDCC3F6529E89D3800DDDCD1 /* MainText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainText.swift; sourceTree = "<group>"; };
@@ -139,9 +145,11 @@
 		DDCC3F4E29E56FB800DDDCD1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DDABAEE729E52D54007E9A7D /* MainView.swift */,
+				DDB6E54329F28638005A4A72 /* TabBarView.swift */,
+				DDABAEE729E52D54007E9A7D /* CalculatorView.swift */,
 				DDBB91DE29EA079B0081445E /* AddMeasuringSystemView.swift */,
 				DDBB91EA29EB3EB20081445E /* AddProductView.swift */,
+				DDB6E54729F2A19E005A4A72 /* RecipesView.swift */,
 				DDCC3F5B29E5F8C300DDDCD1 /* Components */,
 			);
 			path = View;
@@ -150,6 +158,7 @@
 		DDCC3F5129E56FDA00DDDCD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DDB6E54529F292AE005A4A72 /* TabBarItems.swift */,
 				DDCC3F4F29E56FD100DDDCD1 /* Product.swift */,
 				DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */,
 				DDBB91E229EAB39E0081445E /* TypeMeasuringSystem.swift */,
@@ -180,7 +189,7 @@
 		DDCC3F6029E8928600DDDCD1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				DDCC3F5E29E8928200DDDCD1 /* MainViewModel.swift */,
+				DDCC3F5E29E8928200DDDCD1 /* CalculatorViewModel.swift */,
 				DDBB91E029EA10310081445E /* AddMeasuringSystemViewModel.swift */,
 				DDBB91EC29EB43990081445E /* AddProductViewModel.swift */,
 			);
@@ -273,7 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDBB91ED29EB43990081445E /* AddProductViewModel.swift in Sources */,
-				DDCC3F5F29E8928200DDDCD1 /* MainViewModel.swift in Sources */,
+				DDCC3F5F29E8928200DDDCD1 /* CalculatorViewModel.swift in Sources */,
 				DDBB91E329EAB39E0081445E /* TypeMeasuringSystem.swift in Sources */,
 				DDCC3F6A29E9288F00DDDCD1 /* ProductPicker.swift in Sources */,
 				DDCC3F6629E89D3800DDDCD1 /* MainText.swift in Sources */,
@@ -281,16 +290,19 @@
 				DDBB91E129EA10310081445E /* AddMeasuringSystemViewModel.swift in Sources */,
 				DDCC3F5329E5CB7E00DDDCD1 /* MeasuringSystem.swift in Sources */,
 				DDCC3F6229E8975000DDDCD1 /* ConverterList.swift in Sources */,
-				DDABAEE829E52D54007E9A7D /* MainView.swift in Sources */,
+				DDABAEE829E52D54007E9A7D /* CalculatorView.swift in Sources */,
 				DDABAEE629E52D54007E9A7D /* Kitchen_onverterApp.swift in Sources */,
 				DDBB91EB29EB3EB30081445E /* AddProductView.swift in Sources */,
 				DDCC3F5829E5F74800DDDCD1 /* Converter.swift in Sources */,
 				DDBB91DD29EA06600081445E /* MainAddButton.swift in Sources */,
 				DDBB91E529EAC7560081445E /* AddViewButtonCancell.swift in Sources */,
 				DDFD772F29EDFA3B008F0C8A /* FirstLaunch.swift in Sources */,
+				DDB6E54829F2A19E005A4A72 /* RecipesView.swift in Sources */,
 				DDCC3F5029E56FD100DDDCD1 /* Product.swift in Sources */,
 				DDBB91DF29EA079B0081445E /* AddMeasuringSystemView.swift in Sources */,
+				DDB6E54429F28638005A4A72 /* TabBarView.swift in Sources */,
 				DDBB91E729EAC8D70081445E /* AddViewText.swift in Sources */,
+				DDB6E54629F292AF005A4A72 /* TabBarItems.swift in Sources */,
 				DDCC3F6429E89AA300DDDCD1 /* MainTextFild.swift in Sources */,
 				DDBB91E929EACAC90081445E /* AddMeasuringSystemPicker.swift in Sources */,
 				DDCC3F5A29E5F8B400DDDCD1 /* ConverterCell.swift in Sources */,

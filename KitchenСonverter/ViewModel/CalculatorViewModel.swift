@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MainViewModel: ObservableObject {
+class CalculatorViewModel: ObservableObject {
 
     @Published var recordedConverters: [Converter] = []
     @Published var measuringSystems: [MeasuringSystem] = []
@@ -40,7 +40,7 @@ class MainViewModel: ObservableObject {
 
 }
 
-extension MainViewModel {
+extension CalculatorViewModel {
 
     func getAllData() {
         recordedConverters = RealmService.shared.getConverter()
