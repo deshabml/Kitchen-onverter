@@ -14,7 +14,9 @@ struct TabBarView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $tabBarItem) {
-                CalculatorView()
+                NavigationView {
+                    CalculatorView()
+                }
                     .tag(0)
                 RecipesView()
                     .tag(1)
@@ -34,7 +36,7 @@ struct TabBarView: View {
             .frame(height: 66)
             .background(.green.opacity(0.6))
             .cornerRadius(18)
-            .padding(.horizontal, 26)
+            .padding(.horizontal, 16)
             .animation(.easeInOut(duration: 0.3), value: tabBarItem)
         }
         .onAppear {

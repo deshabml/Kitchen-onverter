@@ -17,7 +17,6 @@ class CalculatorViewModel: ObservableObject {
     @Published var productPicker: Product = Product()
     @Published var measuringSystemPickerFirst: MeasuringSystem = MeasuringSystem()
     @Published var measuringSystemPickerSecond: MeasuringSystem = MeasuringSystem()
-    var isEditScreen = false
 
     func recalculation() {
         guard let productQuantity = Double(productQuantity) else { return }

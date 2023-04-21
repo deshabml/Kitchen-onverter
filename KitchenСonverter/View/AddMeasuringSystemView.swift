@@ -61,6 +61,7 @@ struct AddMeasuringSystemView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationBarBackButtonHidden(true)
         .background(
          Image("AddMeasuringSystemBackgraund")
              .resizable()

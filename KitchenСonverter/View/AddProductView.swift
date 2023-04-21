@@ -54,6 +54,7 @@ struct AddProductView: View {
 
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationBarBackButtonHidden(true)
         .background(
          Image("AddMainProductBackgraund")
              .resizable()

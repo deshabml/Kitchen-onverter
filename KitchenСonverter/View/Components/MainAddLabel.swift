@@ -7,28 +7,24 @@
 
 import SwiftUI
 
-struct MainAddButton: View {
 
+
+struct MainAddLabel: View {
+
+    var isEdit: Bool
     var symbols: String
     var color: Color
-    var isEdit: Bool
-    var completion: ()->()
 
     var body: some View {
-        Button {
-            completion()
-        } label: {
             HStack(alignment: .center,
-                    spacing: 0) {
+                   spacing: 0) {
                 if !isEdit {
                     Image(systemName: "plus")
                 }
                 Image(systemName: symbols)
             }
-                    .foregroundColor(color)
-                    .font(.headline)
-                    .padding(10)
-        }
+                .foregroundColor(color)
+                .font(.headline)
+                .padding(10)
     }
-    
 }
