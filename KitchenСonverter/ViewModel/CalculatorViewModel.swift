@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MainViewModel: ObservableObject {
+class CalculatorViewModel: ObservableObject {
 
     @Published var recordedConverters: [Converter] = []
     @Published var measuringSystems: [MeasuringSystem] = []
@@ -17,7 +17,6 @@ class MainViewModel: ObservableObject {
     @Published var productPicker: Product = Product()
     @Published var measuringSystemPickerFirst: MeasuringSystem = MeasuringSystem()
     @Published var measuringSystemPickerSecond: MeasuringSystem = MeasuringSystem()
-    var isEditScreen = false
 
     func recalculation() {
         guard let productQuantity = Double(productQuantity) else { return }
@@ -40,7 +39,7 @@ class MainViewModel: ObservableObject {
 
 }
 
-extension MainViewModel {
+extension CalculatorViewModel {
 
     func getAllData() {
         recordedConverters = RealmService.shared.getConverter()

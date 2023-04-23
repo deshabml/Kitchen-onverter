@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddProductView: View {
 
-    @EnvironmentObject var mainViewModel: MainViewModel
+    @EnvironmentObject var mainViewModel: CalculatorViewModel
     @StateObject var viewModel = AddProductViewModel()
     @State var showAlert = false
     @State var showDeleteAlert = false
@@ -54,6 +54,7 @@ struct AddProductView: View {
 
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationBarBackButtonHidden(true)
         .background(
          Image("AddMainProductBackgraund")
              .resizable()

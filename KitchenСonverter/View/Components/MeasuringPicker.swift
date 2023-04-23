@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-var viewModelTest = MainViewModel()
+var viewModelTest = CalculatorViewModel()
 
 struct MeasuringPicker: View {
 

@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct CalculatorView: View {
 
-    @StateObject var viewModel = MainViewModel()
-    @State var showAddMeasuringSystemScreen = false
-    @State var showAddProductScreen = false
+    @StateObject var viewModel = CalculatorViewModel()
 
     var body: some View {
         VStack(alignment: .center,
@@ -33,31 +31,39 @@ struct MainView: View {
                        .foregroundColor(.blue)
             }
             VStack(alignment: .center,
-                    spacing: 8) {
+                   spacing: 8) {
                 ZStack {
                     ProductPicker(products: viewModel.products, productPicker: $viewModel.productPicker)
                     VStack {
                         HStack {
-                            MainAddButton(symbols: "scalemass.fill", color: .green, isEdit: false) {
-                                viewModel.isEditScreen = false
-                                showAddMeasuringSystemScreen.toggle()
+                            NavigationLink {
+                                AddMeasuringSystemView(isEdit: false)
+                                    .environmentObject(viewModel)
+                            } label: {
+                                MainAddLabel(isEdit: false, symbols: "scalemass.fill", color: .yellow)
                             }
                             Spacer()
-                            MainAddButton(symbols: "square.and.pencil", color: .green, isEdit: true) {
-                                viewModel.isEditScreen = true
-                                showAddMeasuringSystemScreen.toggle()
+                            NavigationLink {
+                                AddMeasuringSystemView(isEdit: true)
+                                    .environmentObject(viewModel)
+                            } label: {
+                                MainAddLabel(isEdit: true, symbols: "square.and.pencil", color: .yellow)
                             }
                         }
                         Spacer()
                         HStack {
-                            MainAddButton(symbols: "takeoutbag.and.cup.and.straw.fill", color: .yellow, isEdit: false) {
-                                viewModel.isEditScreen = false
-                                showAddProductScreen.toggle()
+                            NavigationLink {
+                                AddProductView(isEdit: false)
+                                    .environmentObject(viewModel)
+                            } label: {
+                                MainAddLabel(isEdit: false, symbols: "takeoutbag.and.cup.and.straw.fill", color: .green)
                             }
                             Spacer()
-                            MainAddButton(symbols: "square.and.pencil", color: .yellow, isEdit: true) {
-                                viewModel.isEditScreen = true
-                                showAddProductScreen.toggle()
+                            NavigationLink {
+                                AddProductView(isEdit: true)
+                                    .environmentObject(viewModel)
+                            } label: {
+                                MainAddLabel(isEdit: true, symbols: "square.and.pencil", color: .green)
                             }
                         }
                     }
@@ -69,14 +75,15 @@ struct MainView: View {
                     viewModel.savingConverter()
                 }
             }
-                    .padding(.horizontal, 16)
+                   .padding(.horizontal, 16)
             ConverterList(recordedConverters: $viewModel.recordedConverters) { converter in
                 viewModel.deleteObject(object: converter)
             }
         }
+               .animation(.easeInOut(duration: 0.3), value: viewModel.recordedConverters)
                .frame(maxWidth: .infinity, maxHeight: .infinity)
                .background(
-                Image("MainBackgraund")
+                Image("CalculatorBackgraund")
                     .resizable()
                     .ignoresSafeArea()
                     .scaledToFill()
@@ -86,22 +93,14 @@ struct MainView: View {
                    viewModel.getStartPickerData()
                    viewModel.getAllData()
                }
-               .fullScreenCover(isPresented: $showAddMeasuringSystemScreen) {
-                   NavigationView { AddMeasuringSystemView(isEdit: viewModel.isEditScreen)
-                           .environmentObject(viewModel)
-                   }
-               }
-               .fullScreenCover(isPresented: $showAddProductScreen) {
-                   NavigationView { AddProductView(isEdit: viewModel.isEditScreen)
-                           .environmentObject(viewModel)
-                   }
-               }
     }
 
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        NavigationView {
+            CalculatorView()
+        }
     }
 }

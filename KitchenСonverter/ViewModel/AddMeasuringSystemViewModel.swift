@@ -44,7 +44,7 @@ class AddMeasuringSystemViewModel: ObservableObject  {
         return ""
     }
 
-    func addMeasuringSystem(viewModel: MainViewModel) {
+    func addMeasuringSystem(viewModel: CalculatorViewModel) {
         guard let measuringSystemsRatio = Double(measuringSystemsRatio) else { return }
         viewModel.savingObject(object: MeasuringSystem(name: measuringSystemsName, isWeight: typeMeasuringSystemPicker.isWeight, ratio: measuringSystemsRatio))
     }
@@ -60,7 +60,7 @@ class AddMeasuringSystemViewModel: ObservableObject  {
 
 extension AddMeasuringSystemViewModel {
 
-    func getData(viewModel: MainViewModel) {
+    func getData(viewModel: CalculatorViewModel) {
         measuringSystem = viewModel.measuringSystemPickerSecond
         guard let measuringSystem = measuringSystem else { return }
         measuringSystemsName = measuringSystem.name
@@ -68,13 +68,13 @@ extension AddMeasuringSystemViewModel {
         typeMeasuringSystemPicker = measuringSystem.isWeight ? typeMeasuringSystem[0] : typeMeasuringSystem[1]
     }
 
-    func updateMeasuringSystem(viewModel: MainViewModel) {
+    func updateMeasuringSystem(viewModel: CalculatorViewModel) {
         guard let measuringSystemsRatio = Double(measuringSystemsRatio) else { return }
         guard let measuringSystem = measuringSystem else { return }
         viewModel.updateObject(oldObject: measuringSystem, newObject: MeasuringSystem(name: measuringSystemsName, isWeight: typeMeasuringSystemPicker.isWeight, ratio: measuringSystemsRatio))
     }
 
-    func deleteMeasuringSystem(viewModel: MainViewModel) {
+    func deleteMeasuringSystem(viewModel: CalculatorViewModel) {
         guard let measuringSystem = measuringSystem else { return }
         viewModel.deleteObject(object: measuringSystem)
         viewModel.measuringSystemPickerFirst = RealmService.shared.getMeasuringSystem()[0]

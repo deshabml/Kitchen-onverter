@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddMeasuringSystemView: View {
 
-    @EnvironmentObject var mainViewModel: MainViewModel
+    @EnvironmentObject var mainViewModel: CalculatorViewModel
     @StateObject var viewModel = AddMeasuringSystemViewModel()
     @State var showAlert = false
     @State var showDeleteAlert = false
@@ -61,6 +61,7 @@ struct AddMeasuringSystemView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationBarBackButtonHidden(true)
         .background(
          Image("AddMeasuringSystemBackgraund")
              .resizable()
