@@ -22,4 +22,9 @@ class MeasuringSystem: Object, Identifiable {
         self.ratio = ratio
     }
 
+    convenience init(name: String) {
+        self.init()
+        self.name = name
+    }
+
 }

@@ -9,12 +9,19 @@ import SwiftUI
 
 struct RecipesView: View {
 
+    @StateObject var viewModel = RecipesViewModel()
+
     var body: some View {
         VStack {
             Text("Тут будут рецепты!")
                 .foregroundColor(.white)
                 .font(.custom("AvenirNext-Bold",
                               size: CGFloat(20)))
+            MainButton(text: "KNOPKA", colors: (.white, .green)) {
+//                guard let recepes = viewModel.recepes else { return }
+                print(viewModel.recepes[0])
+            }
+            .padding()
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -24,6 +31,9 @@ struct RecipesView: View {
                 .ignoresSafeArea()
                 .scaledToFill()
         )
+        .onAppear {
+            viewModel.getData()
+        }
     }
 
 }

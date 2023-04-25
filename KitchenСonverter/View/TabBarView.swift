@@ -18,7 +18,9 @@ struct TabBarView: View {
                     CalculatorView()
                 }
                     .tag(0)
-                RecipesView()
+                NavigationView {
+                    RecipesView()
+                }
                     .tag(1)
             }
             ZStack{

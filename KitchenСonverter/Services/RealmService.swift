@@ -110,6 +110,15 @@ extension RealmService {
         return typeMeasuringSystems
     }
 
+    func getRecipes() -> [Recipe] {
+        let recipeList = dataBase.objects(Recipe.self)
+        var recipes = [Recipe]()
+        for recipe in recipeList {
+            recipes.append(recipe)
+        }
+        return recipes
+    }
+
 }
 
 

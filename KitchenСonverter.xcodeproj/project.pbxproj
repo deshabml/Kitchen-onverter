@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD9E2DD729F7C4A0004B04AE /* RecipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DD629F7C4A0004B04AE /* RecipesViewModel.swift */; };
+		DD9E2DD929F7CB17004B04AE /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DD829F7CB17004B04AE /* Recipe.swift */; };
 		DDABAEE629E52D54007E9A7D /* Kitchen_onverterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE529E52D54007E9A7D /* Kitchen_onverterApp.swift */; };
 		DDABAEE829E52D54007E9A7D /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE729E52D54007E9A7D /* CalculatorView.swift */; };
 		DDABAEEA29E52D56007E9A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEE929E52D56007E9A7D /* Assets.xcassets */; };
@@ -41,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD9E2DD629F7C4A0004B04AE /* RecipesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewModel.swift; sourceTree = "<group>"; };
+		DD9E2DD829F7CB17004B04AE /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		DDABAEE229E52D54007E9A7D /* KitchenСonverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KitchenСonverter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDABAEE529E52D54007E9A7D /* Kitchen_onverterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kitchen_onverterApp.swift; sourceTree = "<group>"; };
 		DDABAEE729E52D54007E9A7D /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 				DDBB91E229EAB39E0081445E /* TypeMeasuringSystem.swift */,
 				DDCC3F5729E5F74800DDDCD1 /* Converter.swift */,
 				DDFD772E29EDFA3B008F0C8A /* FirstLaunch.swift */,
+				DD9E2DD829F7CB17004B04AE /* Recipe.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				DDCC3F5E29E8928200DDDCD1 /* CalculatorViewModel.swift */,
 				DDBB91E029EA10310081445E /* AddMeasuringSystemViewModel.swift */,
 				DDBB91EC29EB43990081445E /* AddProductViewModel.swift */,
+				DD9E2DD629F7C4A0004B04AE /* RecipesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -285,6 +291,7 @@
 				DDCC3F5F29E8928200DDDCD1 /* CalculatorViewModel.swift in Sources */,
 				DDBB91E329EAB39E0081445E /* TypeMeasuringSystem.swift in Sources */,
 				DDCC3F6A29E9288F00DDDCD1 /* ProductPicker.swift in Sources */,
+				DD9E2DD929F7CB17004B04AE /* Recipe.swift in Sources */,
 				DDCC3F6629E89D3800DDDCD1 /* MainText.swift in Sources */,
 				DDFD772C29EDDBCC008F0C8A /* RealmService.swift in Sources */,
 				DDBB91E129EA10310081445E /* AddMeasuringSystemViewModel.swift in Sources */,
@@ -293,6 +300,7 @@
 				DDABAEE829E52D54007E9A7D /* CalculatorView.swift in Sources */,
 				DDABAEE629E52D54007E9A7D /* Kitchen_onverterApp.swift in Sources */,
 				DDBB91EB29EB3EB30081445E /* AddProductView.swift in Sources */,
+				DD9E2DD729F7C4A0004B04AE /* RecipesViewModel.swift in Sources */,
 				DDCC3F5829E5F74800DDDCD1 /* Converter.swift in Sources */,
 				DDBB91DD29EA06600081445E /* MainAddLabel.swift in Sources */,
 				DDBB91E529EAC7560081445E /* AddViewButtonCancell.swift in Sources */,
