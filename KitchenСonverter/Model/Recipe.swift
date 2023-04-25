@@ -13,16 +13,16 @@ class Recipe: Object, Identifiable {
     @Persisted(primaryKey: true) var id = UUID().uuidString
     @Persisted var name: String
     @Persisted var Image: Data
-    @Persisted var ingredients: List<Product>
+    @Persisted var ingredients: List<ProductRecipe>
     @Persisted var cookingMethod: String
 
-    convenience init(name: String, ingredients: List<Product>) {
+    convenience init(name: String, ingredients: List<ProductRecipe>) {
         self.init()
         self.name = name
         self.ingredients = ingredients
     }
 
-    convenience init(name: String, _ ingredients: [Product], cookingMethod: String) {
+    convenience init(name: String, _ ingredients: [ProductRecipe], cookingMethod: String) {
         self.init()
         self.name = name
         self.ingredients.append(objectsIn: ingredients)

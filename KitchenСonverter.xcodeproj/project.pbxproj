@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		DD9E2DD729F7C4A0004B04AE /* RecipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DD629F7C4A0004B04AE /* RecipesViewModel.swift */; };
 		DD9E2DD929F7CB17004B04AE /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DD829F7CB17004B04AE /* Recipe.swift */; };
+		DD9E2DDB29F86D29004B04AE /* ProductRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DDA29F86D29004B04AE /* ProductRecipe.swift */; };
+		DD9E2DDD29F87EC9004B04AE /* RecipesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DDC29F87EC9004B04AE /* RecipesCell.swift */; };
+		DD9E2DDF29F88378004B04AE /* RecipesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DDE29F88378004B04AE /* RecipesGrid.swift */; };
 		DDABAEE629E52D54007E9A7D /* Kitchen_onverterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE529E52D54007E9A7D /* Kitchen_onverterApp.swift */; };
 		DDABAEE829E52D54007E9A7D /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE729E52D54007E9A7D /* CalculatorView.swift */; };
 		DDABAEEA29E52D56007E9A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEE929E52D56007E9A7D /* Assets.xcassets */; };
@@ -45,6 +48,9 @@
 /* Begin PBXFileReference section */
 		DD9E2DD629F7C4A0004B04AE /* RecipesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewModel.swift; sourceTree = "<group>"; };
 		DD9E2DD829F7CB17004B04AE /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		DD9E2DDA29F86D29004B04AE /* ProductRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRecipe.swift; sourceTree = "<group>"; };
+		DD9E2DDC29F87EC9004B04AE /* RecipesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesCell.swift; sourceTree = "<group>"; };
+		DD9E2DDE29F88378004B04AE /* RecipesGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesGrid.swift; sourceTree = "<group>"; };
 		DDABAEE229E52D54007E9A7D /* KitchenСonverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KitchenСonverter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDABAEE529E52D54007E9A7D /* Kitchen_onverterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kitchen_onverterApp.swift; sourceTree = "<group>"; };
 		DDABAEE729E52D54007E9A7D /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 				DDCC3F5729E5F74800DDDCD1 /* Converter.swift */,
 				DDFD772E29EDFA3B008F0C8A /* FirstLaunch.swift */,
 				DD9E2DD829F7CB17004B04AE /* Recipe.swift */,
+				DD9E2DDA29F86D29004B04AE /* ProductRecipe.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,6 +194,8 @@
 				DDBB91E429EAC7560081445E /* AddViewButtonCancell.swift */,
 				DDBB91E629EAC8D70081445E /* AddViewText.swift */,
 				DDBB91E829EACAC90081445E /* AddMeasuringSystemPicker.swift */,
+				DD9E2DDE29F88378004B04AE /* RecipesGrid.swift */,
+				DD9E2DDC29F87EC9004B04AE /* RecipesCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -292,6 +301,7 @@
 				DDBB91E329EAB39E0081445E /* TypeMeasuringSystem.swift in Sources */,
 				DDCC3F6A29E9288F00DDDCD1 /* ProductPicker.swift in Sources */,
 				DD9E2DD929F7CB17004B04AE /* Recipe.swift in Sources */,
+				DD9E2DDD29F87EC9004B04AE /* RecipesCell.swift in Sources */,
 				DDCC3F6629E89D3800DDDCD1 /* MainText.swift in Sources */,
 				DDFD772C29EDDBCC008F0C8A /* RealmService.swift in Sources */,
 				DDBB91E129EA10310081445E /* AddMeasuringSystemViewModel.swift in Sources */,
@@ -308,12 +318,14 @@
 				DDB6E54829F2A19E005A4A72 /* RecipesView.swift in Sources */,
 				DDCC3F5029E56FD100DDDCD1 /* Product.swift in Sources */,
 				DDBB91DF29EA079B0081445E /* AddMeasuringSystemView.swift in Sources */,
+				DD9E2DDB29F86D29004B04AE /* ProductRecipe.swift in Sources */,
 				DDB6E54429F28638005A4A72 /* TabBarView.swift in Sources */,
 				DDBB91E729EAC8D70081445E /* AddViewText.swift in Sources */,
 				DDB6E54629F292AF005A4A72 /* TabBarItems.swift in Sources */,
 				DDCC3F6429E89AA300DDDCD1 /* MainTextFild.swift in Sources */,
 				DDBB91E929EACAC90081445E /* AddMeasuringSystemPicker.swift in Sources */,
 				DDCC3F5A29E5F8B400DDDCD1 /* ConverterCell.swift in Sources */,
+				DD9E2DDF29F88378004B04AE /* RecipesGrid.swift in Sources */,
 				DDCC3F6C29E9356D00DDDCD1 /* MainButton.swift in Sources */,
 				DDCC3F6829E8A7E100DDDCD1 /* MeasuringPicker.swift in Sources */,
 			);

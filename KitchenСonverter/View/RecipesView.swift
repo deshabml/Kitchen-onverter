@@ -13,16 +13,7 @@ struct RecipesView: View {
 
     var body: some View {
         VStack {
-            Text("Тут будут рецепты!")
-                .foregroundColor(.white)
-                .font(.custom("AvenirNext-Bold",
-                              size: CGFloat(20)))
-            MainButton(text: "KNOPKA", colors: (.white, .green)) {
-//                guard let recepes = viewModel.recepes else { return }
-                print(viewModel.recepes[0])
-            }
-            .padding()
-            Spacer()
+            RecipesGrid(recipes: $viewModel.recipes)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
@@ -40,6 +31,8 @@ struct RecipesView: View {
 
 struct RecipesView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipesView()
+        NavigationView {
+            RecipesView()
+        }
     }
 }

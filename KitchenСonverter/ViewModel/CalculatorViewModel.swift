@@ -103,13 +103,14 @@ extension CalculatorViewModel {
         }
         let recepes: [Recipe] = [
             Recipe(name: "Борщ с говядиной", [
-                Product(name: "Говядина", amount: "500", measuringSystem: MeasuringSystem(name: "Г")),
-                Product(name: "Свёкла", amount: "250", measuringSystem: MeasuringSystem(name: "Г")),
-                Product(name: "Картофель", amount: "200", measuringSystem: MeasuringSystem(name: "Г")),
-                Product(name: "Капуста", amount: "300", measuringSystem: MeasuringSystem(name: "Г")),
-                Product(name: "Морковь", amount: "100", measuringSystem: MeasuringSystem(name: "Г")),
-                Product(name: "Лук репчатый", amount: "100", measuringSystem: MeasuringSystem(name: "Г")),
-                Product(name: "Томатная паста", amount: "100", measuringSystem: MeasuringSystem(name: "Г"))], cookingMethod: """
+                ProductRecipe(name: "Говядина", amount: "500", measuringSystem: "Г"),
+                ProductRecipe(name: "Свёкла", amount: "250", measuringSystem: "Г"),
+                ProductRecipe(name: "Картофель", amount: "200", measuringSystem: "Г"),
+                ProductRecipe(name: "Капуста", amount: "300", measuringSystem: "Г"),
+                ProductRecipe(name: "Морковь", amount: "100", measuringSystem: "Г"),
+                ProductRecipe(name: "Лук репчатый", amount: "100", measuringSystem: "Г"),
+                ProductRecipe(name: "Томатная паста", amount: "100", measuringSystem: "Г")],
+                   cookingMethod: """
                    1. Первым делом нужно сварить бульон. Для этого говядину на кости промыть под проточной водой, положить ее в кастрюлю и залить холодной водой. Можно добавить 1 чайную ложку соли (но, мясо разварится быстрее,в несоленой воде). Довести до кипения и убавить огонь до минимума. Борщ нужно готовить на медленном огне, тогда овощи в нем не разварятся и не превратятся в кашу!
                    2. Чтобы бульон был прозрачным, периодически снимайте грязную пенку и готовьте на медленном огне. Говядина варится около 1,5-2 часа. Готовность мяса можно проверить по тому, насколько легко оно отделяется от кости.
                    3. Пока готовится бульон, нужно почистить овощи: картофель, морковь, свеклу, лук. Со свежей капусты удалить испорченные листочки и нашинковать.
@@ -119,10 +120,10 @@ extension CalculatorViewModel {
                    7. Капусту отправить в кастрюлю следом за капустой, после того как вода вновь закипит. Каждый новый ингредиент желательно закладывать каждый раз, как закипит бульон (не забывайте, что борщ готовится на медленном огне). Добавляем соль и перец. По желанию можно сдобрить борщ специями: хмели-сунели, карри, аджика (сушеная).
                    """),
             Recipe(name: "Картошка толченка", [
-                Product(name: "Картошка", amount: "1", measuringSystem: MeasuringSystem(name: "Кг")),
-                Product(name: "Молоко", amount: "300", measuringSystem: MeasuringSystem(name: "Mл")),
-                Product(name: "Сливочное масло", amount: "3", measuringSystem: MeasuringSystem(name: "Столовые Ложки")),
-                Product(name: "Соль", amount: "20", measuringSystem: MeasuringSystem(name: "Г"))],
+                ProductRecipe(name: "Картошка", amount: "1", measuringSystem: "Кг"),
+                ProductRecipe(name: "Молоко", amount: "300", measuringSystem: "Mл"),
+                ProductRecipe(name: "Сливочное масло", amount: "3", measuringSystem: "Столовые Ложки"),
+                ProductRecipe(name: "Соль", amount: "20", measuringSystem: "Г")],
                    cookingMethod: """
                 Шаг 1. Как сделать картошку толченку? Подготовьте необходимые продукты. Картофель хорошо промойте в проточной воде и очистите от земли и всех загрязнений.
                 Шаг 2. С помощью овощечистки очистите помытый картофель от кожуры и ополосните водой. Крупные клубни разрежьте на 2-3 части. Сложите очищенный картофель в кастрюлю подходящего размера и налейте в неё воды, чтобы она покрывала весь картофель. Поставьте кастрюлю на огонь и доведите до кипения. Отварите картофель в кипящей воде до мягкости. На это уйдет минут 20. Добавьте соль по вкусу. Для аромата можно добавить в воду лавровый лист или пару зубчиков чеснока.
@@ -133,15 +134,16 @@ extension CalculatorViewModel {
 
                 """),
             Recipe(name: "Плов", [
-                Product(name: "Баранина", amount: "1", measuringSystem: MeasuringSystem(name: "Кг")),
-                Product(name: "Рис", amount: "1", measuringSystem: MeasuringSystem(name: "Кг")),
-                Product(name: "Морковь", amount: "1", measuringSystem: MeasuringSystem(name: "Кг")),
-                Product(name: "Чеснок", amount: "2", measuringSystem: MeasuringSystem(name: "Головки")),
-                Product(name: "Лук репчатый", amount: "2", measuringSystem: MeasuringSystem(name: "Шт")),
-                Product(name: "Перец острый свежий", amount: "2", measuringSystem: MeasuringSystem(name: "Стручка")),
-                Product(name: "Зира или другие пряности", amount: "", measuringSystem: MeasuringSystem(name: "По вкусу")),
-                Product(name: "Соль", amount: "", measuringSystem: MeasuringSystem(name: "По Вкусу")),
-                Product(name: "Масло растительное", amount: "300", measuringSystem: MeasuringSystem(name: "Мл"))], cookingMethod: """
+                ProductRecipe(name: "Баранина", amount: "1", measuringSystem: "Кг"),
+                ProductRecipe(name: "Рис", amount: "1", measuringSystem: "Кг"),
+                ProductRecipe(name: "Морковь", amount: "1", measuringSystem: "Кг"),
+                ProductRecipe(name: "Чеснок", amount: "2", measuringSystem: "Головки"),
+                ProductRecipe(name: "Лук репчатый", amount: "2", measuringSystem: "Шт"),
+                ProductRecipe(name: "Перец острый свежий", amount: "2", measuringSystem: "Стручка"),
+                ProductRecipe(name: "Зира или другие пряности", amount: "", measuringSystem: "По вкусу"),
+                ProductRecipe(name: "Соль", amount: "", measuringSystem: "По Вкусу"),
+                ProductRecipe(name: "Масло растительное", amount: "300", measuringSystem: "Мл")],
+                   cookingMethod: """
                 Подготавливаем все продукты для плова.
                 Мясо нарезаем кусочками.
                 Лук режем кубиками, морковь - достаточно крупными брусочками.
@@ -161,22 +163,22 @@ extension CalculatorViewModel {
 
                 """),
             Recipe(name: "Домашние пельмени", [
-                Product(name: "Мука пшеничная просеянная", amount: "500", measuringSystem: MeasuringSystem(name: "Г")),
-                Product(name: "Вода горячая", amount: "250", measuringSystem: MeasuringSystem(name: "Мл")),
-                Product(name: "Яйцо", amount: "1", measuringSystem: MeasuringSystem(name: "Шт")),
-                Product(name: "Соль", amount: "1", measuringSystem: MeasuringSystem(name: "ч. ложка без горки")),
-                Product(name: "Масло растительное без запаха", amount: "25", measuringSystem: MeasuringSystem(name: "Мл")),
-                Product(name: "Мясо", amount: "250", measuringSystem: MeasuringSystem(name: "Мг")),
-                Product(name: "Лук репчатый", amount: "200", measuringSystem: MeasuringSystem(name: "Г")),
-                Product(name: "Сало", amount: "30", measuringSystem: MeasuringSystem(name: "Г")),
-                Product(name: "Вода", amount: "80", measuringSystem: MeasuringSystem(name: "Г")),
-                Product(name: "Соль", amount: "80", measuringSystem: MeasuringSystem(name: "ч. ложка без горки")),
-                Product(name: "Перец чёрный молотый", amount: "", measuringSystem: MeasuringSystem(name: "По Вкусу")),
-                Product(name: "Лист лавровый", amount: "", measuringSystem: MeasuringSystem(name: "По Вкусу")),
-                Product(name: "Соль", amount: "", measuringSystem: MeasuringSystem(name: "По Вкусу")),
-                Product(name: "Перец чёрный горошком", amount: "80", measuringSystem: MeasuringSystem(name: "По Вкусу")),
-                Product(name: "Лук репчатый", amount: "1/4", measuringSystem: MeasuringSystem(name: "Шт")),
-                Product(name: "Масло сливочное", amount: "", measuringSystem: MeasuringSystem(name: "По Вкусу"))],
+                ProductRecipe(name: "Мука пшеничная просеянная", amount: "500", measuringSystem: "Г"),
+                ProductRecipe(name: "Вода горячая", amount: "250", measuringSystem: "Мл"),
+                ProductRecipe(name: "Яйцо", amount: "1", measuringSystem: "Шт"),
+                ProductRecipe(name: "Соль", amount: "1", measuringSystem: "ч. ложка без горки"),
+                ProductRecipe(name: "Масло растительное без запаха", amount: "25", measuringSystem: "Мл"),
+                ProductRecipe(name: "Мясо", amount: "250", measuringSystem: "Мг"),
+                ProductRecipe(name: "Лук репчатый", amount: "200", measuringSystem: "Г"),
+                ProductRecipe(name: "Сало", amount: "30", measuringSystem: "Г"),
+                ProductRecipe(name: "Вода", amount: "80", measuringSystem: "Г"),
+                ProductRecipe(name: "Соль", amount: "80", measuringSystem: "ч. ложка без горки"),
+                ProductRecipe(name: "Перец чёрный молотый", amount: "", measuringSystem: "По Вкусу"),
+                ProductRecipe(name: "Лист лавровый", amount: "", measuringSystem: "По Вкусу"),
+                ProductRecipe(name: "Соль", amount: "", measuringSystem: "По Вкусу"),
+                ProductRecipe(name: "Перец чёрный горошком", amount: "80", measuringSystem: "По Вкусу"),
+                ProductRecipe(name: "Лук репчатый", amount: "1/4", measuringSystem: "Шт"),
+                ProductRecipe(name: "Масло сливочное", amount: "", measuringSystem: "По Вкусу")],
                    cookingMethod: """
                 В муку добавляем соль, яйцо и растительное масло. Слегка перемешиваем.
                 Сдвигаем яйцо немного к краю миски, чтобы оно не сварилось. Заливаем муку горячей водой (температура 70-75 градусов), постоянно перемешивая ложкой.
