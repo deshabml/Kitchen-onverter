@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD6B5BDA29F96EC0008E0962 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6B5BD929F96EC0008E0962 /* Dish.swift */; };
 		DD9E2DD729F7C4A0004B04AE /* RecipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DD629F7C4A0004B04AE /* RecipesViewModel.swift */; };
 		DD9E2DD929F7CB17004B04AE /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DD829F7CB17004B04AE /* Recipe.swift */; };
 		DD9E2DDB29F86D29004B04AE /* ProductRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DDA29F86D29004B04AE /* ProductRecipe.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD6B5BD929F96EC0008E0962 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		DD9E2DD629F7C4A0004B04AE /* RecipesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewModel.swift; sourceTree = "<group>"; };
 		DD9E2DD829F7CB17004B04AE /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		DD9E2DDA29F86D29004B04AE /* ProductRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRecipe.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				DDFD772E29EDFA3B008F0C8A /* FirstLaunch.swift */,
 				DD9E2DD829F7CB17004B04AE /* Recipe.swift */,
 				DD9E2DDA29F86D29004B04AE /* ProductRecipe.swift */,
+				DD6B5BD929F96EC0008E0962 /* Dish.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				DDBB91DF29EA079B0081445E /* AddMeasuringSystemView.swift in Sources */,
 				DD9E2DDB29F86D29004B04AE /* ProductRecipe.swift in Sources */,
 				DDB6E54429F28638005A4A72 /* TabBarView.swift in Sources */,
+				DD6B5BDA29F96EC0008E0962 /* Dish.swift in Sources */,
 				DDBB91E729EAC8D70081445E /* AddViewText.swift in Sources */,
 				DDB6E54629F292AF005A4A72 /* TabBarItems.swift in Sources */,
 				DDCC3F6429E89AA300DDDCD1 /* MainTextFild.swift in Sources */,

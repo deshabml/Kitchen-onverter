@@ -10,26 +10,31 @@ import SwiftUI
 struct RecipesGrid: View {
 
     @Binding var recipes: [Recipe]
-    var columns = [GridItem(.flexible()), GridItem(.flexible())]
+//    @Binding var search: String
+
+    var columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
 
     var body: some View {
         ScrollView {
             GeometryReader { proxy in
-                LazyVGrid(columns: columns, spacing: 12) {
-                    Section("Рецепты:") {
-                        ForEach(recipes) { recipe in
+                LazyVGrid(columns: columns, spacing: 10) {
+//                    Section("Рецепты:") {
+                        ForEach(0 ..< $recipes.count, id: \.self) { index in
                             NavigationLink {
                                 AddProductView(isEdit: false)
                             } label: {
-                                RecipesCell(recipe: recipe)
-                                    .frame(height: proxy.size.width / 2)
-                                    .padding(.horizontal, 4)
+                                RecipesCell(recipe: $recipes[index])
+                                    .foregroundColor(.black)
+                                    .padding(.horizontal, 5)
                             }
+//                            .searchable(text: $search)
                         }
-                    }
-                    .foregroundColor(.white)
-                    .font(.custom("AvenirNext-Bold", size: CGFloat(20)))
-                }.padding(8)
+//                    }
+//                    .foregroundColor(.white)
+//                    .font(.custom("AvenirNext-Bold", size: CGFloat(24)))
+                }
+//                .searchable(text: $search)
+//                .padding(.horizontal, 16)
             }
         }
     }

@@ -13,7 +13,21 @@ struct RecipesView: View {
 
     var body: some View {
         VStack {
-            RecipesGrid(recipes: $viewModel.recipes)
+            VStack {
+                Picker("Единици измерения", selection: $viewModel.dishPicker) {
+                    ForEach(Dish.allCases, id: \.self) { dish in
+                        Text(dish.description).tag(dish)
+                            .foregroundColor(.white)
+                    }
+                }
+                //                    .frame(width: 1000)
+                .pickerStyle(.wheel)
+                .background(.black)
+                .cornerRadius(18)
+
+                RecipesGrid(recipes: $viewModel.recipesPicker)
+            }
+            .padding(.horizontal, 16)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
