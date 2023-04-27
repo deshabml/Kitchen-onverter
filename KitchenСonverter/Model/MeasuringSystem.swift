@@ -21,10 +21,5 @@ class MeasuringSystem: Object, Identifiable {
         self.isWeight = isWeight
         self.ratio = ratio
     }
-//
-//    convenience init(name: String) {
-//        self.init()
-//        self.name = name
-//    }
 
 }

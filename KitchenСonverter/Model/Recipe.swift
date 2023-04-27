@@ -17,10 +17,12 @@ class Recipe: Object, Identifiable {
     @Persisted var cookingMethod: String
     @Persisted var dish: String
 
-    convenience init(name: String, ingredients: List<ProductRecipe>) {
+    convenience init(name: String, ingredientsList: List<ProductRecipe>, cookingMethod: String, dish: String) {
         self.init()
         self.name = name
         self.ingredients = ingredients
+        self.cookingMethod = cookingMethod
+        self.dish = dish
     }
 
     convenience init(name: String, _ ingredients: [ProductRecipe], cookingMethod: String, dish: String) {

@@ -10,7 +10,6 @@ import SwiftUI
 struct ProductPicker: View {
 
     var products: [Product]
-
     @Binding var productPicker: Product
 
     var body: some View {

@@ -7,12 +7,9 @@
 
 import SwiftUI
 
-var viewModelTest = CalculatorViewModel()
-
 struct MeasuringPicker: View {
 
     var measuringSystems: [MeasuringSystem]
-
     @Binding var measuringSystemPicker: MeasuringSystem
 
     var body: some View {

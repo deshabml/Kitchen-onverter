@@ -7,31 +7,115 @@
 
 import Foundation
 
+enum EditDishError: Error {
+
+    case coincidence
+    case notEmpty
+
+}
+
 class RecipesViewModel: ObservableObject {
 
     @Published var recipes: [Recipe] = []
     @Published var recipesPicker: [Recipe] = []
-    @Published var dishPicker: Dish = .all {
+    @Published var dishs: [Dish] = []
+    @Published var dishPicker: Dish = Dish() {
         willSet {
-            switch newValue {
-                case .all:
-                    recipesPicker = recipes
-                case .first:
-                    recipesPicker = recipes.filter { $0.dish == Dish.first.description }
-                case .Second:
-                    recipesPicker = recipes.filter { $0.dish == Dish.Second.description }
-                case .Hot:
-                    recipesPicker = recipes.filter { $0.dish == Dish.Hot.description }
-                case .Salads:
-                    recipesPicker = recipes.filter { $0.dish == Dish.Salads.description }
-                case .Snacks:
-                    recipesPicker = recipes.filter { $0.dish == Dish.Snacks.description }
+            if newValue.name == "Все" {
+                recipesPicker = recipes
+            } else {
+                recipesPicker = recipes.filter { $0.dish == newValue.name }
             }
         }
     }
+    @Published var dishTextFild: String = ""
+    @Published var showCoincidenceAlert: Bool = false
+    @Published var dishTextAlert: String = ""
 
     func getData() {
         recipes = RealmService.shared.getRecipes()
+        dishs = RealmService.shared.getDishs()
         dishPicker = dishPicker
     }
+
+    func getStartPickerData() {
+        dishPicker = RealmService.shared.getDishs()[0]
+    }
+
+    func savingDish() {
+        guard !dishTextFild.isEmpty else { return }
+        savingObject(object: Dish(name: dishTextFild))
+    }
+
+    func updateDish() -> Bool {
+        guard !dishTextFild.isEmpty else { return false }
+        let updDish = dishPicker
+        do {
+            try checkEditDish()
+        } catch EditDishError.notEmpty {
+            dishPicker = RealmService.shared.getDishs()[0]
+            for index in 0..<recipes.count {
+                if recipes[index].dish == updDish.name {
+                    updateObject(oldObject: recipes[index],
+                                 newObject: Recipe(name: recipes[index].name,
+                                                   ingredientsList: recipes[index].ingredients,
+                                                   cookingMethod: recipes[index].cookingMethod,
+                                                   dish: dishTextFild))
+                }
+            }
+            updateObject(oldObject: updDish, newObject: Dish(name: dishTextFild))
+            return true
+        } catch EditDishError.coincidence {
+            dishTextAlert = "Группа с таким названием уже есть!"
+            showCoincidenceAlert.toggle()
+            return false
+        } catch {
+            print("Что то пошло не так.")
+            return false
+        }
+        dishPicker = RealmService.shared.getDishs()[0]
+        updateObject(oldObject: updDish, newObject: Dish(name: dishTextFild))
+        return true
+    }
+
+    func checkEditDish() throws {
+        for dish in dishs.filter({ $0 != dishPicker }) {
+            guard dish.name != dishTextFild else { throw EditDishError.coincidence }
+        }
+        guard recipes.filter({ $0.dish == dishPicker.name }).isEmpty else { throw EditDishError.notEmpty }
+    }
+
+    func deleteDish() -> Bool {
+        do {
+            try checkEditDish()
+        } catch EditDishError.notEmpty {
+            dishTextAlert = "Нельзя удалить группу, в которой есть рецепты!"
+            showCoincidenceAlert.toggle()
+            return false
+        } catch EditDishError.coincidence {
+        } catch {
+            print("Что то пошло не так.")
+            return false
+        }
+        let delDish  = dishPicker
+        dishPicker = RealmService.shared.getDishs()[0]
+        deleteObject(object: delDish)
+        return true
+    }
+
+    func savingObject<T>(object: T) {
+        RealmService.shared.createObject(object: object)
+        getData()
+    }
+
+    func updateObject<T>(oldObject: T, newObject: T) {
+        RealmService.shared.updateObject(oldObject: oldObject, newObject: newObject)
+        getData()
+    }
+
+    func deleteObject<T>(object: T) {
+        RealmService.shared.deleteObject(object: object)
+        getData()
+    }
+
 }
