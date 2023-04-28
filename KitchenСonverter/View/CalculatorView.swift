@@ -80,8 +80,8 @@ struct CalculatorView: View {
                 viewModel.deleteObject(object: converter)
             }
         }
-               .animation(.easeInOut(duration: 0.3), value: viewModel.recordedConverters)
-               .modifier(BackgroundElement(ImageName: "CalculatorBackgraund", onApperComplition: { viewModel.loadingScreen() }))
+        .modifier(BackgroundElement(ImageName: "CalculatorBackgraund", onApperComplition: { viewModel.loadingScreen() }))
+        .animation(.easeInOut(duration: 0.3), value: viewModel.recordedConverters)
     }
 
 }

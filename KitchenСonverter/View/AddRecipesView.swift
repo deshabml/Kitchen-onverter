@@ -109,18 +109,12 @@ struct AddRecipesView: View {
                 mainViewModel.getStartPickerData(index: 1)
             }
         }))
-        .animation(.linear(duration: 0.2), value: isViewer)
-        .alert(mainViewModel.dishTextAlert, isPresented: $mainViewModel.showCoincidenceAlert) {
-            Button("ОК") { }
-        }
-        .alert("Вы уверены, что хотите удалить группу \"\(mainViewModel.dishPicker.name)\"?", isPresented: $showDeleteDishAlert) {
-            Button("ОТМЕНА", role: .cancel) { }
-            Button("УДАЛИТЬ", role: .destructive) {
-                if mainViewModel.deleteDish() {
-                    showDeleteDish.toggle()
-                }
+        .modifier(AlertElement(TextFirst: mainViewModel.dishTextAlert, switchAlertFirst: $mainViewModel.showCoincidenceAlert, TextSecond: "Вы уверены, что хотите удалить группу \"\(mainViewModel.dishPicker.name)\"?", switchAlertSecond: $showDeleteDishAlert, complitionAlertSecond: {
+            if mainViewModel.deleteDish() {
+                showDeleteDish.toggle()
             }
-        }
+        }))
+        .animation(.linear(duration: 0.2), value: isViewer)
     }
 
 }

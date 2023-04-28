@@ -65,16 +65,10 @@ struct AddMeasuringSystemView: View {
                 viewModel.getData(viewModel: mainViewModel)
             }
         }))
-        .alert(viewModel.errorMasege, isPresented: $showAlert) {
-            Button("ОК") { }
-        }
-        .alert("Вы уверены, что хотите удалить единицу измерения?", isPresented: $showDeleteAlert) {
-            Button("ОТМЕНА", role: .cancel) { }
-            Button("УДАЛИТЬ", role: .destructive) {
-                viewModel.deleteMeasuringSystem(viewModel: mainViewModel)
-                dismiss()
-            }
-        }
+        .modifier(AlertElement(TextFirst: viewModel.errorMasege, switchAlertFirst: $showAlert, TextSecond: "Вы уверены, что хотите удалить единицу измерения?", switchAlertSecond: $showDeleteAlert, complitionAlertSecond: {
+            viewModel.deleteMeasuringSystem(viewModel: mainViewModel)
+            dismiss()
+        }))
     }
 
 }

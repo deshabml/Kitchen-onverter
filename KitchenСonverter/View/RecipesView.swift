@@ -57,17 +57,11 @@ struct RecipesView: View {
         .modifier(BackgroundElement(ImageName: "RecipesBackgraund", onApperComplition: {
             viewModel.loadingScreen()
         }))
-        .alert(viewModel.dishTextAlert, isPresented: $viewModel.showCoincidenceAlert) {
-            Button("ОК") { }
-        }
-        .alert("Вы уверены, что хотите удалить группу \"\(viewModel.dishPicker.name)\"?", isPresented: $showDeleteDishAlert) {
-            Button("ОТМЕНА", role: .cancel) { }
-            Button("УДАЛИТЬ", role: .destructive) {
-                if viewModel.deleteDish() {
-                    showDeleteDish.toggle()
-                }
+        .modifier(AlertElement(TextFirst: viewModel.dishTextAlert, switchAlertFirst: $viewModel.showCoincidenceAlert, TextSecond: "Вы уверены, что хотите удалить группу \"\(viewModel.dishPicker.name)\"?", switchAlertSecond: $showDeleteDishAlert, complitionAlertSecond: {
+            if viewModel.deleteDish() {
+                showDeleteDish.toggle()
             }
-        }
+        }))
         .animation(.easeInOut(duration: 0.3), value: showAddDish)
         .animation(.easeInOut(duration: 0.3), value: showDeleteDish)
         .animation(.linear(duration: 0.2), value: viewModel.dishPicker)
