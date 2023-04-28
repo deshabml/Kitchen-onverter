@@ -57,7 +57,10 @@ struct RecipesView: View {
         .modifier(BackgroundElement(ImageName: "RecipesBackgraund", onApperComplition: {
             viewModel.loadingScreen()
         }))
-        .modifier(AlertElement(TextFirst: viewModel.dishTextAlert, switchAlertFirst: $viewModel.showCoincidenceAlert, TextSecond: "Вы уверены, что хотите удалить группу \"\(viewModel.dishPicker.name)\"?", switchAlertSecond: $showDeleteDishAlert, complitionAlertSecond: {
+        .modifier(AlertElement(TextFirst: viewModel.dishTextAlert,
+                               switchAlertFirst: $viewModel.showCoincidenceAlert,
+                               TextSecond: "Вы уверены, что хотите удалить группу \"\(viewModel.dishPicker.name)\"?",
+                               switchAlertSecond: $showDeleteDishAlert, complitionAlertSecond: {
             if viewModel.deleteDish() {
                 showDeleteDish.toggle()
             }

@@ -34,8 +34,7 @@ struct RecipesCell: View {
         }
         .font(.custom("AvenirNext", size: CGFloat(16)))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
-        .background(.yellow.opacity(0.8))
-        .cornerRadius(32)
+        .modifier(SettingsElement(backgroundColor: .yellow.opacity(0.8), cornerRadius: 32))
     }
+    
 }

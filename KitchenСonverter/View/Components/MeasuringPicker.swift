@@ -21,9 +21,9 @@ struct MeasuringPicker: View {
         }
         .pickerStyle(.menu)
         .frame(width: CGFloat(110))
-        .padding(.vertical, 10)
-        .background(.white)
-        .cornerRadius(18)
+        .modifier(SettingsElement(verticalPadding: 10,
+                                  horizontalPadding: 0,
+                                  backgroundColor: .white))
     }
     
 }

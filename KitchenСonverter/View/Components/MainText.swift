@@ -10,20 +10,22 @@ import SwiftUI
 struct MainText: View {
 
     var text: String
+    var size: Int = 24
+    var isClassic: Bool = true
 
     var body: some View {
-        Text(text)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
-            .foregroundColor(.white)
-            .background(.black.opacity(0.5))
-            .cornerRadius(18)
+        if isClassic {
+            Text(text)
+                .frame(maxWidth: .infinity)
+                .foregroundColor(.white)
+                .modifier(SettingsElement(horizontalPadding: 0,
+                                          backgroundColor: .black.opacity(0.5)))
+        } else {
+            Text(text)
+                .foregroundColor(.white)
+                .font(.custom("AvenirNext-Bold",
+                              size: CGFloat(size)))
+        }
     }
     
-}
-
-struct MainText_Previews: PreviewProvider {
-    static var previews: some View {
-        MainText(text: "0,000000")
-    }
 }

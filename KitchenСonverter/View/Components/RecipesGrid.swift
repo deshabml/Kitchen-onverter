@@ -34,11 +34,11 @@ struct RecipesGrid: View {
                     } header: {
                         HStack {
                             Text("В группе \"\(dishPicker.name)\" \(recipesPicker.count) " + declinationTheText(recipesPicker.count, "рецепт", "рецептов", "рецепта"))
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 8)
                                 .foregroundColor(.white)
-                                .background(.black.opacity(0.5))
-                                .cornerRadius(8)
+                                .modifier(SettingsElement(verticalPadding: 8,
+                                                          backgroundColor: .black.opacity(0.5),
+                                                          cornerRadius: 8))
+                                .foregroundColor(.white)
                             Spacer()
                         }
                     }

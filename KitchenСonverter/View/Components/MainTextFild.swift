@@ -11,12 +11,11 @@ struct MainTextFild: View {
 
     var placeHolder: String
     @Binding var productQuantity: String
+    var axis: Axis
 
     var body: some View {
-        TextField(placeHolder, text: $productQuantity)
-            .padding()
-            .background(.white)
-            .cornerRadius(18)
+        TextField(placeHolder, text: $productQuantity, axis: axis)
+            .modifier(SettingsElement(backgroundColor: .white))
     }
     
 }

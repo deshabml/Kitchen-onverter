@@ -19,19 +19,30 @@ struct AddProductView: View {
     var body: some View {
         VStack {
             HStack {
-                AddViewButton(text: "Отмена", colors: (.black, .white), completion: {
+                MainButton(text: "Отмена",
+                           colors: (.black, .white), completion: {
                     dismiss()
-                })
+                }, isCancelStyle: true)
                 Spacer()
             }
-            AddViewText(text: isEdit ? "Изменение" : "Добавление", size: 30)
-            AddViewText(text: "продукта:", size: 30)
-            MainTextFild(placeHolder: "Введите наименование продукта", productQuantity: $viewModel.productName)
+            MainText(text: isEdit ? "Изменение" : "Добавление",
+                     size: 30,
+                     isClassic: false)
+            MainText(text: "продукта:",
+                     size: 30,
+                     isClassic: false)
+            MainTextFild(placeHolder: "Введите наименование продукта",
+                         productQuantity: $viewModel.productName,
+                         axis: .horizontal)
                 .padding(.horizontal, 16)
-            AddViewText(text: "плотность:", size: 24)
-            MainTextFild(placeHolder: "Введите плотность продукта", productQuantity: $viewModel.density)
+            MainText(text: "плотность:",
+                     isClassic: false)
+            MainTextFild(placeHolder: "Введите плотность продукта",
+                         productQuantity: $viewModel.density,
+                         axis: .horizontal)
                 .padding(.horizontal, 16)
-            MainButton(text: isEdit ? "Сохранить" : "Добавить", colors: (.white, .yellow)) {
+            MainButton(text: isEdit ? "Сохранить" : "Добавить",
+                       colors: (.white, .yellow)) {
                 if viewModel.errorMasege.isEmpty {
                     if isEdit {
                         viewModel.updateProduct(viewModel: mainViewModel)
@@ -45,7 +56,8 @@ struct AddProductView: View {
             }
             .padding()
             if isEdit {
-                MainButton(text: "Удалить", colors: (.white, .red)) {
+                MainButton(text: "Удалить",
+                           colors: (.white, .red)) {
                     showDeleteAlert.toggle()
                 }
                 .padding()
@@ -58,7 +70,10 @@ struct AddProductView: View {
                 viewModel.getData(viewModel: mainViewModel)
             }
         }))
-        .modifier(AlertElement(TextFirst: viewModel.errorMasege, switchAlertFirst: $showAlert, TextSecond: "Вы уверены, что хотите удалить единицу измерения?", switchAlertSecond: $showDeleteAlert, complitionAlertSecond: {
+        .modifier(AlertElement(TextFirst: viewModel.errorMasege,
+                               switchAlertFirst: $showAlert,
+                               TextSecond: "Вы уверены, что хотите удалить единицу измерения?",
+                               switchAlertSecond: $showDeleteAlert, complitionAlertSecond: {
             viewModel.deleteProduct(viewModel: mainViewModel)
             dismiss()
         }))

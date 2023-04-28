@@ -36,9 +36,9 @@ struct TabBarView: View {
                 .padding(6)
             }
             .frame(height: 66)
-            .background(.green.opacity(0.6))
-            .cornerRadius(18)
-            .padding(.horizontal, 16)
+            .modifier(SettingsElement(verticalPadding: 0,
+                                      backgroundColor: .green.opacity(0.6),
+                                      isClassic: false))
             .animation(.easeInOut(duration: 0.3), value: tabBarItem)
         }
         .onAppear {

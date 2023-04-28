@@ -22,62 +22,66 @@ struct AddRecipesView: View {
     var body: some View {
         VStack {
             HStack {
-                AddViewButton(text: "Отмена", colors: (.black, .white), completion: {
+                MainButton(text: "Отмена",
+                           colors: (.black, .white), completion: {
                     dismiss()
-                })
+                }, isCancelStyle: true)
                 Spacer()
-                AddViewButton(text: isViewer ? "Изменить" : "Coхранить", colors: isViewer ? (.black, .yellow) : (.white, .green), completion: {
+                MainButton(text: isViewer ? "Изменить" : "Coхранить",
+                           colors: isViewer ? (.black, .yellow) : (.white, .green), completion: {
                     if isViewer {
                         self.isViewer.toggle()
                     } else {
                         viewModel.saveRecipe(viewModel: mainViewModel)
                         dismiss()
                     }
-                })
+                }, isCancelStyle: true)
             }
             if !isViewer {
                 GeometryReader { proxy in
                     ScrollView {
-                        AddViewText(text: isEdit ? "Изменение рецепта:" : "Добавление рецепта:", size: 30)
-                        MainTextFild(placeHolder: "Введите название блюда", productQuantity: $viewModel.racipeName)
+                        MainText(text: isEdit ? "Изменение рецепта:" : "Добавление рецепта:",
+                                 size: 30,
+                                 isClassic: false)
+                        MainTextFild(placeHolder: "Введите название блюда",
+                                     productQuantity: $viewModel.racipeName,
+                                     axis: .horizontal)
                         HStack {
                             VStack {
-                                AddViewText(text: "Группа:", size: 24)
+                                MainText(text: "Группа:",
+                                         isClassic: false)
                                 DishPicker(dishs: $mainViewModel.dishs,
                                            dishPicker: $mainViewModel.dishPicker,
                                            showAddDish: $showAddDish,
                                            showDeleteDish: $showDeleteDish,
                                            dishTextFild: $mainViewModel.dishTextFild,
-                                           isEdit: true,
-                                           completionAdd: {
+                                           isEdit: true, completionAdd: {
                                     mainViewModel.savingDish()
-                                },
-                                           completionUpdate: {
+                                }, completionUpdate: {
                                     mainViewModel.updateDish()
-                                },
-                                           completionDelete: {
+                                }, completionDelete: {
                                     showDeleteDishAlert.toggle()
                                 })
                                 .cornerRadius(18)
                             }
                             Spacer()
-                            PhotosPicker(selection: $viewModel.selectedPhoto, matching: .images) {
-                                viewModel.imageForPresentation
-                                    .resizable()
-                                    .scaledToFill()
-                                    .foregroundColor(.green)
-                                    .frame(width: 150, height: 150)
-                                    .cornerRadius(18)
-                                    .shadow(color: .black, radius: 10)
-                            }
+                            PhotoPickerRecipe(selectedPhoto: $viewModel.selectedPhoto,
+                                              imageForPresentation: viewModel.imageForPresentation)
                         }
-                        AddViewText(text: "Ингредиенты:", size: 24)
+                        MainText(text: "Ингредиенты:",
+                                 isClassic: false)
                         VStack {
                             HStack {
-                                MainTextFild(placeHolder: "Введите название", productQuantity: $viewModel.ingredientsName)
+                                MainTextFild(placeHolder: "Введите название",
+                                             productQuantity: $viewModel.ingredientsName,
+                                             axis: .horizontal)
                                     .frame(width: 200)
-                                MainTextFild(placeHolder: "Количесство", productQuantity: $viewModel.ingredientsAmount)
-                                MainTextFild(placeHolder: "Ед. изм.", productQuantity: $viewModel.ingredientsMeasuringSystem)
+                                MainTextFild(placeHolder: "Количесство",
+                                             productQuantity: $viewModel.ingredientsAmount,
+                                             axis: .horizontal)
+                                MainTextFild(placeHolder: "Ед. изм.",
+                                             productQuantity: $viewModel.ingredientsMeasuringSystem,
+                                             axis: .horizontal)
 
                             }
                             MainButton(text: "Добавить ингредиент", colors: (.black, .yellow)) {
@@ -88,12 +92,11 @@ struct AddRecipesView: View {
                             viewModel.deleteIngredient(product: productRecipe)
                         }
                         .frame(width: proxy.size.width - 36, height: 150, alignment: .center)
-                        AddViewText(text: "Способ приготовления:", size: 24)
-                        TextField("Способ приготовления", text: $viewModel.cookingMethod,  axis: .vertical)
-                            .lineLimit(5...10)
-                            .padding()
-                            .background(.white)
-                            .cornerRadius(18)
+                        MainText(text: "Способ приготовления:",
+                                 isClassic: false)
+                        MainTextFild(placeHolder: "Способ приготовления",
+                                     productQuantity: $viewModel.cookingMethod,
+                                     axis: .vertical)
                         Rectangle()
                             .opacity(0)
                             .padding(.vertical, 40)
@@ -109,7 +112,10 @@ struct AddRecipesView: View {
                 mainViewModel.getStartPickerData(index: 1)
             }
         }))
-        .modifier(AlertElement(TextFirst: mainViewModel.dishTextAlert, switchAlertFirst: $mainViewModel.showCoincidenceAlert, TextSecond: "Вы уверены, что хотите удалить группу \"\(mainViewModel.dishPicker.name)\"?", switchAlertSecond: $showDeleteDishAlert, complitionAlertSecond: {
+        .modifier(AlertElement(TextFirst: mainViewModel.dishTextAlert,
+                               switchAlertFirst: $mainViewModel.showCoincidenceAlert,
+                               TextSecond: "Вы уверены, что хотите удалить группу \"\(mainViewModel.dishPicker.name)\"?",
+                               switchAlertSecond: $showDeleteDishAlert, complitionAlertSecond: {
             if mainViewModel.deleteDish() {
                 showDeleteDish.toggle()
             }

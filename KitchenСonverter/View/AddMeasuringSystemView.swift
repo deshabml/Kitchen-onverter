@@ -19,27 +19,40 @@ struct AddMeasuringSystemView: View {
     var body: some View {
         VStack {
             HStack {
-                AddViewButton(text: "Отмена", colors: (.black, .white), completion: {
+                MainButton(text: "Отмена", colors: (.black, .white), completion: {
                     dismiss()
-                })
+                }, isCancelStyle: true)
                 Spacer()
             }
-            AddViewText(text: isEdit ? "Изменение" : "Добавление", size: 30)
-            AddViewText(text: "единицы измерения:", size: 30)
-            MainTextFild(placeHolder: "Введите наименование", productQuantity: $viewModel.measuringSystemsName)
+            MainText(text: isEdit ? "Изменение" : "Добавление",
+                     size: 30,
+                     isClassic: false)
+            MainText(text: "единицы измерения:",
+                     size: 30,
+                     isClassic: false)
+            MainTextFild(placeHolder: "Введите наименование",
+                         productQuantity: $viewModel.measuringSystemsName,
+                         axis: .horizontal)
                 .padding(.horizontal, 16)
             HStack {
-                AddViewText(text: "Тип:", size: 24)
-                AddMeasuringSystemPicker(typeMeasuringSystem: viewModel.typeMeasuringSystem, typeMeasuringSystemPicker: $viewModel.typeMeasuringSystemPicker)
+                MainText(text: "Тип:",
+                         isClassic: false)
+                AddMeasuringSystemPicker(typeMeasuringSystem: viewModel.typeMeasuringSystem,
+                                         typeMeasuringSystemPicker: $viewModel.typeMeasuringSystemPicker)
                 Spacer()
             }
             .padding(.horizontal, 16)
-            AddViewText(text: viewModel.textEnterЕheRatio, size: 24)
-            AddViewText(text: "поместиться в 1?", size: 24)
-            MainTextFild(placeHolder: "Введите соотношение", productQuantity: $viewModel.measuringSystemsRatio)
+            MainText(text: viewModel.textEnterЕheRatio,
+                     isClassic: false)
+            MainText(text: "поместиться в 1?",
+                     isClassic: false)
+            MainTextFild(placeHolder: "Введите соотношение",
+                         productQuantity: $viewModel.measuringSystemsRatio,
+                         axis: .horizontal)
                 .padding(.horizontal, 16)
             VStack(spacing: 16) {
-                MainButton(text: isEdit ? "Сохранить" : "Добавить", colors: (.green, .white)) {
+                MainButton(text: isEdit ? "Сохранить" : "Добавить",
+                           colors: (.green, .white)) {
                     if viewModel.errorMasege.isEmpty {
                         if isEdit {
                             viewModel.updateMeasuringSystem(viewModel: mainViewModel)
@@ -52,7 +65,8 @@ struct AddMeasuringSystemView: View {
                     }
                 }
                 if isEdit {
-                    MainButton(text: "Удалить", colors: (.white, .red)) {
+                    MainButton(text: "Удалить",
+                               colors: (.white, .red)) {
                         showDeleteAlert.toggle()
                     }
                 }
@@ -65,7 +79,10 @@ struct AddMeasuringSystemView: View {
                 viewModel.getData(viewModel: mainViewModel)
             }
         }))
-        .modifier(AlertElement(TextFirst: viewModel.errorMasege, switchAlertFirst: $showAlert, TextSecond: "Вы уверены, что хотите удалить единицу измерения?", switchAlertSecond: $showDeleteAlert, complitionAlertSecond: {
+        .modifier(AlertElement(TextFirst: viewModel.errorMasege,
+                               switchAlertFirst: $showAlert,
+                               TextSecond: "Вы уверены, что хотите удалить единицу измерения?",
+                               switchAlertSecond: $showDeleteAlert, complitionAlertSecond: {
             viewModel.deleteMeasuringSystem(viewModel: mainViewModel)
             dismiss()
         }))

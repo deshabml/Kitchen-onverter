@@ -18,14 +18,18 @@ struct CalculatorView: View {
                    spacing: 6) {
                 VStack(alignment: .center,
                        spacing: 12) {
-                    MainTextFild(placeHolder: "Количество", productQuantity: $viewModel.productQuantity)
+                    MainTextFild(placeHolder: "Количество",
+                                 productQuantity: $viewModel.productQuantity,
+                                 axis: .horizontal)
                     MainText(text: viewModel.itog)
                 }
                        .padding(.horizontal, 6)
                 VStack(alignment: .center,
                        spacing: 12) {
-                    MeasuringPicker(measuringSystems: viewModel.measuringSystems, measuringSystemPicker: $viewModel.measuringSystemPickerFirst)
-                    MeasuringPicker(measuringSystems: viewModel.measuringSystems, measuringSystemPicker: $viewModel.measuringSystemPickerSecond)
+                    MeasuringPicker(measuringSystems: viewModel.measuringSystems,
+                                    measuringSystemPicker: $viewModel.measuringSystemPickerFirst)
+                    MeasuringPicker(measuringSystems: viewModel.measuringSystems,
+                                    measuringSystemPicker: $viewModel.measuringSystemPickerSecond)
                 }
                        .padding(.horizontal, 6)
                        .foregroundColor(.blue)
@@ -33,21 +37,26 @@ struct CalculatorView: View {
             VStack(alignment: .center,
                    spacing: 8) {
                 ZStack {
-                    ProductPicker(products: viewModel.products, productPicker: $viewModel.productPicker)
+                    ProductPicker(products: viewModel.products,
+                                  productPicker: $viewModel.productPicker)
                     VStack {
                         HStack {
                             NavigationLink {
                                 AddMeasuringSystemView(isEdit: false)
                                     .environmentObject(viewModel)
                             } label: {
-                                MainAddLabel(isEdit: false, symbols: "scalemass.fill", color: .yellow)
+                                MainAddLabel(isEdit: false,
+                                             symbols: "scalemass.fill",
+                                             color: .yellow)
                             }
                             Spacer()
                             NavigationLink {
                                 AddMeasuringSystemView(isEdit: true)
                                     .environmentObject(viewModel)
                             } label: {
-                                MainAddLabel(isEdit: true, symbols: "square.and.pencil", color: .yellow)
+                                MainAddLabel(isEdit: true,
+                                             symbols: "square.and.pencil",
+                                             color: .yellow)
                             }
                         }
                         Spacer()
@@ -56,22 +65,28 @@ struct CalculatorView: View {
                                 AddProductView(isEdit: false)
                                     .environmentObject(viewModel)
                             } label: {
-                                MainAddLabel(isEdit: false, symbols: "takeoutbag.and.cup.and.straw.fill", color: .green)
+                                MainAddLabel(isEdit: false,
+                                             symbols: "takeoutbag.and.cup.and.straw.fill",
+                                             color: .green)
                             }
                             Spacer()
                             NavigationLink {
                                 AddProductView(isEdit: true)
                                     .environmentObject(viewModel)
                             } label: {
-                                MainAddLabel(isEdit: true, symbols: "square.and.pencil", color: .green)
+                                MainAddLabel(isEdit: true,
+                                             symbols: "square.and.pencil",
+                                             color: .green)
                             }
                         }
                     }
                 }
-                MainButton(text: "Посчитать", colors: (.white, .green)) {
+                MainButton(text: "Посчитать",
+                           colors: (.white, .green)) {
                     viewModel.recalculation()
                 }
-                MainButton(text: "Запомнить", colors: (.black, .yellow)) {
+                MainButton(text: "Запомнить",
+                           colors: (.black, .yellow)) {
                     viewModel.savingConverter()
                 }
             }

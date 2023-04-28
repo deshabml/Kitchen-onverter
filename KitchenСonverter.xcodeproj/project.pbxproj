@@ -17,6 +17,8 @@
 		DD4B1E5729FAC5980009AC42 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B1E5629FAC5980009AC42 /* IngredientCell.swift */; };
 		DD4B1E5A29FC0DC20009AC42 /* BackgroundElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B1E5929FC0DC20009AC42 /* BackgroundElement.swift */; };
 		DD4B1E5C29FC2DAC0009AC42 /* AlertElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B1E5B29FC2DAC0009AC42 /* AlertElement.swift */; };
+		DD4B1E5E29FC33C30009AC42 /* PhotoPickerRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B1E5D29FC33C30009AC42 /* PhotoPickerRecipe.swift */; };
+		DD4B1E6029FC52490009AC42 /* SettingsElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B1E5F29FC52490009AC42 /* SettingsElement.swift */; };
 		DD6B5BDA29F96EC0008E0962 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6B5BD929F96EC0008E0962 /* Dish.swift */; };
 		DD9E2DD729F7C4A0004B04AE /* RecipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DD629F7C4A0004B04AE /* RecipesViewModel.swift */; };
 		DD9E2DD929F7CB17004B04AE /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DD829F7CB17004B04AE /* Recipe.swift */; };
@@ -34,8 +36,6 @@
 		DDBB91DF29EA079B0081445E /* AddMeasuringSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91DE29EA079B0081445E /* AddMeasuringSystemView.swift */; };
 		DDBB91E129EA10310081445E /* AddMeasuringSystemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91E029EA10310081445E /* AddMeasuringSystemViewModel.swift */; };
 		DDBB91E329EAB39E0081445E /* TypeMeasuringSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91E229EAB39E0081445E /* TypeMeasuringSystem.swift */; };
-		DDBB91E529EAC7560081445E /* AddViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91E429EAC7560081445E /* AddViewButton.swift */; };
-		DDBB91E729EAC8D70081445E /* AddViewText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91E629EAC8D70081445E /* AddViewText.swift */; };
 		DDBB91E929EACAC90081445E /* AddMeasuringSystemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91E829EACAC90081445E /* AddMeasuringSystemPicker.swift */; };
 		DDBB91EB29EB3EB30081445E /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91EA29EB3EB20081445E /* AddProductView.swift */; };
 		DDBB91ED29EB43990081445E /* AddProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91EC29EB43990081445E /* AddProductViewModel.swift */; };
@@ -67,6 +67,8 @@
 		DD4B1E5629FAC5980009AC42 /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
 		DD4B1E5929FC0DC20009AC42 /* BackgroundElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundElement.swift; sourceTree = "<group>"; };
 		DD4B1E5B29FC2DAC0009AC42 /* AlertElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertElement.swift; sourceTree = "<group>"; };
+		DD4B1E5D29FC33C30009AC42 /* PhotoPickerRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerRecipe.swift; sourceTree = "<group>"; };
+		DD4B1E5F29FC52490009AC42 /* SettingsElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsElement.swift; sourceTree = "<group>"; };
 		DD6B5BD929F96EC0008E0962 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		DD9E2DD629F7C4A0004B04AE /* RecipesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewModel.swift; sourceTree = "<group>"; };
 		DD9E2DD829F7CB17004B04AE /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -86,8 +88,6 @@
 		DDBB91DE29EA079B0081445E /* AddMeasuringSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasuringSystemView.swift; sourceTree = "<group>"; };
 		DDBB91E029EA10310081445E /* AddMeasuringSystemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasuringSystemViewModel.swift; sourceTree = "<group>"; };
 		DDBB91E229EAB39E0081445E /* TypeMeasuringSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeMeasuringSystem.swift; sourceTree = "<group>"; };
-		DDBB91E429EAC7560081445E /* AddViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewButton.swift; sourceTree = "<group>"; };
-		DDBB91E629EAC8D70081445E /* AddViewText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewText.swift; sourceTree = "<group>"; };
 		DDBB91E829EACAC90081445E /* AddMeasuringSystemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasuringSystemPicker.swift; sourceTree = "<group>"; };
 		DDBB91EA29EB3EB20081445E /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		DDBB91EC29EB43990081445E /* AddProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewModel.swift; sourceTree = "<group>"; };
@@ -132,6 +132,7 @@
 			children = (
 				DD4B1E5929FC0DC20009AC42 /* BackgroundElement.swift */,
 				DD4B1E5B29FC2DAC0009AC42 /* AlertElement.swift */,
+				DD4B1E5F29FC52490009AC42 /* SettingsElement.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -235,8 +236,6 @@
 				DDCC3F6B29E9356D00DDDCD1 /* MainButton.swift */,
 				DDCC3F6129E8975000DDDCD1 /* ConverterList.swift */,
 				DDCC3F5929E5F8B400DDDCD1 /* ConverterCell.swift */,
-				DDBB91E429EAC7560081445E /* AddViewButton.swift */,
-				DDBB91E629EAC8D70081445E /* AddViewText.swift */,
 				DDBB91E829EACAC90081445E /* AddMeasuringSystemPicker.swift */,
 				DD9E2DDE29F88378004B04AE /* RecipesGrid.swift */,
 				DD9E2DDC29F87EC9004B04AE /* RecipesCell.swift */,
@@ -244,6 +243,7 @@
 				DD4B1E4929FA74EF0009AC42 /* AddButton.swift */,
 				DD4B1E5429FAC4B50009AC42 /* IngredientList.swift */,
 				DD4B1E5629FAC5980009AC42 /* IngredientCell.swift */,
+				DD4B1E5D29FC33C30009AC42 /* PhotoPickerRecipe.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -355,10 +355,12 @@
 				DD9E2DDD29F87EC9004B04AE /* RecipesCell.swift in Sources */,
 				DDCC3F6629E89D3800DDDCD1 /* MainText.swift in Sources */,
 				DDFD772C29EDDBCC008F0C8A /* RealmService.swift in Sources */,
+				DD4B1E5E29FC33C30009AC42 /* PhotoPickerRecipe.swift in Sources */,
 				DD4B1E4D29FA7C7E0009AC42 /* CornerRadiusStyle.swift in Sources */,
 				DD4B1E4A29FA74EF0009AC42 /* AddButton.swift in Sources */,
 				DDBB91E129EA10310081445E /* AddMeasuringSystemViewModel.swift in Sources */,
 				DDCC3F5329E5CB7E00DDDCD1 /* MeasuringSystem.swift in Sources */,
+				DD4B1E6029FC52490009AC42 /* SettingsElement.swift in Sources */,
 				DD4B1E4F29FA87560009AC42 /* AddRecipesView.swift in Sources */,
 				DDCC3F6229E8975000DDDCD1 /* ConverterList.swift in Sources */,
 				DDABAEE829E52D54007E9A7D /* CalculatorView.swift in Sources */,
@@ -368,7 +370,6 @@
 				DD9E2DD729F7C4A0004B04AE /* RecipesViewModel.swift in Sources */,
 				DDCC3F5829E5F74800DDDCD1 /* Converter.swift in Sources */,
 				DDBB91DD29EA06600081445E /* MainAddLabel.swift in Sources */,
-				DDBB91E529EAC7560081445E /* AddViewButton.swift in Sources */,
 				DD4B1E5329FA96950009AC42 /* MediaFile.swift in Sources */,
 				DDFD772F29EDFA3B008F0C8A /* FirstLaunch.swift in Sources */,
 				DDB6E54829F2A19E005A4A72 /* RecipesView.swift in Sources */,
@@ -379,7 +380,6 @@
 				DD4B1E5A29FC0DC20009AC42 /* BackgroundElement.swift in Sources */,
 				DDB6E54429F28638005A4A72 /* TabBarView.swift in Sources */,
 				DD6B5BDA29F96EC0008E0962 /* Dish.swift in Sources */,
-				DDBB91E729EAC8D70081445E /* AddViewText.swift in Sources */,
 				DDB6E54629F292AF005A4A72 /* TabBarItems.swift in Sources */,
 				DDCC3F6429E89AA300DDDCD1 /* MainTextFild.swift in Sources */,
 				DDBB91E929EACAC90081445E /* AddMeasuringSystemPicker.swift in Sources */,
