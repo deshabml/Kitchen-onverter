@@ -32,14 +32,19 @@ class RecipesViewModel: ObservableObject {
     @Published var showCoincidenceAlert: Bool = false
     @Published var dishTextAlert: String = ""
 
+    func loadingScreen() {
+        getStartPickerData(index: 0)
+        getData()
+    }
+
     func getData() {
         recipes = RealmService.shared.getRecipes()
         dishs = RealmService.shared.getDishs()
         dishPicker = dishPicker
     }
 
-    func getStartPickerData() {
-        dishPicker = RealmService.shared.getDishs()[0]
+    func getStartPickerData(index: Int) {
+        dishPicker = RealmService.shared.getDishs()[index]
     }
 
     func savingDish() {

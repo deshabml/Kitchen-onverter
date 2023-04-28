@@ -32,5 +32,14 @@ class Recipe: Object, Identifiable {
         self.cookingMethod = cookingMethod
         self.dish = dish
     }
+
+    convenience init(name: String, Image: Data, _ ingredients: [ProductRecipe], cookingMethod: String, dish: String) {
+        self.init()
+        self.name = name
+        self.Image = Image
+        self.ingredients.append(objectsIn: ingredients)
+        self.cookingMethod = cookingMethod
+        self.dish = dish
+    }
     
 }

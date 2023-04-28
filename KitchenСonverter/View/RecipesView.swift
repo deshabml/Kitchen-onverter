@@ -8,51 +8,55 @@
 import SwiftUI
 
 struct RecipesView: View {
-
+    
     @StateObject var viewModel = RecipesViewModel()
     @State var showAddDish = false
     @State var showDeleteDish = false
     @State var showDeleteDishAlert = false
-
+    
     var body: some View {
-        VStack {
-            ZStack {
-                RecipesGrid(recipes: $viewModel.recipesPicker)
-                VStack {
+        ZStack {
+            RecipesGrid(recipes: $viewModel.recipesPicker,
+                        dishPicker: $viewModel.dishPicker,
+                        recipesPicker: $viewModel.recipesPicker, viewModel: viewModel)
+            VStack {
+                HStack() {
                     Spacer()
-                    HStack {
-                        DishPicker(dishs: $viewModel.dishs,
-                                   dishPicker: $viewModel.dishPicker,
-                                   showAddDish: $showAddDish,
-                                   showDeleteDish: $showDeleteDish,
-                                   dishTextFild: $viewModel.dishTextFild,
-                                   completionAdd: {
-                            viewModel.savingDish()
-                        },
-                                   completionUpdate: {
-                            viewModel.updateDish()
-                        },
-                                   completionDelete: {
-                            showDeleteDishAlert.toggle()
-                        })
-                        Spacer()
+                    NavigationLink {
+                        AddRecipesView(isEdit: false, isViewer: false)
+                            .environmentObject(viewModel)
+                    } label: {
+                        AddButton()
                     }
-                    .padding(.vertical, 150)
                 }
+                Spacer()
             }
-            .padding(.horizontal, 16)
+            VStack {
+                Spacer()
+                HStack {
+                    DishPicker(dishs: $viewModel.dishs,
+                               dishPicker: $viewModel.dishPicker,
+                               showAddDish: $showAddDish,
+                               showDeleteDish: $showDeleteDish,
+                               dishTextFild: $viewModel.dishTextFild,
+                               isEdit: false,
+                               completionAdd: {
+                        viewModel.savingDish()
+                    },
+                               completionUpdate: {
+                        viewModel.updateDish()
+                    },
+                               completionDelete: {
+                        showDeleteDishAlert.toggle()
+                    })
+                    Spacer()
+                }
+                .padding(.vertical, 150)
+            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(
-            Image("RecipesBackgraund")
-                .resizable()
-                .ignoresSafeArea()
-                .scaledToFill()
-        )
-        .onAppear {
-            viewModel.getStartPickerData()
-            viewModel.getData()
-        }
+        .modifier(BackgroundElement(ImageName: "RecipesBackgraund", onApperComplition: {
+            viewModel.loadingScreen()
+        }))
         .alert(viewModel.dishTextAlert, isPresented: $viewModel.showCoincidenceAlert) {
             Button("ОК") { }
         }
@@ -66,14 +70,7 @@ struct RecipesView: View {
         }
         .animation(.easeInOut(duration: 0.3), value: showAddDish)
         .animation(.easeInOut(duration: 0.3), value: showDeleteDish)
+        .animation(.linear(duration: 0.2), value: viewModel.dishPicker)
     }
-
+    
 }
-
-//struct RecipesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationView {
-//            RecipesView()
-//        }
-//    }
-//}

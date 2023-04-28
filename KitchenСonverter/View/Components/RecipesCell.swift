@@ -13,11 +13,22 @@ struct RecipesCell: View {
 
     var body: some View {
         VStack() {
-            Image("RecipeIcons")
-                .resizable()
-                .renderingMode(.template)
-                .foregroundColor(.white)
-                .frame(width: 80, height: 80)
+            if let image = UIImage(data: recipe.Image) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+                    .foregroundColor(.white)
+                    .frame(width: 80, height: 80)
+                    .cornerRadius(16)
+                    .shadow(color: .white, radius: 10)
+            } else {
+                Image("RecipeIcons")
+                    .resizable()
+                    .renderingMode(.template)
+                    .foregroundColor(.white)
+                    .frame(width: 80, height: 80)
+                    .cornerRadius(16)
+            }
             Spacer()
             Text("\(recipe.name)")
         }

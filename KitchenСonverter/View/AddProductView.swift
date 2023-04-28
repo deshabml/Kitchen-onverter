@@ -19,7 +19,7 @@ struct AddProductView: View {
     var body: some View {
         VStack {
             HStack {
-                AddViewButtonCancell(completion: {
+                AddViewButton(text: "Отмена", colors: (.black, .white), completion: {
                     dismiss()
                 })
                 Spacer()
@@ -53,19 +53,11 @@ struct AddProductView: View {
             Spacer()
 
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .navigationBarBackButtonHidden(true)
-        .background(
-         Image("AddMainProductBackgraund")
-             .resizable()
-             .ignoresSafeArea()
-             .scaledToFill()
-        )
-        .onAppear {
+        .modifier(BackgroundElement(ImageName: "AddMainProductBackgraund", onApperComplition: {
             if isEdit {
                 viewModel.getData(viewModel: mainViewModel)
             }
-        }
+        }))
         .alert(viewModel.errorMasege, isPresented: $showAlert) {
             Button("ОК") { }
         }

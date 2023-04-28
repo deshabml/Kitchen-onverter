@@ -14,6 +14,7 @@ struct DishPicker: View {
     @Binding var showAddDish: Bool
     @Binding var showDeleteDish: Bool
     @Binding var dishTextFild: String
+    var isEdit: Bool
     var completionAdd: ()->()
     var completionUpdate: ()->(Bool)
     var completionDelete: ()->()
@@ -22,13 +23,13 @@ struct DishPicker: View {
         VStack {
             ZStack {
                 if showAddDish || showDeleteDish {
-                    Text(dishPicker.name)
+                    Text(showAddDish ? dishTextFild : dishPicker.name)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(.black.opacity(0.5))
                 } else {
                     Picker("Группы", selection: $dishPicker) {
-                        ForEach(dishs) { dish in
+                        ForEach(isEdit ? dishs.filter { $0.name != "Все" } : dishs) { dish in
                             Text(dish.name).tag(dish)
                                 .foregroundColor(.white)
                         }
@@ -104,7 +105,7 @@ struct DishPicker: View {
             }
         }
         .frame(width: 150, height: 100)
-        .cornerRadius(18)
+        .cornerRadius(18, corners: [.topRight, .bottomRight])
     }
 
 }

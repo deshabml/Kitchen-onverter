@@ -41,6 +41,12 @@ class CalculatorViewModel: ObservableObject {
 
 extension CalculatorViewModel {
 
+    func loadingScreen() {
+        initialFillingDataBase()
+        getStartPickerData()
+        getAllData()
+    }
+
     func getAllData() {
         recordedConverters = RealmService.shared.getConverter()
         measuringSystems = RealmService.shared.getMeasuringSystem()

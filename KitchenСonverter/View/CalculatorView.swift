@@ -81,18 +81,7 @@ struct CalculatorView: View {
             }
         }
                .animation(.easeInOut(duration: 0.3), value: viewModel.recordedConverters)
-               .frame(maxWidth: .infinity, maxHeight: .infinity)
-               .background(
-                Image("CalculatorBackgraund")
-                    .resizable()
-                    .ignoresSafeArea()
-                    .scaledToFill()
-               )
-               .onAppear {
-                   viewModel.initialFillingDataBase()
-                   viewModel.getStartPickerData()
-                   viewModel.getAllData()
-               }
+               .modifier(BackgroundElement(ImageName: "CalculatorBackgraund", onApperComplition: { viewModel.loadingScreen() }))
     }
 
 }

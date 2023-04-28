@@ -8,24 +8,23 @@
 import SwiftUI
 
 struct AddButton: View {
+
     var body: some View {
-        Button {
-            print("karamba")
-        } label: {
-            HStack {
-                Image(systemName: "plus")
-                Image("RecipeIcons")
-            }
-                .foregroundColor(.yellow)
-                .font(.headline)
-                .padding(10)
+        HStack {
+            Image(systemName: "plus")
+                .resizable()
+                .renderingMode(.template)
+                .frame(width: 15, height: 15)
+            Image("RecipeIcons")
+                .resizable()
+                .renderingMode(.template)
+                .frame(width: 30, height: 30)
         }
-
+        .padding()
+        .background(.black.opacity(0.5))
+        .cornerRadius(18, corners: [.topLeft, .bottomLeft])
+        .foregroundColor(.green)
+        .font(.headline)
     }
-}
-
-struct AddButton_Previews: PreviewProvider {
-    static var previews: some View {
-        AddButton()
-    }
+    
 }

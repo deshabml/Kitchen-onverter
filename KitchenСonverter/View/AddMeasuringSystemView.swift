@@ -19,7 +19,7 @@ struct AddMeasuringSystemView: View {
     var body: some View {
         VStack {
             HStack {
-                AddViewButtonCancell(completion: {
+                AddViewButton(text: "Отмена", colors: (.black, .white), completion: {
                     dismiss()
                 })
                 Spacer()
@@ -60,14 +60,11 @@ struct AddMeasuringSystemView: View {
             .padding()
             Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .navigationBarBackButtonHidden(true)
-        .background(
-         Image("AddMeasuringSystemBackgraund")
-             .resizable()
-             .ignoresSafeArea()
-             .scaledToFill()
-        )
+        .modifier(BackgroundElement(ImageName: "AddMeasuringSystemBackgraund", onApperComplition: {
+            if isEdit {
+                viewModel.getData(viewModel: mainViewModel)
+            }
+        }))
         .alert(viewModel.errorMasege, isPresented: $showAlert) {
             Button("ОК") { }
         }
@@ -76,11 +73,6 @@ struct AddMeasuringSystemView: View {
             Button("УДАЛИТЬ", role: .destructive) {
                 viewModel.deleteMeasuringSystem(viewModel: mainViewModel)
                 dismiss()
-            }
-        }
-        .onAppear {
-            if isEdit {
-                viewModel.getData(viewModel: mainViewModel)
             }
         }
     }

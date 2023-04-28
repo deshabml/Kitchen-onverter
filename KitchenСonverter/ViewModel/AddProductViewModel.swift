@@ -17,6 +17,9 @@ enum ProductError: Error {
 
 class AddProductViewModel: ObservableObject  {
 
+    @Published var showAddDish = false
+    @Published var showDeleteDish = false
+    @Published var showDeleteDishAlert = false
     @Published var productName: String = ""
     @Published var density: String = ""
     @Published var product: Product?
