@@ -15,8 +15,10 @@ struct AddRecipesView: View {
     @State var showAddDish = false
     @State var showDeleteDish = false
     @State var showDeleteDishAlert = false
-    let isEdit: Bool
+    var isEdit: Bool
+    var isUpdate: Bool = false
     @State var isViewer: Bool
+    var recipePicker: Recipe = Recipe()
     @Environment (\.dismiss) var dismiss
     
     var body: some View {
@@ -32,8 +34,14 @@ struct AddRecipesView: View {
                     if isViewer {
                         self.isViewer.toggle()
                     } else {
-                        viewModel.saveRecipe(viewModel: mainViewModel)
-                        dismiss()
+                        if viewModel.checkRecipe() {
+                            if !isUpdate {
+                                viewModel.saveRecipe(viewModel: mainViewModel)
+                            } else {
+                                viewModel.updateRecipe(recipePickerOld: recipePicker, viewModel: mainViewModel)
+                            }
+                            dismiss()
+                        }
                     }
                 }, isCancelStyle: true)
             }
@@ -51,7 +59,7 @@ struct AddRecipesView: View {
                                 MainText(text: "Группа:",
                                          isClassic: false)
                                 DishPicker(dishs: $mainViewModel.dishs,
-                                           dishPicker: $mainViewModel.dishPicker,
+                                           dishPicker: $viewModel.dishPicker,
                                            showAddDish: $showAddDish,
                                            showDeleteDish: $showDeleteDish,
                                            dishTextFild: $mainViewModel.dishTextFild,
@@ -104,22 +112,21 @@ struct AddRecipesView: View {
                     .padding(.horizontal, 16)
                 }
             } else {
-
+                ScrollView {
+                    Spacer()
+                }
             }
         }
         .modifier(BackgroundElement(ImageName: "AddRecipesBackgraund", onApperComplition: {
-            if !isViewer {
-                mainViewModel.getStartPickerData(index: 1)
+            viewModel.loadDishPicker(mainViewModel: mainViewModel)
+            if isViewer {
+                viewModel.dataВistribution(recipePicker: recipePicker,
+                                           dishs: mainViewModel.dishs)
             }
         }))
-        .modifier(AlertElement(TextFirst: mainViewModel.dishTextAlert,
-                               switchAlertFirst: $mainViewModel.showCoincidenceAlert,
-                               TextSecond: "Вы уверены, что хотите удалить группу \"\(mainViewModel.dishPicker.name)\"?",
-                               switchAlertSecond: $showDeleteDishAlert, complitionAlertSecond: {
-            if mainViewModel.deleteDish() {
-                showDeleteDish.toggle()
-            }
-        }))
+        .alert(viewModel.errorMasege, isPresented: $viewModel.IsShowErrorAlert) {
+            Button("ОК") { }
+        }
         .animation(.linear(duration: 0.2), value: isViewer)
     }
 

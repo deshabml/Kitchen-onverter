@@ -8,6 +8,12 @@
 import SwiftUI
 import PhotosUI
 
+enum SaveRecipeError: Error {
+
+    case emptyName
+
+}
+
 class AddRecipesViewModel: ObservableObject {
 
     @Published var racipeName: String = ""
@@ -25,6 +31,10 @@ class AddRecipesViewModel: ObservableObject {
     }
     @Published var loadedImage: MediaFile?
     @Published var ingredients: [ProductRecipe] = []
+    @Published var imageStandard: Image = Image("RecipeIcons")
+    @Published var dishPicker: Dish = Dish()
+    @Published var IsShowErrorAlert: Bool = false
+    var errorMasege: String = ""
 
     func saveIngredient() {
         ingredients.append(ProductRecipe(name: ingredientsName, amount: ingredientsAmount, measuringSystem: ingredientsMeasuringSystem))
@@ -35,20 +45,77 @@ class AddRecipesViewModel: ObservableObject {
     }
 
     func saveRecipe(viewModel: RecipesViewModel) {
-        guard let loadedImage = loadedImage else { return }
-        viewModel.savingObject(object: Recipe(name: racipeName, Image: loadedImage.data, ingredients, cookingMethod: cookingMethod, dish: viewModel.dishPicker.name))
+        if let loadedImage = loadedImage {
+            viewModel.savingObject(object: Recipe(name: racipeName, Image: loadedImage.data, ingredients, cookingMethod: cookingMethod, dish: dishPicker.name))
+        } else {
+            viewModel.savingObject(object: Recipe(name: racipeName, ingredients, cookingMethod: cookingMethod, dish: dishPicker.name))
+        }
+    }
+
+    func updateRecipe(recipePickerOld: Recipe, viewModel: RecipesViewModel) {
+        if let loadedImage = loadedImage {
+            viewModel.updateObject(oldObject: recipePickerOld, newObject: Recipe(name: racipeName, Image: loadedImage.data, ingredients, cookingMethod: cookingMethod, dish: dishPicker.name))
+        } else {
+            viewModel.updateObject(oldObject: recipePickerOld, newObject: Recipe(name: racipeName, ingredients, cookingMethod: cookingMethod, dish: dishPicker.name))
+        }
     }
 
 }
 
 extension AddRecipesViewModel {
 
+    func checkRecipe() -> Bool {
+        do {
+            try throwRecipe()
+        } catch SaveRecipeError.emptyName {
+            IsShowErrorAlert.toggle()
+            errorMasege = "Рецепт должен иметь название!"
+            return false
+        } catch {
+            print("Что то пошло не так.")
+            return false
+        }
+        return true
+    }
+
+    func throwRecipe() throws {
+        guard !racipeName.isEmpty else { throw SaveRecipeError.emptyName }
+    }
+
+    func loadDishPicker(mainViewModel: RecipesViewModel) {
+        if mainViewModel.dishPicker.name == "Все" {
+            guard mainViewModel.dishs.count > 1 else {
+                dishPicker = mainViewModel.dishPicker
+                return
+            }
+            dishPicker = mainViewModel.dishs[1]
+        } else {
+            dishPicker = mainViewModel.dishPicker
+        }
+    }
+
+    func dataВistribution(recipePicker: Recipe, dishs: [Dish]) {
+        racipeName = recipePicker.name
+        recipePicker.ingredients.forEach {ingredient in
+            ingredients.append(ingredient)
+        }
+        cookingMethod = recipePicker.cookingMethod
+        if let image = UIImage(data: recipePicker.Image) {
+            imageStandard = Image(uiImage: image)
+        }
+        for dish in dishs {
+            if dish.name == recipePicker.dish {
+                dishPicker = dish
+            }
+        }
+    }
+
     var imageForPresentation: Image {
         if let loadedImage, let image = UIImage(data: loadedImage.data) {
             let image = Image(uiImage: image)
             return image
         } else {
-            let image = Image("RecipeIcons")
+            let image = imageStandard
             return image
         }
     }

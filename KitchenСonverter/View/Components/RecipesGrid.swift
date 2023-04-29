@@ -23,7 +23,7 @@ struct RecipesGrid: View {
                     Section {
                         ForEach(0 ..< $recipes.count, id: \.self) { index in
                             NavigationLink {
-                                AddRecipesView(isEdit: false, isViewer: true)
+                                AddRecipesView(isEdit: false, isUpdate: true, isViewer: true, recipePicker: recipes[index])
                                     .environmentObject(viewModel)
                             } label: {
                                 RecipesCell(recipe: $recipes[index])

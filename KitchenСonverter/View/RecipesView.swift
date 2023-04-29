@@ -39,14 +39,11 @@ struct RecipesView: View {
                                showAddDish: $showAddDish,
                                showDeleteDish: $showDeleteDish,
                                dishTextFild: $viewModel.dishTextFild,
-                               isEdit: false,
-                               completionAdd: {
+                               isEdit: false, completionAdd: {
                         viewModel.savingDish()
-                    },
-                               completionUpdate: {
+                    }, completionUpdate: {
                         viewModel.updateDish()
-                    },
-                               completionDelete: {
+                    }, completionDelete: {
                         showDeleteDishAlert.toggle()
                     })
                     Spacer()

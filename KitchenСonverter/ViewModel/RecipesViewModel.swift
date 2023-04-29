@@ -32,21 +32,6 @@ class RecipesViewModel: ObservableObject {
     @Published var showCoincidenceAlert: Bool = false
     @Published var dishTextAlert: String = ""
 
-    func loadingScreen() {
-        getStartPickerData(index: 0)
-        getData()
-    }
-
-    func getData() {
-        recipes = RealmService.shared.getRecipes()
-        dishs = RealmService.shared.getDishs()
-        dishPicker = dishPicker
-    }
-
-    func getStartPickerData(index: Int) {
-        dishPicker = RealmService.shared.getDishs()[index]
-    }
-
     func savingDish() {
         guard !dishTextFild.isEmpty else { return }
         savingObject(object: Dish(name: dishTextFild))
@@ -106,6 +91,25 @@ class RecipesViewModel: ObservableObject {
         dishPicker = RealmService.shared.getDishs()[0]
         deleteObject(object: delDish)
         return true
+    }
+
+}
+
+extension RecipesViewModel {
+
+    func loadingScreen() {
+        getStartPickerData(index: 0)
+        getData()
+    }
+
+    func getData() {
+        recipes = RealmService.shared.getRecipes()
+        dishs = RealmService.shared.getDishs()
+        dishPicker = dishPicker
+    }
+
+    func getStartPickerData(index: Int) {
+        dishPicker = RealmService.shared.getDishs()[index]
     }
 
     func savingObject<T>(object: T) {

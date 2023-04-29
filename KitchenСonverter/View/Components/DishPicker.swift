@@ -67,7 +67,7 @@ struct DishPicker: View {
                     }
                     .padding(.vertical, 10)
                     Spacer()
-                    if !showAddDish && !showDeleteDish, dishPicker.name != "Все" {
+                    if !showAddDish && !showDeleteDish, dishPicker.name != "Все", !isEdit {
                         HStack {
                             Button {
                                 showDeleteDish.toggle()
