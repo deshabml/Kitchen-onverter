@@ -13,7 +13,6 @@ struct BackgroundElement: ViewModifier {
     var onApperComplition: (()->())?
 
     func body(content: Content) -> some View {
-
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationBarBackButtonHidden(true)

@@ -35,7 +35,7 @@ struct AddRecipesView: View {
                     if isViewer {
                         self.isViewer.toggle()
                     } else {
-                        if viewModel.checkRecipe() {
+                        if viewModel.checkRecipe(recipes: mainViewModel.recipes) {
                             if !isUpdate {
                                 viewModel.saveRecipe(viewModel: mainViewModel)
                             } else {

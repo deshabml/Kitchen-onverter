@@ -11,6 +11,7 @@ import PhotosUI
 enum SaveRecipeError: Error {
 
     case emptyName
+    case coincidence
 
 }
 
@@ -91,12 +92,16 @@ extension AddRecipesViewModel {
         return text
     }
 
-    func checkRecipe() -> Bool {
+    func checkRecipe(recipes: [Recipe]) -> Bool {
         do {
-            try throwRecipe()
+            try throwRecipe(recipes: recipes)
         } catch SaveRecipeError.emptyName {
             IsShowErrorAlert.toggle()
             errorMasege = "Рецепт должен иметь название!"
+            return false
+        } catch SaveRecipeError.coincidence {
+            IsShowErrorAlert.toggle()
+            errorMasege = "Рецепт с таким названием уже существует!"
             return false
         } catch {
             print("Что то пошло не так.")
@@ -105,8 +110,12 @@ extension AddRecipesViewModel {
         return true
     }
 
-    func throwRecipe() throws {
+    func throwRecipe(recipes: [Recipe]) throws {
         guard !racipeName.isEmpty else { throw SaveRecipeError.emptyName }
+        for recipe in recipes {
+            guard recipe.name != racipeName else { throw SaveRecipeError.coincidence }
+        }
+        
     }
 
     func loadDishPicker(mainViewModel: RecipesViewModel) {

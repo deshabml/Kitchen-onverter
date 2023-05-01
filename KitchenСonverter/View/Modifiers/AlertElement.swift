@@ -15,7 +15,6 @@ struct AlertElement: ViewModifier {
     @Binding var switchAlertSecond: Bool
     var complitionAlertSecond: ()->()
 
-
     func body(content: Content) -> some View {
         content
             .alert(TextFirst, isPresented: $switchAlertFirst) {
