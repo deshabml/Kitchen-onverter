@@ -21,16 +21,20 @@ class RecipesViewModel: ObservableObject {
     @Published var dishs: [Dish] = []
     @Published var dishPicker: Dish = Dish() {
         willSet {
-            if newValue.name == "Все" {
-                recipesPicker = recipes
-            } else {
-                recipesPicker = recipes.filter { $0.dish == newValue.name }
+            recipesPicker = []
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                if newValue.name == "Все" {
+                    self.recipesPicker = self.recipes
+                } else {
+                    self.recipesPicker = self.recipes.filter { $0.dish == newValue.name }
+                }
             }
         }
     }
     @Published var dishTextFild: String = ""
     @Published var showCoincidenceAlert: Bool = false
     @Published var dishTextAlert: String = ""
+    var isFirstView: Bool = true
 
     func savingDish() {
         guard !dishTextFild.isEmpty else { return }
@@ -98,8 +102,11 @@ class RecipesViewModel: ObservableObject {
 extension RecipesViewModel {
 
     func loadingScreen() {
-        getStartPickerData(index: 0)
-        getData()
+        if isFirstView {
+            getStartPickerData(index: 0)
+            getData()
+            isFirstView.toggle()
+        }
     }
 
     func getData() {

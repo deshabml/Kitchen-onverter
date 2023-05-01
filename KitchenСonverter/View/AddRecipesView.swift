@@ -15,6 +15,7 @@ struct AddRecipesView: View {
     @State var showAddDish = false
     @State var showDeleteDish = false
     @State var showDeleteDishAlert = false
+    @State var showDeleteAlert = false
     var isEdit: Bool
     var isUpdate: Bool = false
     @State var isViewer: Bool
@@ -105,6 +106,12 @@ struct AddRecipesView: View {
                         MainTextFild(placeHolder: "Способ приготовления",
                                      productQuantity: $viewModel.cookingMethod,
                                      axis: .vertical)
+                        if isUpdate {
+                            MainButton(text: "Удалить",
+                                       colors: (.white, .red)) {
+                                showDeleteAlert.toggle()
+                            }
+                        }
                         Rectangle()
                             .opacity(0)
                             .padding(.vertical, 40)
@@ -113,7 +120,21 @@ struct AddRecipesView: View {
                 }
             } else {
                 ScrollView {
-                    Spacer()
+                    VStack {
+                        MainText(text: recipePicker.name,
+                                 size: 30,
+                                 isClassic: false)
+                        if viewModel.checkImage(recipePicker: recipePicker) {
+                            ImageRecipe(recipe: recipePicker, size: 300)
+                        }
+                        MainText(text: "В группе: \"\(recipePicker.dish)\"",
+                                 isClassic: false)
+                    }
+                    .padding(.horizontal, 16)
+                    MainText(text: viewModel.ingredientsText())
+                    Text("Cпособ приготовления:\n\(viewModel.cookingMethod)")
+                        .foregroundColor(.white)
+                        .modifier(SettingsElement(backgroundColor: .black.opacity(0.5)))
                 }
             }
         }
@@ -124,10 +145,11 @@ struct AddRecipesView: View {
                                            dishs: mainViewModel.dishs)
             }
         }))
-        .alert(viewModel.errorMasege, isPresented: $viewModel.IsShowErrorAlert) {
-            Button("ОК") { }
-        }
-        .animation(.linear(duration: 0.2), value: isViewer)
+        .modifier(AlertElement(TextFirst: viewModel.errorMasege, switchAlertFirst: $viewModel.IsShowErrorAlert, TextSecond: "Вы уверены, что хотите удалить рецепт?", switchAlertSecond: $showDeleteAlert, complitionAlertSecond: {
+            viewModel.deleteRecipe(recipe: recipePicker, viewModel: mainViewModel)
+            dismiss()
+        }))
+        .animation(.easeInOut(duration: 0.5), value: isViewer)
     }
 
 }

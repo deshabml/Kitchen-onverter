@@ -21,7 +21,6 @@ class AddRecipesViewModel: ObservableObject {
     @Published var ingredientsAmount: String = ""
     @Published var ingredientsMeasuringSystem: String = ""
     @Published var cookingMethod: String = ""
-
     @Published var selectedPhoto: PhotosPickerItem? {
         didSet {
             if let selectedPhoto {
@@ -45,24 +44,52 @@ class AddRecipesViewModel: ObservableObject {
     }
 
     func saveRecipe(viewModel: RecipesViewModel) {
-        if let loadedImage = loadedImage {
-            viewModel.savingObject(object: Recipe(name: racipeName, Image: loadedImage.data, ingredients, cookingMethod: cookingMethod, dish: dishPicker.name))
+        if let Image = loadedImage?.data {
+            viewModel.savingObject(object: Recipe(name: racipeName,
+                                                  Image: Image,
+                                                  ingredients,
+                                                  cookingMethod: cookingMethod,
+                                                  dish: dishPicker.name))
         } else {
-            viewModel.savingObject(object: Recipe(name: racipeName, ingredients, cookingMethod: cookingMethod, dish: dishPicker.name))
+            viewModel.savingObject(object: Recipe(name: racipeName,
+                                                  ingredients,
+                                                  cookingMethod: cookingMethod,
+                                                  dish: dishPicker.name))
         }
     }
 
     func updateRecipe(recipePickerOld: Recipe, viewModel: RecipesViewModel) {
-        if let loadedImage = loadedImage {
-            viewModel.updateObject(oldObject: recipePickerOld, newObject: Recipe(name: racipeName, Image: loadedImage.data, ingredients, cookingMethod: cookingMethod, dish: dishPicker.name))
+        if let Image = loadedImage?.data {
+            viewModel.updateObject(oldObject: recipePickerOld,
+                                   newObject: Recipe(name: racipeName,
+                                                     Image: Image,
+                                                     ingredients,
+                                                     cookingMethod: cookingMethod,
+                                                     dish: dishPicker.name))
         } else {
-            viewModel.updateObject(oldObject: recipePickerOld, newObject: Recipe(name: racipeName, ingredients, cookingMethod: cookingMethod, dish: dishPicker.name))
+            viewModel.updateObject(oldObject: recipePickerOld,
+                                   newObject: Recipe(name: racipeName,
+                                                     ingredients,
+                                                     cookingMethod: cookingMethod,
+                                                     dish: dishPicker.name))
         }
+    }
+
+    func deleteRecipe(recipe: Recipe, viewModel: RecipesViewModel) {
+        viewModel.deleteObject(object: recipe)
     }
 
 }
 
 extension AddRecipesViewModel {
+
+    func ingredientsText() -> String {
+        var text = "Ингридиенты:"
+        ingredients.forEach {
+            text += "\n \($0.name) -- \($0.amount) \($0.measuringSystem)"
+        }
+        return text
+    }
 
     func checkRecipe() -> Bool {
         do {
@@ -108,6 +135,7 @@ extension AddRecipesViewModel {
                 dishPicker = dish
             }
         }
+        loadedImage = MediaFile(data: recipePicker.Image)
     }
 
     var imageForPresentation: Image {
@@ -135,6 +163,13 @@ extension AddRecipesViewModel {
                     print(error)
             }
         }
+    }
+
+    func checkImage(recipePicker: Recipe) -> Bool {
+        if let _ = UIImage(data: recipePicker.Image) {
+            return true
+        }
+        return false
     }
 
 }

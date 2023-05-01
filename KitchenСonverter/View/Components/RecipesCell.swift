@@ -9,26 +9,11 @@ import SwiftUI
 
 struct RecipesCell: View {
 
-    @Binding var recipe: Recipe
+    var recipe: Recipe
 
     var body: some View {
         VStack() {
-            if let image = UIImage(data: recipe.Image) {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFill()
-                    .foregroundColor(.white)
-                    .frame(width: 80, height: 80)
-                    .cornerRadius(16)
-                    .shadow(color: .white, radius: 10)
-            } else {
-                Image("RecipeIcons")
-                    .resizable()
-                    .renderingMode(.template)
-                    .foregroundColor(.white)
-                    .frame(width: 80, height: 80)
-                    .cornerRadius(16)
-            }
+            ImageRecipe(recipe: recipe, size: 80)
             Spacer()
             Text("\(recipe.name)")
         }

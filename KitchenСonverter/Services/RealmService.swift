@@ -82,7 +82,7 @@ class RealmService {
             print("Неисправность базы данных")
         }
     }
-    
+
 }
 
 extension RealmService {

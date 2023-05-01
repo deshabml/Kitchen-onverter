@@ -25,6 +25,7 @@
 		DD9E2DDB29F86D29004B04AE /* ProductRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DDA29F86D29004B04AE /* ProductRecipe.swift */; };
 		DD9E2DDD29F87EC9004B04AE /* RecipesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DDC29F87EC9004B04AE /* RecipesCell.swift */; };
 		DD9E2DDF29F88378004B04AE /* RecipesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9E2DDE29F88378004B04AE /* RecipesGrid.swift */; };
+		DDA3F44B29FCEDD7000B4B67 /* ImageRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA3F44A29FCEDD7000B4B67 /* ImageRecipe.swift */; };
 		DDABAEE629E52D54007E9A7D /* Kitchen_onverterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE529E52D54007E9A7D /* Kitchen_onverterApp.swift */; };
 		DDABAEE829E52D54007E9A7D /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDABAEE729E52D54007E9A7D /* CalculatorView.swift */; };
 		DDABAEEA29E52D56007E9A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDABAEE929E52D56007E9A7D /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		DD9E2DDA29F86D29004B04AE /* ProductRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRecipe.swift; sourceTree = "<group>"; };
 		DD9E2DDC29F87EC9004B04AE /* RecipesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesCell.swift; sourceTree = "<group>"; };
 		DD9E2DDE29F88378004B04AE /* RecipesGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesGrid.swift; sourceTree = "<group>"; };
+		DDA3F44A29FCEDD7000B4B67 /* ImageRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecipe.swift; sourceTree = "<group>"; };
 		DDABAEE229E52D54007E9A7D /* KitchenСonverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KitchenСonverter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDABAEE529E52D54007E9A7D /* Kitchen_onverterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kitchen_onverterApp.swift; sourceTree = "<group>"; };
 		DDABAEE729E52D54007E9A7D /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				DD9E2DDE29F88378004B04AE /* RecipesGrid.swift */,
 				DD9E2DDC29F87EC9004B04AE /* RecipesCell.swift */,
 				DD4B1E4529F9A90C0009AC42 /* DishPicker.swift */,
+				DDA3F44A29FCEDD7000B4B67 /* ImageRecipe.swift */,
 				DD4B1E4929FA74EF0009AC42 /* AddButton.swift */,
 				DD4B1E5429FAC4B50009AC42 /* IngredientList.swift */,
 				DD4B1E5629FAC5980009AC42 /* IngredientCell.swift */,
@@ -368,6 +371,7 @@
 				DD4B1E4629F9A90C0009AC42 /* DishPicker.swift in Sources */,
 				DDBB91EB29EB3EB30081445E /* AddProductView.swift in Sources */,
 				DD9E2DD729F7C4A0004B04AE /* RecipesViewModel.swift in Sources */,
+				DDA3F44B29FCEDD7000B4B67 /* ImageRecipe.swift in Sources */,
 				DDCC3F5829E5F74800DDDCD1 /* Converter.swift in Sources */,
 				DDBB91DD29EA06600081445E /* MainAddLabel.swift in Sources */,
 				DD4B1E5329FA96950009AC42 /* MediaFile.swift in Sources */,

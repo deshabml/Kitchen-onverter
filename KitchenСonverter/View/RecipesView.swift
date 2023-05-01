@@ -18,7 +18,8 @@ struct RecipesView: View {
         ZStack {
             RecipesGrid(recipes: $viewModel.recipesPicker,
                         dishPicker: $viewModel.dishPicker,
-                        recipesPicker: $viewModel.recipesPicker, viewModel: viewModel)
+                        recipesPicker: $viewModel.recipesPicker,
+                        viewModel: viewModel)
             VStack {
                 HStack() {
                     Spacer()

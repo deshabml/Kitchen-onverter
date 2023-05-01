@@ -12,6 +12,7 @@ struct RecipesGrid: View {
     @Binding var recipes: [Recipe]
     @Binding var dishPicker: Dish
     @Binding var recipesPicker: [Recipe]
+
     var viewModel: RecipesViewModel
 
     var columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
@@ -21,12 +22,12 @@ struct RecipesGrid: View {
             GeometryReader { proxy in
                 LazyVGrid(columns: columns, spacing: 10) {
                     Section {
-                        ForEach(0 ..< $recipes.count, id: \.self) { index in
+                        ForEach(recipes) { recipes in
                             NavigationLink {
-                                AddRecipesView(isEdit: false, isUpdate: true, isViewer: true, recipePicker: recipes[index])
+                                AddRecipesView(isEdit: false, isUpdate: true, isViewer: true, recipePicker: recipes)
                                     .environmentObject(viewModel)
                             } label: {
-                                RecipesCell(recipe: $recipes[index])
+                                RecipesCell(recipe: recipes)
                                     .foregroundColor(.black)
                                     .padding(.horizontal, 5)
                             }
