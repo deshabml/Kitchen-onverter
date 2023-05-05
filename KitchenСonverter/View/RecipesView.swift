@@ -12,19 +12,18 @@ struct RecipesView: View {
     @StateObject var viewModel = RecipesViewModel()
     @State var showAddDish = false
     @State var showDeleteDish = false
-    @State var showDeleteDishAlert = false
     
     var body: some View {
         ZStack {
-            RecipesGrid(recipes: $viewModel.recipesPicker,
-                        dishPicker: $viewModel.dishPicker,
-                        recipesPicker: $viewModel.recipesPicker,
-                        viewModel: viewModel)
+            RecipesGrid(viewModel: viewModel.recipesGridViewModel)
+                .environmentObject(viewModel)
             VStack {
                 HStack() {
                     Spacer()
                     NavigationLink {
-                        AddRecipesView(isEdit: false, isViewer: false)
+                        AddRecipesView(viewModel: AddRecipesViewModel(),
+                                       isEdit: false,
+                                       isViewer: false)
                             .environmentObject(viewModel)
                     } label: {
                         AddButton()
@@ -35,18 +34,9 @@ struct RecipesView: View {
             VStack {
                 Spacer()
                 HStack {
-                    DishPicker(dishs: $viewModel.dishs,
-                               dishPicker: $viewModel.dishPicker,
+                    DishPicker(viewModel: viewModel.dishPickerViewModel,
                                showAddDish: $showAddDish,
-                               showDeleteDish: $showDeleteDish,
-                               dishTextFild: $viewModel.dishTextFild,
-                               isEdit: false, completionAdd: {
-                        viewModel.savingDish()
-                    }, completionUpdate: {
-                        viewModel.updateDish()
-                    }, completionDelete: {
-                        showDeleteDishAlert.toggle()
-                    })
+                               showDeleteDish: $showDeleteDish)
                     Spacer()
                 }
                 .padding(.vertical, 150)
@@ -57,15 +47,15 @@ struct RecipesView: View {
         }))
         .modifier(AlertElement(TextFirst: viewModel.dishTextAlert,
                                switchAlertFirst: $viewModel.showCoincidenceAlert,
-                               TextSecond: "Вы уверены, что хотите удалить группу \"\(viewModel.dishPicker.name)\"?",
-                               switchAlertSecond: $showDeleteDishAlert, complitionAlertSecond: {
+                               TextSecond: "Вы уверены, что хотите удалить группу \"\(viewModel.dishPickerViewModel.dishPicker.name)\"?",
+                               switchAlertSecond: $viewModel.showDeleteDishAlert, complitionAlertSecond: {
             if viewModel.deleteDish() {
                 showDeleteDish.toggle()
             }
         }))
         .animation(.easeInOut(duration: 0.3), value: showAddDish)
         .animation(.easeInOut(duration: 0.3), value: showDeleteDish)
-        .animation(.linear(duration: 0.2), value: viewModel.dishPicker)
+        .animation(.linear(duration: 0.2), value: viewModel.dishPickerViewModel.dishPicker)
     }
     
 }

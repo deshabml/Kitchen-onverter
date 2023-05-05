@@ -9,12 +9,11 @@ import SwiftUI
 
 struct ProductPicker: View {
 
-    var products: [Product]
-    @Binding var productPicker: Product
+    @StateObject var viewModel: ProductPickerViewModel
 
     var body: some View {
-        Picker("Продукты", selection: $productPicker) {
-            ForEach(products) { product in
+        Picker("Продукты", selection: $viewModel.productPicker) {
+            ForEach(viewModel.products) { product in
                 Text(product.name).tag(product)
                     .foregroundColor(.white)
             }

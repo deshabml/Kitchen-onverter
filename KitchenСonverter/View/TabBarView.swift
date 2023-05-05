@@ -50,7 +50,7 @@ struct TabBarView: View {
 
 extension TabBarView {
 
-    func CustomTabItem(imageName: String, title: String, isActive: Bool) -> some View {
+    @ViewBuilder func CustomTabItem(imageName: String, title: String, isActive: Bool) -> some View {
         HStack(spacing: 10) {
             Spacer()
             Image(imageName)

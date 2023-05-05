@@ -18,18 +18,14 @@ struct CalculatorView: View {
                    spacing: 6) {
                 VStack(alignment: .center,
                        spacing: 12) {
-                    MainTextFild(placeHolder: "Количество",
-                                 productQuantity: $viewModel.productQuantity,
-                                 axis: .horizontal)
+                    MainTextFild(viewModel: viewModel.productMainTextFildViewModel, axis: .horizontal)
                     MainText(text: viewModel.itog)
                 }
                        .padding(.horizontal, 6)
                 VStack(alignment: .center,
                        spacing: 12) {
-                    MeasuringPicker(measuringSystems: viewModel.measuringSystems,
-                                    measuringSystemPicker: $viewModel.measuringSystemPickerFirst)
-                    MeasuringPicker(measuringSystems: viewModel.measuringSystems,
-                                    measuringSystemPicker: $viewModel.measuringSystemPickerSecond)
+                    MeasuringPicker(viewModel: viewModel.firstMeasuringPickerViewModel)
+                    MeasuringPicker(viewModel: viewModel.secondMeasuringPickerViewModel)
                 }
                        .padding(.horizontal, 6)
                        .foregroundColor(.blue)
@@ -37,8 +33,7 @@ struct CalculatorView: View {
             VStack(alignment: .center,
                    spacing: 8) {
                 ZStack {
-                    ProductPicker(products: viewModel.products,
-                                  productPicker: $viewModel.productPicker)
+                    ProductPicker(viewModel: viewModel.productPickerViewModel)
                     VStack {
                         HStack {
                             NavigationLink {
@@ -91,12 +86,12 @@ struct CalculatorView: View {
                 }
             }
                    .padding(.horizontal, 16)
-            ConverterList(recordedConverters: $viewModel.recordedConverters) { converter in
-                viewModel.deleteObject(object: converter)
-            }
+            ConverterList(viewModel: viewModel.recordedConvertersConverterListViewModel)
         }
-        .modifier(BackgroundElement(ImageName: "CalculatorBackgraund", onApperComplition: { viewModel.loadingScreen() }))
-        .animation(.easeInOut(duration: 0.3), value: viewModel.recordedConverters)
+        .modifier(BackgroundElement(ImageName: "CalculatorBackgraund",
+                                    onApperComplition: { viewModel.loadingScreen() }))
+        .animation(.easeInOut(duration: 0.3),
+                   value: viewModel.recordedConvertersConverterListViewModel.recordedConverters)
     }
 
 }

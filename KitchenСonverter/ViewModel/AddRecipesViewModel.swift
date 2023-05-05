@@ -17,67 +17,68 @@ enum SaveRecipeError: Error {
 
 class AddRecipesViewModel: ObservableObject {
 
-    @Published var racipeName: String = ""
-    @Published var ingredientsName: String = ""
-    @Published var ingredientsAmount: String = ""
-    @Published var ingredientsMeasuringSystem: String = ""
-    @Published var cookingMethod: String = ""
-    @Published var selectedPhoto: PhotosPickerItem? {
-        didSet {
-            if let selectedPhoto {
-                self.convertPhoto(photo: selectedPhoto)
-            }
-        }
-    }
-    @Published var loadedImage: MediaFile?
-    @Published var ingredients: [ProductRecipe] = []
-    @Published var imageStandard: Image = Image("RecipeIcons")
-    @Published var dishPicker: Dish = Dish()
+    var recipePicker: Recipe = Recipe()
+    @Published var racipeNameMainTextFildViewModel: MainTextFildViewModel = MainTextFildViewModel(placeHolder: "Введите название блюда")
+    @Published var ingredientsNameMainTextFildViewModel: MainTextFildViewModel = MainTextFildViewModel(placeHolder: "Введите название")
+    @Published var ingredientsAmountMainTextFildViewModel: MainTextFildViewModel = MainTextFildViewModel(placeHolder: "Количесство")
+    @Published var ingredientsMSMainTextFildViewModel: MainTextFildViewModel = MainTextFildViewModel(placeHolder: "Ед. изм.")
+    @Published var cookingMethodMainTextFildViewModel: MainTextFildViewModel = MainTextFildViewModel(placeHolder: "Способ приготовления")
+    @Published var photoPickerRecipeViewModel: PhotoPickerRecipeViewModel = PhotoPickerRecipeViewModel()
+    @Published var ingredientListViewModel: IngredientListViewModel = IngredientListViewModel()
     @Published var IsShowErrorAlert: Bool = false
     var errorMasege: String = ""
 
+    convenience init(recipePicker: Recipe) {
+        self.init()
+        self.recipePicker = recipePicker
+    }
+
     func saveIngredient() {
-        ingredients.append(ProductRecipe(name: ingredientsName, amount: ingredientsAmount, measuringSystem: ingredientsMeasuringSystem))
+        guard !ingredientsNameMainTextFildViewModel.bindingProperty.isEmpty else { return }
+        ingredientListViewModel.recordedIngredient.append(ProductRecipe(name: ingredientsNameMainTextFildViewModel.bindingProperty,
+                                         amount: ingredientsAmountMainTextFildViewModel.bindingProperty,
+                                         measuringSystem: ingredientsMSMainTextFildViewModel.bindingProperty))
     }
 
     func deleteIngredient(product: ProductRecipe) {
-        ingredients = ingredients.filter { $0 != product }
+        ingredientListViewModel.recordedIngredient = ingredientListViewModel.recordedIngredient.filter({ $0 != product })
     }
 
     func saveRecipe(viewModel: RecipesViewModel) {
-        if let Image = loadedImage?.data {
-            viewModel.savingObject(object: Recipe(name: racipeName,
+        if let Image = photoPickerRecipeViewModel.loadedImage?.data {
+            viewModel.savingObject(object: Recipe(name: racipeNameMainTextFildViewModel.bindingProperty,
                                                   Image: Image,
-                                                  ingredients,
-                                                  cookingMethod: cookingMethod,
-                                                  dish: dishPicker.name))
+                                                  ingredientListViewModel.recordedIngredient,
+                                                  cookingMethod: cookingMethodMainTextFildViewModel.bindingProperty,
+                                                  dish: viewModel.dishPickerViewModel.dishPicker.name))
         } else {
-            viewModel.savingObject(object: Recipe(name: racipeName,
-                                                  ingredients,
-                                                  cookingMethod: cookingMethod,
-                                                  dish: dishPicker.name))
+            viewModel.savingObject(object: Recipe(name: racipeNameMainTextFildViewModel.bindingProperty,
+                                                  ingredientListViewModel.recordedIngredient,
+                                                  cookingMethod: cookingMethodMainTextFildViewModel.bindingProperty,
+                                                  dish: viewModel.dishPickerViewModel.dishPicker.name))
         }
     }
 
-    func updateRecipe(recipePickerOld: Recipe, viewModel: RecipesViewModel) {
-        if let Image = loadedImage?.data {
-            viewModel.updateObject(oldObject: recipePickerOld,
-                                   newObject: Recipe(name: racipeName,
+    func updateRecipe(viewModel: RecipesViewModel) {
+        if let Image = photoPickerRecipeViewModel.loadedImage?.data {
+            viewModel.updateObject(oldObject: recipePicker,
+                                   newObject: Recipe(name: racipeNameMainTextFildViewModel.bindingProperty,
                                                      Image: Image,
-                                                     ingredients,
-                                                     cookingMethod: cookingMethod,
-                                                     dish: dishPicker.name))
+                                                     ingredientListViewModel.recordedIngredient,
+                                                     cookingMethod: cookingMethodMainTextFildViewModel.bindingProperty,
+                                                     dish: viewModel.dishPickerViewModel.dishPicker.name))
         } else {
-            viewModel.updateObject(oldObject: recipePickerOld,
-                                   newObject: Recipe(name: racipeName,
-                                                     ingredients,
-                                                     cookingMethod: cookingMethod,
-                                                     dish: dishPicker.name))
+            viewModel.updateObject(oldObject: recipePicker,
+                                   newObject: Recipe(name: racipeNameMainTextFildViewModel.bindingProperty,
+                                                     ingredientListViewModel.recordedIngredient,
+                                                     cookingMethod: cookingMethodMainTextFildViewModel.bindingProperty,
+                                                     dish: viewModel.dishPickerViewModel.dishPicker.name))
         }
     }
 
-    func deleteRecipe(recipe: Recipe, viewModel: RecipesViewModel) {
-        viewModel.deleteObject(object: recipe)
+    func deleteRecipe(viewModel: RecipesViewModel) {
+        viewModel.recipesGridViewModel.setupRecipesPicker([])
+        viewModel.deleteObject(object: recipePicker)
     }
 
 }
@@ -86,7 +87,7 @@ extension AddRecipesViewModel {
 
     func ingredientsText() -> String {
         var text = "Ингридиенты:"
-        ingredients.forEach {
+        ingredientListViewModel.recordedIngredient.forEach {
             text += "\n \($0.name) -- \($0.amount) \($0.measuringSystem)"
         }
         return text
@@ -111,70 +112,47 @@ extension AddRecipesViewModel {
     }
 
     func throwRecipe(recipes: [Recipe]) throws {
-        guard !racipeName.isEmpty else { throw SaveRecipeError.emptyName }
-        for recipe in recipes {
-            guard recipe.name != racipeName else { throw SaveRecipeError.coincidence }
+        guard !racipeNameMainTextFildViewModel.bindingProperty.isEmpty else { throw SaveRecipeError.emptyName }
+        for recipe in recipes.filter({ $0 != recipePicker }) {
+            guard recipe.name != racipeNameMainTextFildViewModel.bindingProperty else { throw SaveRecipeError.coincidence }
         }
         
     }
 
     func loadDishPicker(mainViewModel: RecipesViewModel) {
-        if mainViewModel.dishPicker.name == "Все" {
-            guard mainViewModel.dishs.count > 1 else {
-                dishPicker = mainViewModel.dishPicker
+        mainViewModel.dishPickerViewModel.setupIsEdit(true)
+        ingredientListViewModel.setupCompletion { productRecipe in
+            self.deleteIngredient(product: productRecipe)
+        }
+        if mainViewModel.dishPickerViewModel.dishPicker.name == "Все" {
+            guard mainViewModel.dishPickerViewModel.dishs.count > 1 else {
+                mainViewModel.dishPickerViewModel.reloadDishPicker()
                 return
             }
-            dishPicker = mainViewModel.dishs[1]
+            mainViewModel.dishPickerViewModel.setupDishPicker(mainViewModel.dishPickerViewModel.dishs[1])
         } else {
-            dishPicker = mainViewModel.dishPicker
+            mainViewModel.dishPickerViewModel.reloadDishPicker()
         }
     }
 
-    func dataВistribution(recipePicker: Recipe, dishs: [Dish]) {
-        racipeName = recipePicker.name
+    func dataВistribution(dishs: [Dish], mainViewModel: RecipesViewModel) {
+        racipeNameMainTextFildViewModel.setupProperty(recipePicker.name)
         recipePicker.ingredients.forEach {ingredient in
-            ingredients.append(ingredient)
+            ingredientListViewModel.recordedIngredient.append(ingredient)
         }
-        cookingMethod = recipePicker.cookingMethod
+        cookingMethodMainTextFildViewModel.setupProperty(recipePicker.cookingMethod)
         if let image = UIImage(data: recipePicker.Image) {
-            imageStandard = Image(uiImage: image)
+            photoPickerRecipeViewModel.setupImageStandard(Image(uiImage: image))
         }
         for dish in dishs {
             if dish.name == recipePicker.dish {
-                dishPicker = dish
+                mainViewModel.dishPickerViewModel.setupDishPicker(dish)
             }
         }
-        loadedImage = MediaFile(data: recipePicker.Image)
+        photoPickerRecipeViewModel.setupLoadedImage(loadedImage: MediaFile(data: recipePicker.Image))
     }
 
-    var imageForPresentation: Image {
-        if let loadedImage, let image = UIImage(data: loadedImage.data) {
-            let image = Image(uiImage: image)
-            return image
-        } else {
-            let image = imageStandard
-            return image
-        }
-    }
-
-    func convertPhoto(photo: PhotosPickerItem) {
-        photo.loadTransferable(type: Data.self) { result in
-            switch result {
-                case .success(let data):
-                    if let data,
-                       let _ = UIImage(data: data) {
-                        let loadedImage = MediaFile(data: data)
-                        DispatchQueue.main.async {
-                            self.loadedImage = loadedImage
-                        }
-                    }
-                case .failure(let error):
-                    print(error)
-            }
-        }
-    }
-
-    func checkImage(recipePicker: Recipe) -> Bool {
+    func checkImage() -> Bool {
         if let _ = UIImage(data: recipePicker.Image) {
             return true
         }

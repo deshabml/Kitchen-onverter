@@ -8,7 +8,6 @@
 import Foundation
 import RealmSwift
 
-
 class ProductRecipe: Object, Identifiable {
 
     @Persisted(primaryKey: true) var id = UUID().uuidString

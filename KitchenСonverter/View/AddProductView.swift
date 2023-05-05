@@ -31,14 +31,12 @@ struct AddProductView: View {
             MainText(text: "продукта:",
                      size: 30,
                      isClassic: false)
-            MainTextFild(placeHolder: "Введите наименование продукта",
-                         productQuantity: $viewModel.productName,
+            MainTextFild(viewModel: viewModel.productNameMainTextFildViewModel,
                          axis: .horizontal)
                 .padding(.horizontal, 16)
             MainText(text: "плотность:",
                      isClassic: false)
-            MainTextFild(placeHolder: "Введите плотность продукта",
-                         productQuantity: $viewModel.density,
+            MainTextFild(viewModel: viewModel.densityMainTextFildViewModel,
                          axis: .horizontal)
                 .padding(.horizontal, 16)
             MainButton(text: isEdit ? "Сохранить" : "Добавить",

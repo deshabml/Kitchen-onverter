@@ -9,13 +9,11 @@ import SwiftUI
 
 struct AddMeasuringSystemPicker: View {
 
-    var typeMeasuringSystem: [TypeMeasuringSystem]
-
-    @Binding var typeMeasuringSystemPicker: TypeMeasuringSystem
+    @StateObject var viewModel: AddMeasuringSystemPickerViewModel
     
     var body: some View {
-        Picker("Тип Е. И.", selection: $typeMeasuringSystemPicker) {
-            ForEach(typeMeasuringSystem) { type in
+        Picker("Тип Е. И.", selection: $viewModel.typeMeasuringSystemPicker) {
+            ForEach(viewModel.typeMeasuringSystem) { type in
                 Text(type.name).tag(type)
                     .foregroundColor(.white)
             }

@@ -30,15 +30,13 @@ struct AddMeasuringSystemView: View {
             MainText(text: "единицы измерения:",
                      size: 30,
                      isClassic: false)
-            MainTextFild(placeHolder: "Введите наименование",
-                         productQuantity: $viewModel.measuringSystemsName,
+            MainTextFild(viewModel: viewModel.nameMSMainTextFildViewModel,
                          axis: .horizontal)
                 .padding(.horizontal, 16)
             HStack {
                 MainText(text: "Тип:",
                          isClassic: false)
-                AddMeasuringSystemPicker(typeMeasuringSystem: viewModel.typeMeasuringSystem,
-                                         typeMeasuringSystemPicker: $viewModel.typeMeasuringSystemPicker)
+                AddMeasuringSystemPicker(viewModel: viewModel.addMeasuringSystemPickerViewModel)
                 Spacer()
             }
             .padding(.horizontal, 16)
@@ -46,8 +44,7 @@ struct AddMeasuringSystemView: View {
                      isClassic: false)
             MainText(text: "поместиться в 1?",
                      isClassic: false)
-            MainTextFild(placeHolder: "Введите соотношение",
-                         productQuantity: $viewModel.measuringSystemsRatio,
+            MainTextFild(viewModel: viewModel.ratioMSMainTextFildViewModel,
                          axis: .horizontal)
                 .padding(.horizontal, 16)
             VStack(spacing: 16) {

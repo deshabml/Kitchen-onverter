@@ -9,18 +9,17 @@ import SwiftUI
 
 struct IngredientList: View {
 
-    @Binding var recordedIngredient: [ProductRecipe]
-    var completion: (ProductRecipe)->()
+    @StateObject var viewModel: IngredientListViewModel
 
     var body: some View {
         List {
-            ForEach(0 ..< recordedIngredient.count, id: \.self) { item in
-                IngredientCell(product: recordedIngredient[item])
+            ForEach(0 ..< viewModel.recordedIngredient.count, id: \.self) { item in
+                IngredientCell(product: viewModel.recordedIngredient[item])
                     .background(.white.opacity(0.8))
                     .listRowInsets(EdgeInsets())
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Удалить") {
-                            completion(recordedIngredient[item])
+                            viewModel.completion(viewModel.recordedIngredient[item])
                         }
                         .tint(.red)
                     }

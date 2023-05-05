@@ -9,18 +9,17 @@ import SwiftUI
 
 struct ConverterList: View {
 
-    @Binding var recordedConverters: [Converter]
-    var completion: (Converter)->()
+    @StateObject var viewModel: ConverterListViewModel
 
     var body: some View {
         List {
-            ForEach(0 ..< recordedConverters.count, id: \.self) { item in
-                ConverterCell(converter: recordedConverters[item])
+            ForEach(0 ..< viewModel.recordedConverters.count, id: \.self) { item in
+                ConverterCell(converter: viewModel.recordedConverters[item])
                     .background(.white.opacity(0.8))
                     .listRowInsets(EdgeInsets())
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Удалить") {
-                            completion(recordedConverters[item])
+                            viewModel.completion(viewModel.recordedConverters[item])
                         }
                         .tint(.red)
                     }

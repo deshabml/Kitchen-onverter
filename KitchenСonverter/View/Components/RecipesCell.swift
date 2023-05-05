@@ -13,7 +13,8 @@ struct RecipesCell: View {
 
     var body: some View {
         VStack() {
-            ImageRecipe(recipe: recipe, size: 80)
+            ImageRecipe(viewModel: ImageRecipeViewModel(recipe: recipe),
+                        size: 80)
             Spacer()
             Text("\(recipe.name)")
         }

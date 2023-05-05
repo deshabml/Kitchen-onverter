@@ -18,14 +18,12 @@ enum MeasuringSystemError: Error {
 
 class AddMeasuringSystemViewModel: ObservableObject  {
 
-    @Published var measuringSystemsName: String = ""
-    @Published var measuringSystemsRatio: String = ""
+    @Published var nameMSMainTextFildViewModel: MainTextFildViewModel = MainTextFildViewModel(placeHolder: "Введите наименование")
+    @Published var ratioMSMainTextFildViewModel: MainTextFildViewModel = MainTextFildViewModel(placeHolder: "Введите соотношение")
     @Published var measuringSystem: MeasuringSystem?
-    @Published var typeMeasuringSystemPicker: TypeMeasuringSystem = TypeMeasuringSystem(name: "Вес", isWeight: true)
-    @Published var typeMeasuringSystem: [TypeMeasuringSystem] = [TypeMeasuringSystem(name: "Вес", isWeight: true),
-                                                                 TypeMeasuringSystem(name: "Объём", isWeight: false)]
+    @Published var addMeasuringSystemPickerViewModel: AddMeasuringSystemPickerViewModel = AddMeasuringSystemPickerViewModel()
     var textEnterЕheRatio: String {
-        typeMeasuringSystemPicker.isWeight ? "Сколько грамм" : "Сколько миллилитров"
+        addMeasuringSystemPickerViewModel.typeMeasuringSystemPicker.isWeight ? "Сколько грамм" : "Сколько миллилитров"
     }
     var errorMasege: String {
         do {
@@ -45,15 +43,17 @@ class AddMeasuringSystemViewModel: ObservableObject  {
     }
 
     func addMeasuringSystem(viewModel: CalculatorViewModel) {
-        guard let measuringSystemsRatio = Double(measuringSystemsRatio) else { return }
-        viewModel.savingObject(object: MeasuringSystem(name: measuringSystemsName, isWeight: typeMeasuringSystemPicker.isWeight, ratio: measuringSystemsRatio))
+        guard let measuringSystemsRatio = Double(ratioMSMainTextFildViewModel.bindingProperty) else { return }
+        viewModel.savingObject(object: MeasuringSystem(name: nameMSMainTextFildViewModel.bindingProperty,
+                                                       isWeight: addMeasuringSystemPickerViewModel.typeMeasuringSystemPicker.isWeight,
+                                                       ratio: measuringSystemsRatio))
     }
 
     func checkMeasuringSystem() throws {
-        guard !measuringSystemsName.isEmpty else { throw MeasuringSystemError.emptyName }
-        guard measuringSystemsName.count <= 7 else { throw MeasuringSystemError.longName }
-        guard !measuringSystemsRatio.isEmpty else { throw MeasuringSystemError.emptyRatio }
-        guard let _ = Double(measuringSystemsRatio) else { throw MeasuringSystemError.ratioNotDouble }
+        guard !nameMSMainTextFildViewModel.bindingProperty.isEmpty else { throw MeasuringSystemError.emptyName }
+        guard nameMSMainTextFildViewModel.bindingProperty.count <= 7 else { throw MeasuringSystemError.longName }
+        guard !ratioMSMainTextFildViewModel.bindingProperty.isEmpty else { throw MeasuringSystemError.emptyRatio }
+        guard let _ = Double(ratioMSMainTextFildViewModel.bindingProperty) else { throw MeasuringSystemError.ratioNotDouble }
     }
 
 }
@@ -61,24 +61,27 @@ class AddMeasuringSystemViewModel: ObservableObject  {
 extension AddMeasuringSystemViewModel {
 
     func getData(viewModel: CalculatorViewModel) {
-        measuringSystem = viewModel.measuringSystemPickerSecond
+        measuringSystem = viewModel.secondMeasuringPickerViewModel.measuringSystemPicker
         guard let measuringSystem = measuringSystem else { return }
-        measuringSystemsName = measuringSystem.name
-        measuringSystemsRatio = "\(measuringSystem.ratio)"
-        typeMeasuringSystemPicker = measuringSystem.isWeight ? typeMeasuringSystem[0] : typeMeasuringSystem[1]
+        nameMSMainTextFildViewModel.setupProperty(measuringSystem.name)
+        ratioMSMainTextFildViewModel.setupProperty("\(measuringSystem.ratio)")
+        addMeasuringSystemPickerViewModel.setupPicker(typeMeasuringSystemPicker: addMeasuringSystemPickerViewModel.typeMeasuringSystem[measuringSystem.isWeight ? 0 : 1])
     }
 
     func updateMeasuringSystem(viewModel: CalculatorViewModel) {
-        guard let measuringSystemsRatio = Double(measuringSystemsRatio) else { return }
+        guard let measuringSystemsRatio = Double(ratioMSMainTextFildViewModel.bindingProperty) else { return }
         guard let measuringSystem = measuringSystem else { return }
-        viewModel.updateObject(oldObject: measuringSystem, newObject: MeasuringSystem(name: measuringSystemsName, isWeight: typeMeasuringSystemPicker.isWeight, ratio: measuringSystemsRatio))
+        viewModel.updateObject(oldObject: measuringSystem,
+                               newObject: MeasuringSystem(name: nameMSMainTextFildViewModel.bindingProperty,
+                                                          isWeight: addMeasuringSystemPickerViewModel.typeMeasuringSystemPicker.isWeight,
+                                                          ratio: measuringSystemsRatio))
     }
 
     func deleteMeasuringSystem(viewModel: CalculatorViewModel) {
         guard let measuringSystem = measuringSystem else { return }
         viewModel.deleteObject(object: measuringSystem)
-        viewModel.measuringSystemPickerFirst = RealmService.shared.getMeasuringSystem()[0]
-        viewModel.measuringSystemPickerSecond = RealmService.shared.getMeasuringSystem()[0]
+        viewModel.firstMeasuringPickerViewModel.setupPicker(measuringSystemPicker: RealmService.shared.getMeasuringSystem()[0])
+        viewModel.secondMeasuringPickerViewModel.setupPicker(measuringSystemPicker: RealmService.shared.getMeasuringSystem()[0])
     }
 
 }

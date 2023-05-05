@@ -9,12 +9,11 @@ import SwiftUI
 
 struct MeasuringPicker: View {
 
-    var measuringSystems: [MeasuringSystem]
-    @Binding var measuringSystemPicker: MeasuringSystem
+    @StateObject var viewModel: MeasuringPickerViewModel
 
     var body: some View {
-        Picker("Единици измерения", selection: $measuringSystemPicker) {
-            ForEach(measuringSystems) { measuringSystem in
+        Picker("Единици измерения", selection: $viewModel.measuringSystemPicker) {
+            ForEach(viewModel.measuringSystems) { measuringSystem in
                 Text(measuringSystem.name).tag(measuringSystem)
                     .foregroundColor(.white)
             }

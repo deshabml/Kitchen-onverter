@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ImageRecipe: View {
 
-    var recipe: Recipe
+    @StateObject var viewModel: ImageRecipeViewModel
     var size: CGFloat
 
     var body: some View {
         
-        if let image = UIImage(data: recipe.Image) {
+        if let image = UIImage(data: viewModel.recipe.Image) {
             Image(uiImage: image)
                 .resizable()
                 .scaledToFill()

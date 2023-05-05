@@ -9,19 +9,28 @@ import Foundation
 
 class CalculatorViewModel: ObservableObject {
 
-    @Published var recordedConverters: [Converter] = []
-    @Published var measuringSystems: [MeasuringSystem] = []
-    @Published var products: [Product] = []
-    @Published var productQuantity: String = ""
+    @Published var recordedConvertersConverterListViewModel: ConverterListViewModel = ConverterListViewModel()
+    @Published var measuringSystems: [MeasuringSystem] = [] {
+        didSet {
+            firstMeasuringPickerViewModel.setupArray(measuringSystems: measuringSystems)
+            secondMeasuringPickerViewModel.setupArray(measuringSystems: measuringSystems)
+        }
+    }
+    @Published var products: [Product] = [] {
+        didSet {
+            productPickerViewModel.setupArray(products: products)
+        }
+    }
+    @Published var productMainTextFildViewModel: MainTextFildViewModel = MainTextFildViewModel(placeHolder: "Количество")
     @Published var itog: String = "0,000000"
-    @Published var productPicker: Product = Product()
-    @Published var measuringSystemPickerFirst: MeasuringSystem = MeasuringSystem()
-    @Published var measuringSystemPickerSecond: MeasuringSystem = MeasuringSystem()
+    @Published var productPickerViewModel: ProductPickerViewModel = ProductPickerViewModel()
+    @Published var firstMeasuringPickerViewModel: MeasuringPickerViewModel = MeasuringPickerViewModel()
+    @Published var secondMeasuringPickerViewModel: MeasuringPickerViewModel = MeasuringPickerViewModel()
 
     func recalculation() {
-        guard let productQuantity = Double(productQuantity) else { return }
-        let firstPicker = measuringSystemPickerFirst
-        let secondPicker = measuringSystemPickerSecond
+        guard let productQuantity = Double(productMainTextFildViewModel.bindingProperty) else { return }
+        let firstPicker = firstMeasuringPickerViewModel.measuringSystemPicker
+        let secondPicker = secondMeasuringPickerViewModel.measuringSystemPicker
         var calculation: Double = 0
         if firstPicker.isWeight && secondPicker.isWeight {
             calculation = productQuantity * firstPicker.ratio / secondPicker.ratio
@@ -30,9 +39,9 @@ class CalculatorViewModel: ObservableObject {
         } else if !firstPicker.isWeight && !secondPicker.isWeight {
             calculation = productQuantity * firstPicker.ratio / secondPicker.ratio
         } else if firstPicker.isWeight {
-            calculation = productQuantity * firstPicker.ratio / secondPicker.ratio / productPicker.density
+            calculation = productQuantity * firstPicker.ratio / secondPicker.ratio / productPickerViewModel.productPicker.density
         } else {
-            calculation = productQuantity * firstPicker.ratio / secondPicker.ratio * productPicker.density
+            calculation = productQuantity * firstPicker.ratio / secondPicker.ratio * productPickerViewModel.productPicker.density
         }
         itog = String(format: "%.6f", calculation)
     }
@@ -45,22 +54,25 @@ extension CalculatorViewModel {
         initialFillingDataBase()
         getStartPickerData()
         getAllData()
+        recordedConvertersConverterListViewModel.setupCompletion { converter in
+            self.deleteObject(object: converter)
+        }
     }
 
     func getAllData() {
-        recordedConverters = RealmService.shared.getConverter()
+        recordedConvertersConverterListViewModel.setupRecordedConverters(RealmService.shared.getConverter())
         measuringSystems = RealmService.shared.getMeasuringSystem()
         products = RealmService.shared.getProduct()
     }
 
     func getStartPickerData() {
-        productPicker = RealmService.shared.getProduct()[0]
-        measuringSystemPickerFirst = RealmService.shared.getMeasuringSystem()[0]
-        measuringSystemPickerSecond = RealmService.shared.getMeasuringSystem()[0]
+        productPickerViewModel.setupPicker(productPicker: RealmService.shared.getProduct()[0])
+        firstMeasuringPickerViewModel.setupPicker(measuringSystemPicker: RealmService.shared.getMeasuringSystem()[0])
+        secondMeasuringPickerViewModel.setupPicker(measuringSystemPicker: RealmService.shared.getMeasuringSystem()[0])
     }
 
     func savingConverter() {
-        RealmService.shared.createObject(object: Converter(product: productPicker, itog: itog, measuringSystem: measuringSystemPickerSecond))
+        RealmService.shared.createObject(object: Converter(product: productPickerViewModel.productPicker, itog: itog, measuringSystem: secondMeasuringPickerViewModel.measuringSystemPicker))
         getAllData()
     }
 

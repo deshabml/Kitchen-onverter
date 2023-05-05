@@ -10,18 +10,17 @@ import PhotosUI
 
 struct PhotoPickerRecipe: View {
 
-    @Binding var selectedPhoto: PhotosPickerItem?
-    var imageForPresentation: Image
+    @StateObject var viewModel: PhotoPickerRecipeViewModel
 
     var body: some View {
-        PhotosPicker(selection: $selectedPhoto, matching: .images) {
-            imageForPresentation
+        PhotosPicker(selection: $viewModel.selectedPhoto, matching: .images) {
+            viewModel.imageForPresentation
                 .resizable()
                 .scaledToFill()
                 .foregroundColor(.green)
                 .frame(width: 150, height: 150)
                 .cornerRadius(18)
-                .shadow(color: .black, radius: 10)
+                .shadow(color: .black, radius: 8)
         }
     }
 

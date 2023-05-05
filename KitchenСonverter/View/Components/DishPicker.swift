@@ -9,27 +9,21 @@ import SwiftUI
 
 struct DishPicker: View {
 
-    @Binding var dishs: [Dish]
-    @Binding var dishPicker: Dish
+    @StateObject var viewModel: DishPickerViewModel
     @Binding var showAddDish: Bool
     @Binding var showDeleteDish: Bool
-    @Binding var dishTextFild: String
-    var isEdit: Bool
-    var completionAdd: ()->()
-    var completionUpdate: ()->(Bool)
-    var completionDelete: ()->()
 
     var body: some View {
         VStack {
             ZStack {
                 if showAddDish || showDeleteDish {
-                    Text(showAddDish ? dishTextFild : dishPicker.name)
+                    Text(showAddDish ? viewModel.dishTextFild : viewModel.dishPicker.name)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(.black.opacity(0.5))
                 } else {
-                    Picker("Группы", selection: $dishPicker) {
-                        ForEach(isEdit ? dishs.filter { $0.name != "Все" } : dishs) { dish in
+                    Picker("Группы", selection: $viewModel.dishPicker) {
+                        ForEach(viewModel.isEdit ? viewModel.dishs.filter { $0.name != "Все" } : viewModel.dishs) { dish in
                             Text(dish.name).tag(dish)
                                 .foregroundColor(.white)
                         }
@@ -44,7 +38,7 @@ struct DishPicker: View {
                                 showDeleteDish.toggle()
                             } else {
                                 showAddDish.toggle()
-                                dishTextFild = ""
+                                viewModel.dishTextFild = ""
                             }
                         } label: {
                             Image(systemName: showAddDish || showDeleteDish ? "arrow.turn.up.left" : "plus")
@@ -53,11 +47,11 @@ struct DishPicker: View {
                         if showAddDish || showDeleteDish {
                             Button {
                                 if showDeleteDish {
-                                    if completionUpdate() {
+                                    if viewModel.completionUpdate() {
                                         showDeleteDish.toggle()
                                     }
                                 } else {
-                                    completionAdd()
+                                    viewModel.completionAdd()
                                     showAddDish.toggle()
                                 }
                             } label: {
@@ -67,11 +61,11 @@ struct DishPicker: View {
                     }
                     .padding(.vertical, 10)
                     Spacer()
-                    if !showAddDish && !showDeleteDish, dishPicker.name != "Все", !isEdit {
+                    if !showAddDish && !showDeleteDish, viewModel.dishPicker.name != "Все", !viewModel.isEdit {
                         HStack {
                             Button {
                                 showDeleteDish.toggle()
-                                dishTextFild = dishPicker.name
+                                viewModel.setupDishTextFild()
                             } label: {
                                 Image(systemName: "square.and.pencil")
                             }
@@ -86,14 +80,14 @@ struct DishPicker: View {
             }
             if showAddDish || showDeleteDish {
                 ZStack {
-                    TextField("Название", text: $dishTextFild)
+                    TextField("Название", text: $viewModel.dishTextFild)
                         .padding()
                         .background(.white)
                     HStack {
                         Spacer()
                         if showDeleteDish {
                             Button {
-                                completionDelete()
+                                viewModel.completionDelete()
                             } label: {
                                 Image(systemName: "trash")
                                     .foregroundColor(.red)
