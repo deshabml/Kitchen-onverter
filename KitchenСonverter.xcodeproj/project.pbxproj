@@ -50,6 +50,9 @@
 		DDBB91E929EACAC90081445E /* AddMeasuringSystemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91E829EACAC90081445E /* AddMeasuringSystemPicker.swift */; };
 		DDBB91EB29EB3EB30081445E /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91EA29EB3EB20081445E /* AddProductView.swift */; };
 		DDBB91ED29EB43990081445E /* AddProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91EC29EB43990081445E /* AddProductViewModel.swift */; };
+		DDBCCF6F2A067BC5000035F1 /* ShowScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCCF6E2A067BC5000035F1 /* ShowScreen.swift */; };
+		DDBCCF712A067C17000035F1 /* ShowScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCCF702A067C17000035F1 /* ShowScreenViewModel.swift */; };
+		DDBCCF732A068428000035F1 /* ShowScreenSettingsElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBCCF722A068428000035F1 /* ShowScreenSettingsElement.swift */; };
 		DDCC3F5029E56FD100DDDCD1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F4F29E56FD100DDDCD1 /* Product.swift */; };
 		DDCC3F5329E5CB7E00DDDCD1 /* MeasuringSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */; };
 		DDCC3F5829E5F74800DDDCD1 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCC3F5729E5F74800DDDCD1 /* Converter.swift */; };
@@ -113,6 +116,9 @@
 		DDBB91E829EACAC90081445E /* AddMeasuringSystemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasuringSystemPicker.swift; sourceTree = "<group>"; };
 		DDBB91EA29EB3EB20081445E /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		DDBB91EC29EB43990081445E /* AddProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewModel.swift; sourceTree = "<group>"; };
+		DDBCCF6E2A067BC5000035F1 /* ShowScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowScreen.swift; sourceTree = "<group>"; };
+		DDBCCF702A067C17000035F1 /* ShowScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowScreenViewModel.swift; sourceTree = "<group>"; };
+		DDBCCF722A068428000035F1 /* ShowScreenSettingsElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowScreenSettingsElement.swift; sourceTree = "<group>"; };
 		DDCC3F4F29E56FD100DDDCD1 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		DDCC3F5229E5CB7E00DDDCD1 /* MeasuringSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasuringSystem.swift; sourceTree = "<group>"; };
 		DDCC3F5729E5F74800DDDCD1 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 				DD4B1E5929FC0DC20009AC42 /* BackgroundElement.swift */,
 				DD4B1E5B29FC2DAC0009AC42 /* AlertElement.swift */,
 				DD4B1E5F29FC52490009AC42 /* SettingsElement.swift */,
+				DDBCCF722A068428000035F1 /* ShowScreenSettingsElement.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -162,6 +169,7 @@
 		DD64003D2A03037C00B41DB1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				DDBCCF702A067C17000035F1 /* ShowScreenViewModel.swift */,
 				DD64003E2A03044D00B41DB1 /* MainTextFildViewModel.swift */,
 				DD6400402A0392D800B41DB1 /* MeasuringPickerViewModel.swift */,
 				DD6400422A039B5400B41DB1 /* ConverterListViewModel.swift */,
@@ -267,6 +275,7 @@
 		DDCC3F5B29E5F8C300DDDCD1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				DDBCCF6E2A067BC5000035F1 /* ShowScreen.swift */,
 				DDCC3F6329E89AA300DDDCD1 /* MainTextFild.swift */,
 				DDCC3F6529E89D3800DDDCD1 /* MainText.swift */,
 				DDCC3F6729E8A7E100DDDCD1 /* MeasuringPicker.swift */,
@@ -403,6 +412,8 @@
 				DD4B1E4A29FA74EF0009AC42 /* AddButton.swift in Sources */,
 				DDBB91E129EA10310081445E /* AddMeasuringSystemViewModel.swift in Sources */,
 				DDCC3F5329E5CB7E00DDDCD1 /* MeasuringSystem.swift in Sources */,
+				DDBCCF712A067C17000035F1 /* ShowScreenViewModel.swift in Sources */,
+				DDBCCF732A068428000035F1 /* ShowScreenSettingsElement.swift in Sources */,
 				DD4B1E6029FC52490009AC42 /* SettingsElement.swift in Sources */,
 				DD4B1E4F29FA87560009AC42 /* AddRecipesView.swift in Sources */,
 				DDCC3F6229E8975000DDDCD1 /* ConverterList.swift in Sources */,
@@ -438,6 +449,7 @@
 				DDCC3F5A29E5F8B400DDDCD1 /* ConverterCell.swift in Sources */,
 				DD4B1E5529FAC4B50009AC42 /* IngredientList.swift in Sources */,
 				DD9E2DDF29F88378004B04AE /* RecipesGrid.swift in Sources */,
+				DDBCCF6F2A067BC5000035F1 /* ShowScreen.swift in Sources */,
 				DDCC3F6C29E9356D00DDDCD1 /* MainButton.swift in Sources */,
 				DDCC3F6829E8A7E100DDDCD1 /* MeasuringPicker.swift in Sources */,
 			);

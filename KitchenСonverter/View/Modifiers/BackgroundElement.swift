@@ -17,7 +17,7 @@ struct BackgroundElement: ViewModifier {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationBarBackButtonHidden(true)
             .background(
-                Image("AddRecipesBackgraund")
+                Image(ImageName)
                     .resizable()
                     .ignoresSafeArea()
                     .scaledToFill()

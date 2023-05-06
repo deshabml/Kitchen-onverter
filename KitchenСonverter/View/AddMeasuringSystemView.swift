@@ -14,25 +14,20 @@ struct AddMeasuringSystemView: View {
     @State var showAlert = false
     @State var showDeleteAlert = false
     let isEdit: Bool
-    @Environment (\.dismiss) var dismiss
 
     var body: some View {
         VStack {
-            HStack {
-                MainButton(text: "Отмена", colors: (.black, .white), completion: {
-                    dismiss()
-                }, isCancelStyle: true)
-                Spacer()
+            VStack {
+                MainText(text: isEdit ? "Изменение" : "Добавление",
+                         size: 24,
+                         isClassic: false)
+                MainText(text: "единицы измерения:",
+                         size: 24,
+                         isClassic: false)
+                MainTextFild(viewModel: viewModel.nameMSMainTextFildViewModel,
+                             axis: .horizontal)
             }
-            MainText(text: isEdit ? "Изменение" : "Добавление",
-                     size: 30,
-                     isClassic: false)
-            MainText(text: "единицы измерения:",
-                     size: 30,
-                     isClassic: false)
-            MainTextFild(viewModel: viewModel.nameMSMainTextFildViewModel,
-                         axis: .horizontal)
-                .padding(.horizontal, 16)
+                .padding()
             HStack {
                 MainText(text: "Тип:",
                          isClassic: false)
@@ -47,18 +42,23 @@ struct AddMeasuringSystemView: View {
             MainTextFild(viewModel: viewModel.ratioMSMainTextFildViewModel,
                          axis: .horizontal)
                 .padding(.horizontal, 16)
-            VStack(spacing: 16) {
-                MainButton(text: isEdit ? "Сохранить" : "Добавить",
-                           colors: (.green, .white)) {
-                    if viewModel.errorMasege.isEmpty {
-                        if isEdit {
-                            viewModel.updateMeasuringSystem(viewModel: mainViewModel)
+            VStack(spacing: 8) {
+                HStack {
+                    MainButton(text: "Отмена", colors: (.black, .white), completion: {
+                        dismissScreen()
+                    })
+                    MainButton(text: isEdit ? "Сохранить" : "Добавить",
+                               colors: (.green, .white)) {
+                        if viewModel.errorMasege.isEmpty {
+                            if isEdit {
+                                viewModel.updateMeasuringSystem(viewModel: mainViewModel)
+                            } else {
+                                viewModel.addMeasuringSystem(viewModel: mainViewModel)
+                            }
+                            dismissScreen()
                         } else {
-                            viewModel.addMeasuringSystem(viewModel: mainViewModel)
+                            showAlert.toggle()
                         }
-                        dismiss()
-                    } else {
-                        showAlert.toggle()
                     }
                 }
                 if isEdit {
@@ -69,20 +69,33 @@ struct AddMeasuringSystemView: View {
                 }
             }
             .padding()
-            Spacer()
         }
-        .modifier(BackgroundElement(ImageName: "AddMeasuringSystemBackgraund", onApperComplition: {
+        .onAppear {
             if isEdit {
                 viewModel.getData(viewModel: mainViewModel)
             }
-        }))
+        }
         .modifier(AlertElement(TextFirst: viewModel.errorMasege,
                                switchAlertFirst: $showAlert,
                                TextSecond: "Вы уверены, что хотите удалить единицу измерения?",
                                switchAlertSecond: $showDeleteAlert, complitionAlertSecond: {
             viewModel.deleteMeasuringSystem(viewModel: mainViewModel)
-            dismiss()
+            dismissScreen()
         }))
+    }
+
+}
+
+extension AddMeasuringSystemView {
+
+    func dismissScreen() {
+        withAnimation {
+            if isEdit {
+                mainViewModel.showScreenViewModelEditMS.isShow.toggle()
+            } else {
+                mainViewModel.showScreenViewModelAddMS.isShow.toggle()
+            }
+        }
     }
 
 }

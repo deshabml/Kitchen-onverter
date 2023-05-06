@@ -26,6 +26,11 @@ class CalculatorViewModel: ObservableObject {
     @Published var productPickerViewModel: ProductPickerViewModel = ProductPickerViewModel()
     @Published var firstMeasuringPickerViewModel: MeasuringPickerViewModel = MeasuringPickerViewModel()
     @Published var secondMeasuringPickerViewModel: MeasuringPickerViewModel = MeasuringPickerViewModel()
+    @Published var showScreenViewModelAddMS: ShowScreenViewModel = ShowScreenViewModel(imageName: "AddMainProductBackgraund")
+    @Published var showScreenViewModelEditMS: ShowScreenViewModel = ShowScreenViewModel(imageName: "AddMainProductBackgraund")
+    @Published var showScreenViewModelAddProduct: ShowScreenViewModel = ShowScreenViewModel(imageName: "AddMainProductBackgraund")
+    @Published var showScreenViewModelEditProduct: ShowScreenViewModel = ShowScreenViewModel(imageName: "AddMainProductBackgraund")
+
 
     func recalculation() {
         guard let productQuantity = Double(productMainTextFildViewModel.bindingProperty) else { return }
