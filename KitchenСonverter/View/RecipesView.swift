@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct RecipesView: View {
-    
+
     @StateObject var viewModel = RecipesViewModel()
     @State var showAddDish = false
     @State var showDeleteDish = false
+    @State var locationDishPicker = -130.0
     
     var body: some View {
         ZStack {
@@ -36,7 +37,12 @@ struct RecipesView: View {
                 HStack {
                     DishPicker(viewModel: viewModel.dishPickerViewModel,
                                showAddDish: $showAddDish,
-                               showDeleteDish: $showDeleteDish)
+                               showDeleteDish: $showDeleteDish, complitionHidden: {
+                        locationDishPicker = -130
+                    }, complitionActive: {
+                        locationDishPicker = 0
+                    })
+                    .offset(x: locationDishPicker, y: 0)
                     Spacer()
                 }
                 .padding(.vertical, 150)
@@ -44,6 +50,7 @@ struct RecipesView: View {
         }
         .modifier(BackgroundElement(ImageName: "RecipesBackgraund", onApperComplition: {
             viewModel.loadingScreen()
+            locationDishPicker = 0
         }))
         .modifier(AlertElement(TextFirst: viewModel.dishTextAlert,
                                switchAlertFirst: $viewModel.showCoincidenceAlert,
@@ -56,6 +63,7 @@ struct RecipesView: View {
         .animation(.easeInOut(duration: 0.3), value: showAddDish)
         .animation(.easeInOut(duration: 0.3), value: showDeleteDish)
         .animation(.linear(duration: 0.2), value: viewModel.dishPickerViewModel.dishPicker)
+        .animation(Animation.easeInOut(duration: 0.5), value: locationDishPicker)
     }
     
 }

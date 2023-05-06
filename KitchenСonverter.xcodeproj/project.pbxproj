@@ -43,7 +43,7 @@
 		DDB6E54429F28638005A4A72 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB6E54329F28638005A4A72 /* TabBarView.swift */; };
 		DDB6E54629F292AF005A4A72 /* TabBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB6E54529F292AE005A4A72 /* TabBarItems.swift */; };
 		DDB6E54829F2A19E005A4A72 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB6E54729F2A19E005A4A72 /* RecipesView.swift */; };
-		DDBB91DD29EA06600081445E /* MainAddLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91DC29EA06600081445E /* MainAddLabel.swift */; };
+		DDBB91DD29EA06600081445E /* MainAddEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91DC29EA06600081445E /* MainAddEditButton.swift */; };
 		DDBB91DF29EA079B0081445E /* AddMeasuringSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91DE29EA079B0081445E /* AddMeasuringSystemView.swift */; };
 		DDBB91E129EA10310081445E /* AddMeasuringSystemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91E029EA10310081445E /* AddMeasuringSystemViewModel.swift */; };
 		DDBB91E329EAB39E0081445E /* TypeMeasuringSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBB91E229EAB39E0081445E /* TypeMeasuringSystem.swift */; };
@@ -109,7 +109,7 @@
 		DDB6E54329F28638005A4A72 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		DDB6E54529F292AE005A4A72 /* TabBarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItems.swift; sourceTree = "<group>"; };
 		DDB6E54729F2A19E005A4A72 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
-		DDBB91DC29EA06600081445E /* MainAddLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAddLabel.swift; sourceTree = "<group>"; };
+		DDBB91DC29EA06600081445E /* MainAddEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAddEditButton.swift; sourceTree = "<group>"; };
 		DDBB91DE29EA079B0081445E /* AddMeasuringSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasuringSystemView.swift; sourceTree = "<group>"; };
 		DDBB91E029EA10310081445E /* AddMeasuringSystemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeasuringSystemViewModel.swift; sourceTree = "<group>"; };
 		DDBB91E229EAB39E0081445E /* TypeMeasuringSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeMeasuringSystem.swift; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 				DDCC3F6529E89D3800DDDCD1 /* MainText.swift */,
 				DDCC3F6729E8A7E100DDDCD1 /* MeasuringPicker.swift */,
 				DDCC3F6929E9288F00DDDCD1 /* ProductPicker.swift */,
-				DDBB91DC29EA06600081445E /* MainAddLabel.swift */,
+				DDBB91DC29EA06600081445E /* MainAddEditButton.swift */,
 				DDCC3F6B29E9356D00DDDCD1 /* MainButton.swift */,
 				DDCC3F6129E8975000DDDCD1 /* ConverterList.swift */,
 				DDCC3F5929E5F8B400DDDCD1 /* ConverterCell.swift */,
@@ -428,7 +428,7 @@
 				DD64004D2A04E6D000B41DB1 /* DishPickerViewModel.swift in Sources */,
 				DDCC3F5829E5F74800DDDCD1 /* Converter.swift in Sources */,
 				DD6400412A0392D800B41DB1 /* MeasuringPickerViewModel.swift in Sources */,
-				DDBB91DD29EA06600081445E /* MainAddLabel.swift in Sources */,
+				DDBB91DD29EA06600081445E /* MainAddEditButton.swift in Sources */,
 				DD4B1E5329FA96950009AC42 /* MediaFile.swift in Sources */,
 				DD6400502A050BAE00B41DB1 /* ImageRecipeViewModel.swift in Sources */,
 				DDFD772F29EDFA3B008F0C8A /* FirstLaunch.swift in Sources */,

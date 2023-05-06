@@ -20,6 +20,7 @@ class DishPickerViewModel: ObservableObject {
         }
     }
     @Published var dishTextFild: String = ""
+    var isActive = true
     var completion: ((Dish)->())?
     var completionIsEdit: ((Dish)->())?
     var completionAdd: (()->())!
@@ -57,5 +58,5 @@ class DishPickerViewModel: ObservableObject {
     func setupIsEdit(_ isEdit: Bool) {
         self.isEdit = isEdit
     }
-    
+
 }

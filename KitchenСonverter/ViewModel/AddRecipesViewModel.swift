@@ -15,6 +15,12 @@ enum SaveRecipeError: Error {
 
 }
 
+enum SaveIngredient: Error {
+
+    case emptyName
+
+}
+
 class AddRecipesViewModel: ObservableObject {
 
     var recipePicker: Recipe = Recipe()
@@ -34,10 +40,22 @@ class AddRecipesViewModel: ObservableObject {
     }
 
     func saveIngredient() {
-        guard !ingredientsNameMainTextFildViewModel.bindingProperty.isEmpty else { return }
+        do {
+            try throwingredient()
+        } catch SaveIngredient.emptyName {
+            IsShowErrorAlert.toggle()
+            errorMasege = "Ингредиент должен иметь название!"
+            return
+        } catch {
+            print("Что то пошло не так.")
+            return
+        }
         ingredientListViewModel.recordedIngredient.append(ProductRecipe(name: ingredientsNameMainTextFildViewModel.bindingProperty,
                                          amount: ingredientsAmountMainTextFildViewModel.bindingProperty,
                                          measuringSystem: ingredientsMSMainTextFildViewModel.bindingProperty))
+        ingredientsNameMainTextFildViewModel.clear()
+        ingredientsAmountMainTextFildViewModel.clear()
+        ingredientsMSMainTextFildViewModel.clear()
     }
 
     func deleteIngredient(product: ProductRecipe) {
@@ -109,6 +127,10 @@ extension AddRecipesViewModel {
             return false
         }
         return true
+    }
+
+    func throwingredient() throws {
+        guard !ingredientsNameMainTextFildViewModel.bindingProperty.isEmpty else { throw SaveIngredient.emptyName }
     }
 
     func throwRecipe(recipes: [Recipe]) throws {

@@ -20,4 +20,8 @@ class MainTextFildViewModel: ObservableObject {
         self.bindingProperty = bindingProperty
     }
 
+    func clear() {
+        bindingProperty = ""
+    }
+
 }

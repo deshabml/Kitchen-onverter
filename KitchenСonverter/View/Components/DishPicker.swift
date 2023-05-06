@@ -12,6 +12,8 @@ struct DishPicker: View {
     @StateObject var viewModel: DishPickerViewModel
     @Binding var showAddDish: Bool
     @Binding var showDeleteDish: Bool
+    var complitionHidden: (()->())?
+    var complitionActive: (()->())?
 
     var body: some View {
         VStack {
@@ -77,6 +79,25 @@ struct DishPicker: View {
                 .foregroundColor(.green)
                 .font(.headline)
                 .padding(.horizontal, 10)
+                if !showAddDish && !showDeleteDish, !viewModel.isEdit {
+                    HStack {
+                        Spacer()
+                        Button {
+                            if viewModel.isActive {
+                                complitionHidden?()
+                            } else {
+                                complitionActive?()
+                            }
+                            viewModel.isActive.toggle()
+                        } label: {
+                            Image(systemName: viewModel.isActive ? "chevron.left" : "chevron.right")
+                                .foregroundColor(.white)
+                                .frame(maxHeight: .infinity)
+                                .padding(.horizontal, 4)
+                                .background(.green.opacity(0.5))
+                        }
+                    }
+                }
             }
             if showAddDish || showDeleteDish {
                 ZStack {

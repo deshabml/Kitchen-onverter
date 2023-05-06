@@ -38,46 +38,30 @@ struct CalculatorView: View {
                             ProductPicker(viewModel: viewModel.productPickerViewModel)
                             VStack {
                                 HStack {
-                                    Button {
-                                        withAnimation {
-                                            viewModel.showScreenViewModelAddMS.isShow.toggle()
-                                        }
-                                    } label: {
-                                        MainAddLabel(isEdit: false,
-                                                     symbols: "scalemass.fill",
-                                                     color: .yellow)
+                                    MainAddEditButton(isEdit: false,
+                                                      symbols: "scalemass.fill",
+                                                      color: .yellow) {
+                                        viewModel.showScreenViewModelAddMS.isShow.toggle()
                                     }
                                     Spacer()
-                                    Button {
-                                        withAnimation {
-                                            viewModel.showScreenViewModelEditMS.isShow.toggle()
-                                        }
-                                    } label: {
-                                        MainAddLabel(isEdit: true,
-                                                     symbols: "square.and.pencil",
-                                                     color: .yellow)
+                                    MainAddEditButton(isEdit: true,
+                                                      symbols: "square.and.pencil",
+                                                      color: .yellow) {
+                                        viewModel.showScreenViewModelEditMS.isShow.toggle()
                                     }
                                 }
                                 Spacer()
                                 HStack {
-                                    Button {
-                                        withAnimation {
-                                            viewModel.showScreenViewModelAddProduct.isShow.toggle()
-                                        }
-                                    } label: {
-                                        MainAddLabel(isEdit: false,
-                                                     symbols: "takeoutbag.and.cup.and.straw.fill",
-                                                     color: .green)
+                                    MainAddEditButton(isEdit: false,
+                                                      symbols: "takeoutbag.and.cup.and.straw.fill",
+                                                      color: .green) {
+                                        viewModel.showScreenViewModelAddProduct.isShow.toggle()
                                     }
                                     Spacer()
-                                    Button {
-                                        withAnimation {
-                                            viewModel.showScreenViewModelEditProduct.isShow.toggle()
-                                        }
-                                    } label: {
-                                        MainAddLabel(isEdit: true,
-                                                     symbols: "square.and.pencil",
-                                                     color: .green)
+                                    MainAddEditButton(isEdit: true,
+                                                      symbols: "square.and.pencil",
+                                                      color: .green) {
+                                        viewModel.showScreenViewModelEditProduct.isShow.toggle()
                                     }
                                 }
                             }
