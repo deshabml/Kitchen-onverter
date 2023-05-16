@@ -44,6 +44,8 @@ struct DishPicker: View {
                             }
                         } label: {
                             Image(systemName: showAddDish || showDeleteDish ? "arrow.turn.up.left" : "plus")
+                                .frame(maxHeight: 20)
+                                .padding(.horizontal, 4)
                         }
                         Spacer()
                         if showAddDish || showDeleteDish {
@@ -58,6 +60,8 @@ struct DishPicker: View {
                                 }
                             } label: {
                                 Image(systemName: "checkmark")
+                                    .frame(maxHeight: .infinity)
+                                    .padding(.horizontal, 4)
                             }
                         }
                     }
@@ -70,6 +74,8 @@ struct DishPicker: View {
                                 viewModel.setupDishTextFild()
                             } label: {
                                 Image(systemName: "square.and.pencil")
+                                    .frame(maxHeight: .infinity)
+                                    .padding(.horizontal, 4)
                             }
                             Spacer()
                         }
@@ -103,6 +109,7 @@ struct DishPicker: View {
                 ZStack {
                     TextField("Название", text: $viewModel.dishTextFild)
                         .padding()
+                        .foregroundColor(.black)
                         .background(.white)
                     HStack {
                         Spacer()

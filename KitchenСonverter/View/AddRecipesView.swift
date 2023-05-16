@@ -113,10 +113,14 @@ struct AddRecipesView: View {
                                  isClassic: false)
                     }
                     .padding(.horizontal, 16)
-                    MainText(text: viewModel.ingredientsText())
-                    Text("Cпособ приготовления:\n\(viewModel.cookingMethodMainTextFildViewModel.bindingProperty)")
-                        .foregroundColor(.white)
-                        .modifier(SettingsElement(backgroundColor: .black.opacity(0.5)))
+                    VStack {
+                        MainText(text: viewModel.ingredientsText())
+                        Text("Cпособ приготовления:\n\(viewModel.cookingMethodMainTextFildViewModel.bindingProperty)")
+                            .foregroundColor(.white)
+                            .modifier(SettingsElement(backgroundColor: .black.opacity(0.5)))
+                        Spacer()
+                            .padding(.vertical, 50)
+                    }
                 }
             }
         }

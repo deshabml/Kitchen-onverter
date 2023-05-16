@@ -14,6 +14,7 @@ struct MainTextFild: View {
 
     var body: some View {
         TextField(viewModel.placeHolder, text: $viewModel.bindingProperty, axis: axis)
+            .foregroundColor(.black)
             .modifier(SettingsElement(backgroundColor: .white))
     }
     

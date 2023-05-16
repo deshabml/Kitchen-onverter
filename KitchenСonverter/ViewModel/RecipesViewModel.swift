@@ -49,8 +49,10 @@ class RecipesViewModel: ObservableObject {
             dishPickerViewModel.setupDishPicker(RealmService.shared.getDishs()[0])
             for index in 0..<recipes.count {
                 if recipes[index].dish == updDish.name {
+                    let newRecipe = recipes[index]
                     updateObject(oldObject: recipes[index],
                                  newObject: Recipe(name: recipes[index].name,
+                                                   Image: recipes[index].Image,
                                                    ingredientsList: recipes[index].ingredients,
                                                    cookingMethod: recipes[index].cookingMethod,
                                                    dish: dishPickerViewModel.dishTextFild))
