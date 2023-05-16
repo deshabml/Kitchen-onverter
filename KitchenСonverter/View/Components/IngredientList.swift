@@ -1,25 +1,25 @@
 //
-//  ConverterList.swift
+//  IngredientList.swift
 //  KitchenСonverter
 //
-//  Created by Лаборатория on 13.04.2023.
+//  Created by Лаборатория on 27.04.2023.
 //
 
 import SwiftUI
 
-struct ConverterList: View {
+struct IngredientList: View {
 
-    @StateObject var viewModel: ConverterListViewModel
+    @StateObject var viewModel: IngredientListViewModel
 
     var body: some View {
         List {
-            ForEach(0 ..< viewModel.recordedConverters.count, id: \.self) { item in
-                ConverterCell(converter: viewModel.recordedConverters[item])
+            ForEach(0 ..< viewModel.recordedIngredient.count, id: \.self) { item in
+                IngredientCell(product: viewModel.recordedIngredient[item])
                     .background(.white.opacity(0.8))
                     .listRowInsets(EdgeInsets())
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Удалить") {
-                            viewModel.completion(viewModel.recordedConverters[item])
+                            viewModel.completion(viewModel.recordedIngredient[item])
                         }
                         .tint(.red)
                     }
@@ -31,5 +31,5 @@ struct ConverterList: View {
         .cornerRadius(18)
         .ignoresSafeArea()
     }
-    
+
 }

@@ -9,14 +9,13 @@ import SwiftUI
 
 struct MainTextFild: View {
 
-    var placeHolder: String
-    @Binding var productQuantity: String
+    @StateObject var viewModel: MainTextFildViewModel
+    var axis: Axis
 
     var body: some View {
-        TextField(placeHolder, text: $productQuantity)
-            .padding()
-            .background(.white)
-            .cornerRadius(18)
+        TextField(viewModel.placeHolder, text: $viewModel.bindingProperty, axis: axis)
+            .foregroundColor(.black)
+            .modifier(SettingsElement(backgroundColor: .white))
     }
     
 }

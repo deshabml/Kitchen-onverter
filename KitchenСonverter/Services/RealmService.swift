@@ -48,6 +48,28 @@ class RealmService {
                 print("Неисправность базы данных")
             }
         }
+        if let oldObject = oldObject as? Recipe, let newObject = newObject as? Recipe {
+            do {
+                try dataBase.write() {
+                    oldObject.name = newObject.name
+                    oldObject.Image = newObject.Image
+                    oldObject.ingredients = newObject.ingredients
+                    oldObject.cookingMethod = newObject.cookingMethod
+                    oldObject.dish = newObject.dish
+                }
+            } catch {
+                print("Неисправность базы данных")
+            }
+        }
+        if let oldObject = oldObject as? Dish, let newObject = newObject as? Dish {
+            do {
+                try dataBase.write {
+                    oldObject.name = newObject.name
+                }
+            } catch {
+                print("Неисправность базы данных")
+            }
+        }
     }
 
     func deleteObject<T>(object: T) {
@@ -60,7 +82,7 @@ class RealmService {
             print("Неисправность базы данных")
         }
     }
-    
+
 }
 
 extension RealmService {
@@ -108,6 +130,24 @@ extension RealmService {
             typeMeasuringSystems.append(typeMeasuringSystem)
         }
         return typeMeasuringSystems
+    }
+
+    func getRecipes() -> [Recipe] {
+        let recipeList = dataBase.objects(Recipe.self)
+        var recipes = [Recipe]()
+        for recipe in recipeList {
+            recipes.append(recipe)
+        }
+        return recipes
+    }
+
+    func getDishs() -> [Dish] {
+        let dishList = dataBase.objects(Dish.self)
+        var dishs = [Dish]()
+        for dish in dishList {
+            dishs.append(dish)
+        }
+        return dishs
     }
 
 }

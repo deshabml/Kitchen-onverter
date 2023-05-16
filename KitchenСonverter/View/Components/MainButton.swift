@@ -12,18 +12,25 @@ struct MainButton: View {
     var text: String
     var colors: (Color, Color)
     var completion: ()->()
+    var isCancelStyle: Bool = false
 
     var body: some View {
         Button {
             completion()
         } label: {
-            Text(text)
-                .padding(.vertical, 16)
-                .foregroundColor(colors.0)
-                .frame(maxWidth: .infinity)
-                .background(colors.1)
-                .cornerRadius(18)
+            if isCancelStyle {
+                Text(text)
+                    .foregroundColor(colors.0)
+                    .modifier(SettingsElement(verticalPadding: 8, horizontalPadding: 16, backgroundColor: colors.1.opacity(0.8), cornerRadius: 12))
+            } else {
+                Text(text)
+                    .foregroundColor(colors.0)
+                    .frame(maxWidth: .infinity)
+                    .modifier(SettingsElement(horizontalPadding: 0,
+                                              backgroundColor: colors.1))
+            }
         }
+        .padding(.horizontal, isCancelStyle ? 16 : 0)
     }
     
 }

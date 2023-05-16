@@ -15,20 +15,14 @@ struct ConverterCell: View {
         HStack {
             Text(converter.product?.name ?? "")
                 .padding()
-                .font(.custom("AvenirNext",
-                              size: 20))
-                .foregroundColor(.black)
             Spacer()
             Text(converter.itog)
-                .font(.custom("AvenirNext",
-                              size: 20))
-                .foregroundColor(.black)
             Text(converter.measuringSystem?.name ?? "")
                 .padding(.trailing, 16)
-                .font(.custom("AvenirNext",
-                              size: 20))
-                .foregroundColor(.black)
         }
+        .font(.custom("AvenirNext",
+                      size: 20))
+        .foregroundColor(.black)
     }
 
 }

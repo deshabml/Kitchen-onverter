@@ -9,13 +9,19 @@ import SwiftUI
 
 
 
-struct MainAddLabel: View {
+struct MainAddEditButton: View {
 
     var isEdit: Bool
     var symbols: String
     var color: Color
+    var complition: ()->()
 
     var body: some View {
+        Button {
+            withAnimation {
+                complition()
+            }
+        } label: {
             HStack(alignment: .center,
                    spacing: 0) {
                 if !isEdit {
@@ -23,8 +29,10 @@ struct MainAddLabel: View {
                 }
                 Image(systemName: symbols)
             }
-                .foregroundColor(color)
-                .font(.headline)
-                .padding(10)
+                   .foregroundColor(color)
+                   .font(.headline)
+                   .padding(10)
+        }
     }
+
 }

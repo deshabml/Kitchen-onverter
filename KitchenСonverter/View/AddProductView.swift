@@ -14,70 +14,78 @@ struct AddProductView: View {
     @State var showAlert = false
     @State var showDeleteAlert = false
     let isEdit: Bool
-    @Environment (\.dismiss) var dismiss
 
     var body: some View {
-        VStack {
+        VStack(spacing: 8) {
+            MainText(text: isEdit ? "Изменение" : "Добавление",
+                     size: 24,
+                     isClassic: false)
+            MainText(text: "продукта:",
+                     size: 24,
+                     isClassic: false)
+            MainTextFild(viewModel: viewModel.productNameMainTextFildViewModel,
+                         axis: .horizontal)
+            MainText(text: "плотность:",
+                     isClassic: false)
+            MainTextFild(viewModel: viewModel.densityMainTextFildViewModel,
+                         axis: .horizontal)
             HStack {
-                AddViewButtonCancell(completion: {
-                    dismiss()
+                MainButton(text: "Отмена",
+                           colors: (.black, .white), completion: {
+                    dismissScreen()
                 })
                 Spacer()
-            }
-            AddViewText(text: isEdit ? "Изменение" : "Добавление", size: 30)
-            AddViewText(text: "продукта:", size: 30)
-            MainTextFild(placeHolder: "Введите наименование продукта", productQuantity: $viewModel.productName)
-                .padding(.horizontal, 16)
-            AddViewText(text: "плотность:", size: 24)
-            MainTextFild(placeHolder: "Введите плотность продукта", productQuantity: $viewModel.density)
-                .padding(.horizontal, 16)
-            MainButton(text: isEdit ? "Сохранить" : "Добавить", colors: (.white, .yellow)) {
-                if viewModel.errorMasege.isEmpty {
-                    if isEdit {
-                        viewModel.updateProduct(viewModel: mainViewModel)
+                MainButton(text: isEdit ? "Сохранить" : "Добавить",
+                           colors: (.white, .yellow)) {
+                    if viewModel.errorMasege.isEmpty {
+                        if isEdit {
+                            viewModel.updateProduct(viewModel: mainViewModel)
+                        } else {
+                            viewModel.addProduct(viewModel: mainViewModel)
+                        }
+                        dismissScreen()
                     } else {
-                        viewModel.addProduct(viewModel: mainViewModel)
+                        showAlert.toggle()
                     }
-                    dismiss()
-                } else {
-                    showAlert.toggle()
                 }
             }
-            .padding()
+            .padding(.vertical, 16)
             if isEdit {
-                MainButton(text: "Удалить", colors: (.white, .red)) {
+                MainButton(text: "Удалить",
+                           colors: (.white, .red)) {
                     showDeleteAlert.toggle()
                 }
-                .padding()
             }
-            Spacer()
-
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .navigationBarBackButtonHidden(true)
-        .background(
-         Image("AddMainProductBackgraund")
-             .resizable()
-             .ignoresSafeArea()
-             .scaledToFill()
-        )
+        .padding()
         .onAppear {
             if isEdit {
                 viewModel.getData(viewModel: mainViewModel)
             }
         }
-        .alert(viewModel.errorMasege, isPresented: $showAlert) {
-            Button("ОК") { }
-        }
-        .alert("Вы уверены, что хотите удалить единицу измерения?", isPresented: $showDeleteAlert) {
-            Button("ОТМЕНА", role: .cancel) { }
-            Button("УДАЛИТЬ", role: .destructive) {
-                viewModel.deleteProduct(viewModel: mainViewModel)
-                dismiss()
+        .modifier(AlertElement(TextFirst: viewModel.errorMasege,
+                               switchAlertFirst: $showAlert,
+                               TextSecond: "Вы уверены, что хотите удалить единицу измерения?",
+                               switchAlertSecond: $showDeleteAlert, complitionAlertSecond: {
+            viewModel.deleteProduct(viewModel: mainViewModel)
+            dismissScreen()
+        }))
+    }
+    
+}
+
+extension AddProductView {
+
+    func dismissScreen() {
+        withAnimation {
+            if isEdit {
+                mainViewModel.showScreenViewModelEditProduct.isShow.toggle()
+            } else {
+                mainViewModel.showScreenViewModelAddProduct.isShow.toggle()
             }
         }
     }
-    
+
 }
 
 struct AddProductView_Previews: PreviewProvider {

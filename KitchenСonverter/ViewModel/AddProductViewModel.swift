@@ -17,8 +17,11 @@ enum ProductError: Error {
 
 class AddProductViewModel: ObservableObject  {
 
-    @Published var productName: String = ""
-    @Published var density: String = ""
+    @Published var showAddDish = false
+    @Published var showDeleteDish = false
+    @Published var showDeleteDishAlert = false
+    @Published var productNameMainTextFildViewModel: MainTextFildViewModel = MainTextFildViewModel(placeHolder: "Введите наименование продукта")
+    @Published var densityMainTextFildViewModel: MainTextFildViewModel = MainTextFildViewModel(placeHolder: "Введите плотность продукта")
     @Published var product: Product?
     var errorMasege: String {
         do {
@@ -36,14 +39,14 @@ class AddProductViewModel: ObservableObject  {
     }
 
     func addProduct(viewModel: CalculatorViewModel) {
-        guard let density = Double(density) else { return }
-        viewModel.savingObject(object: Product(name: productName, density: density))
+        guard let density = Double(densityMainTextFildViewModel.bindingProperty) else { return }
+        viewModel.savingObject(object: Product(name: productNameMainTextFildViewModel.bindingProperty, density: density))
     }
 
     func checkProduct() throws {
-        guard !productName.isEmpty else { throw ProductError.emptyName }
-        guard !density.isEmpty else { throw ProductError.emptyDensity }
-        guard let _ = Double(density) else { throw ProductError.densityNotDouble }
+        guard !productNameMainTextFildViewModel.bindingProperty.isEmpty else { throw ProductError.emptyName }
+        guard !densityMainTextFildViewModel.bindingProperty.isEmpty else { throw ProductError.emptyDensity }
+        guard let _ = Double(densityMainTextFildViewModel.bindingProperty) else { throw ProductError.densityNotDouble }
     }
     
 }
@@ -51,22 +54,24 @@ class AddProductViewModel: ObservableObject  {
 extension AddProductViewModel {
 
     func getData(viewModel: CalculatorViewModel) {
-        product = viewModel.productPicker
+        product = viewModel.productPickerViewModel.productPicker
         guard let product = product else { return }
-        productName = product.name
-        density = "\(product.density)"
+        productNameMainTextFildViewModel.setupProperty(product.name)
+        densityMainTextFildViewModel.setupProperty("\(product.density)")
     }
 
     func updateProduct(viewModel: CalculatorViewModel) {
-        guard let density = Double(density) else { return }
+        guard let density = Double(densityMainTextFildViewModel.bindingProperty) else { return }
         guard let product = product else { return }
-        viewModel.updateObject(oldObject: product, newObject: Product(name: productName, density: density))
+        viewModel.updateObject(oldObject: product,
+                               newObject: Product(name: productNameMainTextFildViewModel.bindingProperty,
+                                                  density: density))
     }
 
     func deleteProduct(viewModel: CalculatorViewModel) {
         guard let product = product else { return }
         viewModel.deleteObject(object: product)
-        viewModel.productPicker = RealmService.shared.getProduct()[0]
+        viewModel.productPickerViewModel.setupPicker(productPicker: RealmService.shared.getProduct()[0])
     }
 
 }
