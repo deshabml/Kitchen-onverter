@@ -143,7 +143,7 @@ extension AddRecipesViewModel {
 
     func loadDishPicker(mainViewModel: RecipesViewModel) {
         mainViewModel.dishPickerViewModel.setupIsEdit(true)
-        ingredientListViewModel.setupCompletion { productRecipe in
+        ingredientListViewModel.setupCompletion { [unowned self] productRecipe in
             self.deleteIngredient(product: productRecipe)
         }
         if mainViewModel.dishPickerViewModel.dishPicker.name == "Все" {

@@ -59,7 +59,7 @@ extension CalculatorViewModel {
         initialFillingDataBase()
         getStartPickerData()
         getAllData()
-        recordedConvertersConverterListViewModel.setupCompletion { converter in
+        recordedConvertersConverterListViewModel.setupCompletion { [unowned self] converter in
             self.deleteObject(object: converter)
         }
     }

@@ -49,7 +49,6 @@ class RecipesViewModel: ObservableObject {
             dishPickerViewModel.setupDishPicker(RealmService.shared.getDishs()[0])
             for index in 0..<recipes.count {
                 if recipes[index].dish == updDish.name {
-                    let newRecipe = recipes[index]
                     updateObject(oldObject: recipes[index],
                                  newObject: Recipe(name: recipes[index].name,
                                                    Image: recipes[index].Image,
@@ -110,13 +109,13 @@ extension RecipesViewModel {
 
     func loadingScreen() {
         if isFirstView {
-            dishPickerViewModel.setupCompletions { newValue in
+            dishPickerViewModel.setupCompletions { [unowned self] newValue in
                 self.dishPickerAction(newValue)
-            } completionAdd: {
+            } completionAdd: { [unowned self] in
                 self.savingDish()
-            } completionUpdate: {
+            } completionUpdate: { [unowned self] in
                 self.updateDish()
-            } completionDelete: {
+            } completionDelete: { [unowned self] in
                 self.showDeleteDishAlert.toggle()
             }
             getStartPickerData(index: 0)
@@ -140,7 +139,7 @@ extension RecipesViewModel {
         lastDishPicker = newValue
         recipesGridViewModel.setupNameDishPicker(newValue.name)
         recipesGridViewModel.setupRecipesPicker([])
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) { [unowned self] in
             if newValue.name == "Все" {
                 self.recipesGridViewModel.setupRecipesPicker(self.recipes)
             } else {
