@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct Kitchen_onverterApp: App {
+
     var body: some Scene {
         WindowGroup {
-            MainView()
+            TabBarView()
         }
     }
+    
 }
