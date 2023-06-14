@@ -4,6 +4,7 @@
 
 ## Технологии
 
+- MVVM
 - SwiftUI
 - RealmSwift
 - ObservableObject
